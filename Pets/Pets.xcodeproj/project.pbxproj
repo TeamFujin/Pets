@@ -21,6 +21,7 @@
 		209B827B1A029ABC0038CE29 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B827A1A029ABC0038CE29 /* ProfileViewController.m */; };
 		209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82801A029B910038CE29 /* AddOfferViewController.m */; };
 		209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82831A029BA20038CE29 /* OfferDetailsViewController.m */; };
+		20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		209B82801A029B910038CE29 /* AddOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOfferViewController.m; sourceTree = "<group>"; };
 		209B82821A029BA20038CE29 /* OfferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailsViewController.h; sourceTree = "<group>"; };
 		209B82831A029BA20038CE29 /* OfferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailsViewController.m; sourceTree = "<group>"; };
+		20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactInfoViewController.h; sourceTree = "<group>"; };
+		20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 				209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */,
 				209A77CC1A02F1F200A5BC2B /* OffersViewController.h */,
 				209A77CD1A02F1F200A5BC2B /* OffersViewController.m */,
+				20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */,
+				20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */,
+				20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */,
 				209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */,
 				209B824F1A0294DE0038CE29 /* main.m in Sources */,
 				209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */,

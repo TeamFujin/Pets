@@ -41,7 +41,6 @@
         else {
             NSString *userName = [FBuser name];
             NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
-            NSString *email = [FBuser objectForKey:@"email"];
             NSString *fbUserID =[FBuser objectID];
             
             NSLog(@"%@", fbUserID);
@@ -51,6 +50,8 @@
             self.profilePic.image = [UIImage imageWithData:imageData];
         }
     }];
+    self.emailLabel.text = self.email;
+    self.phoneLabel.text = self.phone;
 }
 /*
 #pragma mark - Navigation
