@@ -12,16 +12,17 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextInput;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 @end
 
 @implementation AddOfferViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.imgur.com/4ciIEEe.jpg"]]];
+    
+    self.imageView.image = image;
     // Do any additional setup after loading the view.
 }
 
@@ -93,7 +94,7 @@
     NSString *title = self.titleTextInput.text;
     NSString *description = self.descriptionTextInput.text;
     NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
-    
+    NSString *imageBase64 = [self encodeToBase64String:self.imageView.image];
     NSDictionary *offerDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
                         title, @"title",
                         description, @"description",
@@ -101,7 +102,7 @@
                         nil];
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:offerDictionary
-                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                       options:NSJSONWritingPrettyPrinted // pass 0 for non-formatted
                                                          error:&error];
     
     if (! jsonData) {
@@ -110,6 +111,15 @@
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSLog(@"%@", jsonString);
     }
+}
+
+- (NSString *)encodeToBase64String:(UIImage *)image {
+    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+}
+
+- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
+    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [UIImage imageWithData:data];
 }
 /*
 #pragma mark - Navigation
