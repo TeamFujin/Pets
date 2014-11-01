@@ -338,16 +338,22 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0x7-3d-ur7">
-                                <rect key="frame" x="16" y="190" width="172" height="30"/>
-                                <state key="normal" title="Add picture from gallery">
+                                <rect key="frame" x="16" y="348" width="141" height="30"/>
+                                <state key="normal" title="Select from gallery">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="selectPhoto:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="Sgf-RA-Qn4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBO-Kk-YJN">
-                                <rect key="frame" x="16" y="152" width="98" height="30"/>
+                                <rect key="frame" x="16" y="310" width="98" height="30"/>
                                 <state key="normal" title="Take a photo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="kcb-Wa-pJn"/>
+                                </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="iDM-zr-1HD">
                                 <rect key="frame" x="115" y="114" width="182" height="31"/>
@@ -362,7 +368,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkf-KB-wno">
-                                <rect key="frame" x="16" y="266" width="34" height="30"/>
+                                <rect key="frame" x="16" y="424" width="34" height="30"/>
                                 <state key="normal" title="Save">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -370,22 +376,24 @@
                                     <action selector="saveClicked:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="CxS-OV-8fo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1E-RO-QuO">
-                                <rect key="frame" x="16" y="228" width="126" height="30"/>
-                                <state key="normal" title="Add geolocation ?">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Description goes here" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBA-8l-adg">
                                 <rect key="frame" x="16" y="68" width="182" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0QN-eB-f08"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1E-RO-QuO">
+                                <rect key="frame" x="16" y="386" width="126" height="30"/>
+                                <state key="normal" title="Add geolocation ?">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="descriptionTextInput" destination="xBA-8l-adg" id="VM4-3V-UTa"/>
+                        <outlet property="imageView" destination="0QN-eB-f08" id="7v5-oM-Uk2"/>
                         <outlet property="slider" destination="iDM-zr-1HD" id="Oub-gw-JPT"/>
                         <outlet property="sliderLabel" destination="ndq-eU-XbE" id="Idu-fG-LUt"/>
                         <outlet property="titleTextInput" destination="8lY-Q3-opD" id="yfN-nN-hhu"/>

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddOfferViewController : UIViewController
+@interface AddOfferViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
