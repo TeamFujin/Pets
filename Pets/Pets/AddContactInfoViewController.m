@@ -29,13 +29,47 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSString *email = self.emailTextField.text;
     NSString *phone = self.phoneTextField.text;
-    
     if([segue.identifier isEqualToString:@"AddInfoToProfile"]){
         ProfileViewController *toProfile = segue.destinationViewController;
         toProfile.email = email;
         toProfile.phone = phone;
-        
     }
+    
+}
+- (BOOL) emailIsValid: (NSString *) candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
+-(BOOL) phoneIsValid: (NSString*) candidate{
+    NSString *phoneRegex = @"[0123456789][0-9]{6}([0-9]{3})?";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
+    return [phoneTest evaluateWithObject:candidate];
+}
+
+- (IBAction)continueClicked:(id)sender {
+    NSString *email = self.emailTextField.text;
+    NSString *phone = self.phoneTextField.text;
+    if(![self emailIsValid:email]){
+        [self showAlert:@"Error" withMessage:@"Invalid email"];
+    }
+    else if(! [self phoneIsValid:phone]){
+        [self showAlert:@"Error" withMessage:@"Invalid phone number"];
+    }
+    else{
+        [self performSegueWithIdentifier:@"AddInfoToProfile" sender:self];
+    }
+}
+
+- (void) showAlert: (NSString *) title withMessage: (NSString*) message{
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
+                                                          message:message
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+    
+    [myAlertView show];
 }
 
 @end
