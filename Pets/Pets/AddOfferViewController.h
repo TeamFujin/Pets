@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AddOfferViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
+#import <CoreLocation/CoreLocation.h>
+@interface AddOfferViewController : UIViewController<CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property CLLocationManager *locationManager;
 @end

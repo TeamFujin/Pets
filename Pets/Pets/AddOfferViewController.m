@@ -8,6 +8,8 @@
 
 #import "AddOfferViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <CoreLocation/CoreLocation.h>
+
 @interface AddOfferViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextInput;
@@ -16,33 +18,33 @@
 @property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 @end
 
-@implementation AddOfferViewController
+@implementation AddOfferViewController{
+    NSString *currentLatitude;
+    NSString *currentLongitude;
+    CLGeocoder *geocoder;
+    CLPlacemark *placemark;
+    NSString* adress;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.imgur.com/4ciIEEe.jpg"]]];
-    
-    self.imageView.image = image;
-    // Do any additional setup after loading the view.
+    [self loadHardcodedImage];
+    [self initializeLocationManager];
+    geocoder = [[CLGeocoder alloc] init];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)sliderChanged:(id)sender {
+    NSString *price =[NSString stringWithFormat:@"%@ BGN", [[NSNumber numberWithInteger:(int)self.slider.value] stringValue]];
+    self.sliderLabel.text = price;
+}
 
 - (IBAction)takePhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Device has no camera"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-        
-        [myAlertView show];
-        
-    }else{
+        [self showAlert:@"Error" withMessage:@"Device has no camera"];
+    } else {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -54,16 +56,8 @@
 
 - (IBAction)selectPhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Device has no camera"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
-        
-        [myAlertView show];
-        
-    }else{
+        [self showAlert:@"Error" withMessage:@"Device has no camera"];
+    } else {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
@@ -72,24 +66,57 @@
     [self presentViewController:picker animated:YES completion:NULL];
     }
 }
+
+#pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = chosenImage;
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
-}
-- (IBAction)sliderChanged:(id)sender {
-    NSString *price =[NSString stringWithFormat:@"%@ BGN", [[NSNumber numberWithInteger:(int)self.slider.value] stringValue]];
-    self.sliderLabel.text = price;
 }
 
+- (IBAction)addLocationTaped:(id)sender {
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager requestWhenInUseAuthorization]; // Add this Line
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    CLLocation *currentLocation = newLocation;
+    
+    if (currentLocation != nil) {
+        currentLongitude =[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        currentLatitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+    }
+    NSLog(@"Resolving the Address");
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
+        if (error == nil && [placemarks count] > 0) {
+            placemark = [placemarks lastObject];
+            //NSString* adress = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
+                                 //placemark.subThoroughfare, placemark.thoroughfare,
+                                // placemark.postalCode, placemark.locality,
+                                /// placemark.administrativeArea,
+                                // placemark.country];
+            adress = placemark.subThoroughfare;
+        } else {
+            NSLog(@"%@", error.debugDescription);
+        }
+    } ];
+    [self.locationManager stopUpdatingLocation];
+}
 - (IBAction)saveClicked:(id)sender {
     NSString *title = self.titleTextInput.text;
     NSString *description = self.descriptionTextInput.text;
@@ -110,7 +137,21 @@
     } else {
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         NSLog(@"%@", jsonString);
+        NSLog(@"%@", currentLongitude);
+        NSLog(@"%@", currentLatitude);
     }
+}
+
+-(void)loadHardcodedImage{
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.imgur.com/4ciIEEe.jpg"]]];
+    self.imageView.image = image;
+}
+
+-(void)initializeLocationManager
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 }
 
 - (NSString *)encodeToBase64String:(UIImage *)image {
@@ -120,6 +161,15 @@
 - (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
     NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return [UIImage imageWithData:data];
+}
+- (void) showAlert: (NSString *) title withMessage: (NSString*) message{
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
+                                                          message:message
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+    
+    [myAlertView show];
 }
 /*
 #pragma mark - Navigation

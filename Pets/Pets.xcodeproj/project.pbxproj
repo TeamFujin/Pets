@@ -21,6 +21,7 @@
 		209B827B1A029ABC0038CE29 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B827A1A029ABC0038CE29 /* ProfileViewController.m */; };
 		209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82801A029B910038CE29 /* AddOfferViewController.m */; };
 		209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82831A029BA20038CE29 /* OfferDetailsViewController.m */; };
+		209BD5D41A0679AF00692E5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209BD5D31A0679AF00692E5A /* CoreLocation.framework */; };
 		20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 		209B82801A029B910038CE29 /* AddOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOfferViewController.m; sourceTree = "<group>"; };
 		209B82821A029BA20038CE29 /* OfferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailsViewController.h; sourceTree = "<group>"; };
 		209B82831A029BA20038CE29 /* OfferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailsViewController.m; sourceTree = "<group>"; };
+		209BD5D31A0679AF00692E5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactInfoViewController.h; sourceTree = "<group>"; };
 		20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				209BD5D41A0679AF00692E5A /* CoreLocation.framework in Frameworks */,
 				209B82781A0297410038CE29 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +172,7 @@
 		209B82761A0297270038CE29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				209BD5D31A0679AF00692E5A /* CoreLocation.framework */,
 				209B82771A0297410038CE29 /* FacebookSDK.framework */,
 			);
 			name = Frameworks;
