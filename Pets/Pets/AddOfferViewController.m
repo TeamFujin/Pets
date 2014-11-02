@@ -21,16 +21,22 @@
 @implementation AddOfferViewController{
     NSString *currentLatitude;
     NSString *currentLongitude;
+<<<<<<< HEAD
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
     NSString* adress;
+=======
+>>>>>>> FETCH_HEAD
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadHardcodedImage];
     [self initializeLocationManager];
+<<<<<<< HEAD
     geocoder = [[CLGeocoder alloc] init];
+=======
+>>>>>>> FETCH_HEAD
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,6 +87,7 @@
 - (IBAction)addLocationTaped:(id)sender {
     [self.locationManager startUpdatingLocation];
     [self.locationManager requestWhenInUseAuthorization]; // Add this Line
+<<<<<<< HEAD
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -92,6 +99,19 @@
     [errorAlert show];
 }
 
+=======
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+>>>>>>> FETCH_HEAD
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
@@ -99,6 +119,7 @@
     if (currentLocation != nil) {
         currentLongitude =[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         currentLatitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+<<<<<<< HEAD
     }
     NSLog(@"Resolving the Address");
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -115,6 +136,10 @@
             NSLog(@"%@", error.debugDescription);
         }
     } ];
+=======
+        
+    }
+>>>>>>> FETCH_HEAD
     [self.locationManager stopUpdatingLocation];
 }
 - (IBAction)saveClicked:(id)sender {
