@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
-
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 @interface AppDelegate ()
 
 @end
@@ -20,12 +20,13 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
     // attempt to extract a token from the url
-    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"q4kkI9zeSw9C1QpG08HSBMJiZyU5wlUvymE2NnA8"
                   clientKey:@"dtvaW3RqZaXfRrch3zNalkMEJEpuZKAM8JG94Ap0"];
+     [PFFacebookUtils initializeFacebook];
     return YES;
 }
 
@@ -44,7 +45,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBAppCall handleDidBecomeActiveWithSession:[PFFacebookUtils session]];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

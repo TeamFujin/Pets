@@ -43,8 +43,6 @@
             NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
             NSString *fbUserID =[FBuser objectID];
             
-            NSLog(@"%@", fbUserID);
-            
             self.nameLabel.text = userName;
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:userImageURL]];
             self.profilePic.image = [UIImage imageWithData:imageData];

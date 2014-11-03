@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <Parse/Parse.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface LoginViewController ()
 
@@ -17,9 +19,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    FBLoginView *loginView = [[FBLoginView alloc] init];
-    loginView.center = self.view.center;
-    [self.view addSubview:loginView];
+    NSArray *permissions = @[@"email", @"user_likes"];
+    [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in through Facebook!");
+        } else {
+            NSLog(@"User logged in through Facebook!");
+        }
+    }];
+    //FBLoginView *loginView = [[FBLoginView alloc] init];
+    //loginView.center = self.view.center;
+    //[self.view addSubview:loginView];
+    
 }
 
 
