@@ -11,3 +11,4 @@ Pets
 9. Compress add offer image - M
 10. Fix UI and constraints - M
 11. Connection - M
+12. Add geolocation and address to db

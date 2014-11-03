@@ -14,6 +14,8 @@
 @dynamic desc;
 @dynamic price;
 @dynamic picture;
+@dynamic address;
+@dynamic location;
 @dynamic active;
 
 +(void) load {
