@@ -8,7 +8,13 @@
 
 #import "AddOfferViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+<<<<<<< Updated upstream
 #import <CoreLocation/CoreLocation.h>
+=======
+#import <Parse/Parse.h>
+#import "Offer.h"
+#import "DatabaseRequester.h"
+>>>>>>> Stashed changes
 
 @interface AddOfferViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
@@ -31,12 +37,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+<<<<<<< Updated upstream
     [self loadHardcodedImage];
     [self initializeLocationManager];
 <<<<<<< HEAD
     geocoder = [[CLGeocoder alloc] init];
 =======
 >>>>>>> FETCH_HEAD
+=======
+    self.titleTextInput.delegate = self;
+    self.descriptionTextInput.delegate = self;
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];//@"http://i.imgur.com/4ciIEEe.jpg"]]];
+    
+    self.imageView.image = image;
+ 
+>>>>>>> Stashed changes
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -146,17 +161,8 @@
     NSString *title = self.titleTextInput.text;
     NSString *description = self.descriptionTextInput.text;
     NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
-    NSString *imageBase64 = [self encodeToBase64String:self.imageView.image];
-    NSDictionary *offerDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                        title, @"title",
-                        description, @"description",
-                        price, @"price",
-                        nil];
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:offerDictionary
-                                                       options:NSJSONWritingPrettyPrinted // pass 0 for non-formatted
-                                                         error:&error];
     
+<<<<<<< Updated upstream
     if (! jsonData) {
         NSLog(@"Error parsing JSON: %@", error);
     } else {
@@ -165,6 +171,51 @@
         NSLog(@"%@", currentLongitude);
         NSLog(@"%@", currentLatitude);
     }
+=======
+    UIImage *image = self.imageView.image;
+//    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
+//    [image drawInRect: CGRectMake(0, 0, 200, 200)];
+//    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+    NSString *imageBase64 = [self encodeToBase64String:image];
+//    NSDictionary *offerDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+//                        title, @"title",
+//                        description, @"description",
+//                        price, @"price",
+//                        nil];
+//    NSError *error;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:offerDictionary
+//                                                       options:NSJSONWritingPrettyPrinted // pass 0 for non-formatted
+//                                                         error:&error];
+    Offer *offer = [Offer objectWithClassName:Offer.parseClassName];
+#warning use real facebookID here
+    offer.userId = @"testId"; //TODO: real facebookID goes here
+    offer.title = title;
+    offer.desc = description;
+    offer.price = price;
+    offer.active = YES;
+#warning do something about the stupid size
+    offer.picture = imageBase64;
+ //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
+  //  PFFile *imageFile = [PFFile fileWithData:imageData];
+  //  offer.picture = imageFile;
+    DatabaseRequester *db = [[DatabaseRequester alloc] init];
+    [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded) {
+            [[[UIAlertView alloc] initWithTitle:@"Success" message:@"Your offer has been published!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but your offer could not be published!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            NSLog(@"Errorr: %@", error);
+        }
+    }];
+    
+//    if (! jsonData) {
+//        NSLog(@"Error parsing JSON: %@", error);
+//    } else {
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        NSLog(@"%@", jsonString);
+//    }
+>>>>>>> Stashed changes
 }
 
 -(void)loadHardcodedImage{
@@ -187,6 +238,7 @@
     NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
     return [UIImage imageWithData:data];
 }
+<<<<<<< Updated upstream
 - (void) showAlert: (NSString *) title withMessage: (NSString*) message{
     UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
                                                           message:message
@@ -195,6 +247,12 @@
                                                 otherButtonTitles: nil];
     
     [myAlertView show];
+=======
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+>>>>>>> Stashed changes
 }
 /*
 #pragma mark - Navigation

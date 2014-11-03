@@ -7,6 +7,9 @@
 //
 
 #import "HomeTableViewController.h"
+#import "HomeUITableViewCell.h"
+#import "DatabaseRequester.h"
+#import "Offer.h"
 
 @interface HomeTableViewController ()
 
@@ -14,9 +17,36 @@
 
 @implementation HomeTableViewController
 
+static NSInteger count = 0;
+static NSMutableArray *data;
+static NSInteger rowHeight = 100;
+static NSString *cellIdentifier = @"HomeUITableViewCell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    DatabaseRequester *db = [[DatabaseRequester alloc] init];
+//TODO: put the spinner in a seperate class
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0,0,100,100)];
+    CGAffineTransform transform = CGAffineTransformMakeScale(3.5f, 3.5f);
+    spinner.transform = transform;
+    spinner.color = [UIColor blueColor];
+    spinner.center = self.view.center;
+    [spinner startAnimating];
+    [self.tableView addSubview:spinner];
     
+    [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
+        [spinner removeFromSuperview];
+        if(!error) {
+            count = objects.count;
+            data = [NSMutableArray arrayWithArray:objects];
+            NSLog(@"%@", objects);
+            [self.tableView reloadData];
+        } else {
+              [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we could not retrieve the offers!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+        }
+    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -26,32 +56,37 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//#warning Potentially incomplete method implementation.
+//    // Return the number of sections.
+//    return 0;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    HomeUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    Offer *offer = data[indexPath.row];
+    cell.labelTitle.text = offer.title;
+    cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
+    if(offer.picture) {
+        NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        cell.imageViewPicture.image = [UIImage imageWithData:data];
+    }
     
     return cell;
 }
-*/
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return rowHeight;
+}
 
 /*
 // Override to support conditional editing of the table view.
