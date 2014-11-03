@@ -7,14 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-<<<<<<< Updated upstream
 #import <CoreLocation/CoreLocation.h>
-@interface AddOfferViewController : UIViewController<CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AddOfferViewController : UIViewController<CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 @property CLLocationManager *locationManager;
-=======
-
-@interface AddOfferViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate,
-    UITextFieldDelegate>
-
->>>>>>> Stashed changes
 @end
