@@ -12,6 +12,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *loginStatusLabel;
 
 @end
 
@@ -21,13 +22,15 @@
     [super viewDidLoad];
     NSArray *permissions = @[@"email", @"user_likes"];
     [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
+        NSString *result;
         if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+            result = @"The user cancelled the Facebook login.";
         } else if (user.isNew) {
-            NSLog(@"User signed up and logged in through Facebook!");
+            result = @"User signed up and logged in through Facebook!";
         } else {
-            NSLog(@"User logged in through Facebook!");
+            result = @"User logged in through Facebook!";
         }
+        self.loginStatusLabel.text = result;
     }];
     //FBLoginView *loginView = [[FBLoginView alloc] init];
     //loginView.center = self.view.center;

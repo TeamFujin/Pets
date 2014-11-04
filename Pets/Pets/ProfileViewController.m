@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -35,15 +36,13 @@
 -(void)getPersonalInfo{
     [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
         if (error) {
-            // Handle error
+            
         }
-
         else {
             NSString *userName = [FBuser name];
-            NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
-            NSString *fbUserID =[FBuser objectID];
-            
             self.nameLabel.text = userName;
+            
+            NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:userImageURL]];
             self.profilePic.image = [UIImage imageWithData:imageData];
         }

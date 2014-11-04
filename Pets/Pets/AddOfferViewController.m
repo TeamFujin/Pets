@@ -103,23 +103,20 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
-    
+    //get coordinates
     if (currentLocation != nil) {
         currentLongitude =[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         currentLatitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-
     }
-    NSLog(@"Resolving the Address");
+    //get adress
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSLog(@"Found placemarks: %@, error: %@", placemarks, error);
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
-            //NSString* adress = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
-                                 //placemark.subThoroughfare, placemark.thoroughfare,
-                                // placemark.postalCode, placemark.locality,
-                                /// placemark.administrativeArea,
-                                // placemark.country];
+            //placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country
             adress = placemark.subThoroughfare;
+            NSLog(@"%@", placemark.subThoroughfare);
+            NSLog(@"%@", placemark.thoroughfare);
+            NSLog(@"%@", placemark.locality);
         } else {
             NSLog(@"%@", error.debugDescription);
         }
@@ -130,30 +127,12 @@
     NSString *title = self.titleTextInput.text;
     NSString *description = self.descriptionTextInput.text;
     NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
-//        NSDictionary *offerDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-//                            title, @"title",
-//                            description, @"description",
-//                            price, @"price",
-//                            nil];
-//        NSError *error;
-//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:offerDictionary
-//                                                           options:NSJSONWritingPrettyPrinted // pass 0 for non-formatted
-//                                                             error:&error];
-//    if (!jsonData) {
-//        NSLog(@"Error parsing JSON: %@", error);
-//    } else {
-//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@", jsonString);
-//        NSLog(@"%@", currentLongitude);
-//        NSLog(@"%@", currentLatitude);
-//    }
     UIImage *image = self.imageView.image;
 //    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
 //    [image drawInRect: CGRectMake(0, 0, 200, 200)];
 //    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
 //    UIGraphicsEndImageContext();
     NSString *imageBase64 = [self encodeToBase64String:image];
-
     Offer *offer = [Offer objectWithClassName:Offer.parseClassName];
 #warning use real facebookID here
     offer.userId = @"testId"; //TODO: real facebookID goes here
@@ -169,20 +148,12 @@
     DatabaseRequester *db = [[DatabaseRequester alloc] init];
     [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
-            [[[UIAlertView alloc] initWithTitle:@"Success" message:@"Your offer has been published!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            [self showAlert:@"Success" withMessage:@"Your offer has been published!"];
         } else {
-            [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but your offer could not be published!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            [self showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
             NSLog(@"Errorr: %@", error);
         }
     }];
-    
-//    if (! jsonData) {
-//        NSLog(@"Error parsing JSON: %@", error);
-//    } else {
-//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        NSLog(@"%@", jsonString);
-//    }
-
 }
 
 -(void)loadHardcodedImage{
@@ -219,7 +190,6 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
-
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
