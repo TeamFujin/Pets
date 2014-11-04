@@ -21,8 +21,8 @@
 @end
 
 @implementation AddOfferViewController{
-    NSString *currentLatitude;
-    NSString *currentLongitude;
+    float currentLatitude;
+    float currentLongitude;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
     NSString* adress;
@@ -103,10 +103,11 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
-    //get coordinates
+    
     if (currentLocation != nil) {
-        currentLongitude =[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        currentLatitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        currentLongitude = currentLocation.coordinate.longitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        currentLatitude = currentLocation.coordinate.latitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        
     }
     //get adress
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -142,6 +143,9 @@
     offer.active = YES;
 #warning do something about the stupid size
     offer.picture = imageBase64;
+    offer.location.longitude = currentLongitude;
+    offer.location.latitude = currentLatitude;
+    offer.address = adress;
  //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
   //  PFFile *imageFile = [PFFile fileWithData:imageData];
   //  offer.picture = imageFile;

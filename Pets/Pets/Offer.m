@@ -15,6 +15,8 @@
 @dynamic price;
 @dynamic picture;
 @dynamic active;
+@dynamic address;
+@dynamic location;
 
 +(void) load {
     [self registerSubclass];

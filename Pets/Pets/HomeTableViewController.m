@@ -80,6 +80,9 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
         NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.imageViewPicture.image = [UIImage imageWithData:data];
     }
+ else {
+    cell.imageViewPicture.image = nil;
+ }
     
     return cell;
 }
