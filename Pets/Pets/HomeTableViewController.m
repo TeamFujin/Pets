@@ -41,12 +41,13 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
         if(!error) {
             count = objects.count;
             data = [NSMutableArray arrayWithArray:objects];
-            NSLog(@"%@", objects);
+          //  NSLog(@"%@", objects);
             [self.tableView reloadData];
         } else {
               [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we could not retrieve the offers!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
         }
     }];
+   // self.offerDetailsViewController = (OfferDetailsViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -125,14 +126,29 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 }
 */
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Get reference to receipt
+    Offer *offer = [data objectAtIndex:indexPath.row];
+    
+    OfferDetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"offerDetails"];
+    
+    // Pass data to controller
+    controller.offer = offer;
+    [self.navigationController pushViewController:controller animated:YES];
 }
-*/
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    NSLog(@"in prepareForSegue");
+//    if ([[segue identifier] isEqualToString:@"showOfferDetails"]) {
+//         NSLog(@"in prepareForSegue");
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        Offer *offer = data[indexPath.row];
+//        OfferDetailsViewController *controller = (OfferDetailsViewController *)[[segue destinationViewController] topViewController];
+//        [controller setOffer:offer];
+//      //  controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+//        //controller.navigationItem.leftItemsSupplementBackButton = YES;
+//    }
+//}
 
 @end

@@ -41,7 +41,6 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)sliderChanged:(id)sender {
     NSString *price =[NSString stringWithFormat:@"%@ BGN", [[NSNumber numberWithInteger:(int)self.slider.value] stringValue]];
@@ -117,7 +116,7 @@
             adress = placemark.thoroughfare;
             NSLog(@"%@", placemark.thoroughfare);
         } else {
-            NSLog(@"%@", error.debugDescription);
+            NSLog(@"didUpdateToLocation%@", error.debugDescription);
         }
     } ];
     [self.locationManager stopUpdatingLocation];
@@ -144,6 +143,7 @@
     offer.location.longitude = currentLongitude;
     offer.location.latitude = currentLatitude;
     offer.address = adress;
+    
  //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
   //  PFFile *imageFile = [PFFile fileWithData:imageData];
   //  offer.picture = imageFile;
