@@ -8,6 +8,7 @@
 
 #import "AddContactInfoViewController.h"
 #import "ProfileViewController.h"
+#import <Parse/Parse.h>
 @interface AddContactInfoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -58,6 +59,10 @@
         [self showAlert:@"Error" withMessage:@"Invalid phone number"];
     }
     else{
+        PFUser *currUser = [PFUser currentUser];
+        currUser.email = email;
+        currUser[@"phone"] = phone;
+        [currUser save];
         [self performSegueWithIdentifier:@"AddInfoToProfile" sender:self];
     }
 }

@@ -114,10 +114,8 @@
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
             //placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country
-            adress = placemark.subThoroughfare;
-            NSLog(@"%@", placemark.subThoroughfare);
+            adress = placemark.thoroughfare;
             NSLog(@"%@", placemark.thoroughfare);
-            NSLog(@"%@", placemark.locality);
         } else {
             NSLog(@"%@", error.debugDescription);
         }

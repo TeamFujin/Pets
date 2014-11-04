@@ -390,7 +390,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8lY-Q3-opD">
-                                <rect key="frame" x="128" y="72" width="182" height="30"/>
+                                <rect key="frame" x="145" y="72" width="182" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="fo0-cL-19k"/>
                                 </constraints>
@@ -409,17 +409,8 @@
                                     <action selector="selectPhoto:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="Sgf-RA-Qn4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBO-Kk-YJN">
-                                <rect key="frame" x="16" y="422" width="93" height="30"/>
-                                <state key="normal" title="Take a photo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="takePhoto:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="kcb-Wa-pJn"/>
-                                </connections>
-                            </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="iDM-zr-1HD">
-                                <rect key="frame" x="116" y="186" width="182" height="31"/>
+                                <rect key="frame" x="133" y="186" width="182" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="178" id="Nzq-sL-FwU"/>
                                 </constraints>
@@ -428,7 +419,7 @@
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 BGN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndq-eU-XbE">
-                                <rect key="frame" x="17" y="195" width="93" height="21"/>
+                                <rect key="frame" x="17" y="195" width="110" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -443,8 +434,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhv-y3-tei">
-                                <rect key="frame" x="17" y="498" width="92" height="30"/>
-                                <state key="normal" title="Add Location">
+                                <rect key="frame" x="17" y="498" width="109" height="30"/>
+                                <state key="normal" title="Include address">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -452,14 +443,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFo-Es-cbf">
-                                <rect key="frame" x="17" y="75" width="92" height="21"/>
+                                <rect key="frame" x="17" y="75" width="109" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A6V-aS-77a"/>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBA-8l-adg">
-                                <rect key="frame" x="128" y="109" width="456" height="30"/>
+                                <rect key="frame" x="145" y="109" width="439" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
@@ -476,11 +467,20 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-tk-DV2">
-                                <rect key="frame" x="17" y="104" width="104" height="21"/>
+                                <rect key="frame" x="17" y="104" width="121" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBO-Kk-YJN">
+                                <rect key="frame" x="16" y="422" width="98" height="30"/>
+                                <state key="normal" title="Take a photo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhoto:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="kcb-Wa-pJn"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -498,11 +498,11 @@
                             <constraint firstItem="A6V-aS-77a" firstAttribute="trailing" secondItem="Sis-ll-1Ja" secondAttribute="trailing" id="RWl-kY-1wp"/>
                             <constraint firstItem="hkf-KB-wno" firstAttribute="leading" secondItem="pAS-sy-aur" secondAttribute="leadingMargin" id="SJm-eP-Itf"/>
                             <constraint firstItem="DFo-Es-cbf" firstAttribute="leading" secondItem="ndq-eU-XbE" secondAttribute="leading" id="Tw5-Zb-m4u"/>
-                            <constraint firstItem="DFo-Es-cbf" firstAttribute="trailing" secondItem="BBO-Kk-YJN" secondAttribute="trailing" id="XEE-To-53Z"/>
+                            <constraint firstItem="DFo-Es-cbf" firstAttribute="trailing" secondItem="BBO-Kk-YJN" secondAttribute="trailing" constant="12" id="XEE-To-53Z"/>
                             <constraint firstItem="xBA-8l-adg" firstAttribute="top" secondItem="8lY-Q3-opD" secondAttribute="bottom" constant="7" id="aKj-rg-bKf"/>
                             <constraint firstItem="0x7-3d-ur7" firstAttribute="leading" secondItem="BBO-Kk-YJN" secondAttribute="leading" id="apT-qt-ooc"/>
                             <constraint firstItem="Sis-ll-1Ja" firstAttribute="bottom" secondItem="A6V-aS-77a" secondAttribute="bottom" id="bKb-Oi-PCe"/>
-                            <constraint firstItem="hhv-y3-tei" firstAttribute="trailing" secondItem="BBO-Kk-YJN" secondAttribute="trailing" id="eX6-6s-30L"/>
+                            <constraint firstItem="hhv-y3-tei" firstAttribute="trailing" secondItem="BBO-Kk-YJN" secondAttribute="trailing" constant="12" id="eX6-6s-30L"/>
                             <constraint firstItem="Sis-ll-1Ja" firstAttribute="leading" secondItem="pAS-sy-aur" secondAttribute="leading" id="fk6-lg-bly"/>
                             <constraint firstItem="DFo-Es-cbf" firstAttribute="baseline" secondItem="8lY-Q3-opD" secondAttribute="baseline" id="hb3-ew-YpX"/>
                             <constraint firstItem="xBA-8l-adg" firstAttribute="trailing" secondItem="pAS-sy-aur" secondAttribute="trailingMargin" id="hnC-vI-ONo"/>
