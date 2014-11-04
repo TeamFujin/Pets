@@ -108,39 +108,20 @@
     CLLocation *currentLocation = newLocation;
     //get coordinates
     if (currentLocation != nil) {
-<<<<<<< HEAD
-        currentLongitude =[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        currentLatitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-    }
-    //get adress
-=======
-        currentLongitude = currentLocation.coordinate.longitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        currentLongitude =currentLocation.coordinate.longitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         currentLatitude = currentLocation.coordinate.latitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-
     }
-   
-    NSLog(@"Resolving the Address");
->>>>>>> FETCH_HEAD
+    
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
-<<<<<<< HEAD
             //placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country
-            adress = placemark.subThoroughfare;
+            address = placemark.subThoroughfare;
             NSLog(@"%@", placemark.subThoroughfare);
             NSLog(@"%@", placemark.thoroughfare);
             NSLog(@"%@", placemark.locality);
-=======
-            address = [NSString stringWithFormat:@"%@ %@\n%@\n%@\n%@",
-                                 placemark.subThoroughfare,
-                                 placemark.thoroughfare,
-                                 placemark.locality,
-                                 placemark.administrativeArea,
-                                 placemark.country];
-        //    adress = placemark.subThoroughfare;
             [[[UIAlertView alloc] initWithTitle:@"Success" message:@"Your location has been added!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
             NSLog(@"Address: %@", address);
->>>>>>> FETCH_HEAD
         } else {
             NSLog(@"%@", error.debugDescription);
         }
