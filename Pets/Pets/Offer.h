@@ -14,8 +14,6 @@
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSNumber *price;
 @property (nonatomic, strong) NSString *picture;
-@property (nonatomic, strong) NSString *address;
-@property (nonatomic, strong) PFGeoPoint *location;
 @property BOOL active;
 
 +(NSString *)parseClassName;
