@@ -21,11 +21,11 @@
 @end
 
 @implementation AddOfferViewController{
-    NSString *currentLatitude;
-    NSString *currentLongitude;
+    float currentLatitude;
+    float currentLongitude;
     CLGeocoder *geocoder;
     CLPlacemark *placemark;
-    NSString* adress;
+    NSString* address;
 }
 
 - (void)viewDidLoad {
@@ -35,9 +35,12 @@
     geocoder = [[CLGeocoder alloc] init];
     self.titleTextInput.delegate = self;
     self.descriptionTextInput.delegate = self;
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];//@"http://i.imgur.com/4ciIEEe.jpg"]]];
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.pixteria.pl/uploads/DanitaDelimontPhoto/thumbnails_cache/230x200_AF42_JEN0041_L.jpg"]]];//@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];//@"http://i.imgur.com/4ciIEEe.jpg"]]];
     
     self.imageView.image = image;
+    currentLatitude = 0;
+    currentLongitude = 0;
+    address = nil;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -105,18 +108,39 @@
     CLLocation *currentLocation = newLocation;
     //get coordinates
     if (currentLocation != nil) {
+<<<<<<< HEAD
         currentLongitude =[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         currentLatitude = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
     }
     //get adress
+=======
+        currentLongitude = currentLocation.coordinate.longitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
+        currentLatitude = currentLocation.coordinate.latitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+
+    }
+   
+    NSLog(@"Resolving the Address");
+>>>>>>> FETCH_HEAD
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
+<<<<<<< HEAD
             //placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country
             adress = placemark.subThoroughfare;
             NSLog(@"%@", placemark.subThoroughfare);
             NSLog(@"%@", placemark.thoroughfare);
             NSLog(@"%@", placemark.locality);
+=======
+            address = [NSString stringWithFormat:@"%@ %@\n%@\n%@\n%@",
+                                 placemark.subThoroughfare,
+                                 placemark.thoroughfare,
+                                 placemark.locality,
+                                 placemark.administrativeArea,
+                                 placemark.country];
+        //    adress = placemark.subThoroughfare;
+            [[[UIAlertView alloc] initWithTitle:@"Success" message:@"Your location has been added!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            NSLog(@"Address: %@", address);
+>>>>>>> FETCH_HEAD
         } else {
             NSLog(@"%@", error.debugDescription);
         }
@@ -134,14 +158,15 @@
 //    UIGraphicsEndImageContext();
     NSString *imageBase64 = [self encodeToBase64String:image];
     Offer *offer = [Offer objectWithClassName:Offer.parseClassName];
-#warning use real facebookID here
     offer.userId = @"testId"; //TODO: real facebookID goes here
     offer.title = title;
     offer.desc = description;
     offer.price = price;
     offer.active = YES;
-#warning do something about the stupid size
     offer.picture = imageBase64;
+    offer.location.longitude = currentLongitude;
+    offer.location.latitude = currentLatitude;
+    offer.address = address;
  //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
   //  PFFile *imageFile = [PFFile fileWithData:imageData];
   //  offer.picture = imageFile;
