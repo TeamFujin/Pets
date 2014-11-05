@@ -9,6 +9,8 @@
 #import "AddContactInfoViewController.h"
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
+#import "FTUtils.h"
+
 @interface AddContactInfoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -53,10 +55,10 @@
     NSString *email = self.emailTextField.text;
     NSString *phone = self.phoneTextField.text;
     if(![self emailIsValid:email]){
-        [self showAlert:@"Error" withMessage:@"Invalid email"];
+        [FTUtils showAlert:@"Error" withMessage:@"Invalid email"];
     }
     else if(! [self phoneIsValid:phone]){
-        [self showAlert:@"Error" withMessage:@"Invalid phone number"];
+        [FTUtils showAlert:@"Error" withMessage:@"Invalid phone number"];
     }
     else{
         PFUser *currUser = [PFUser currentUser];
@@ -65,16 +67,6 @@
         [currUser saveInBackground];
         [self performSegueWithIdentifier:@"AddInfoToProfile" sender:self];
     }
-}
-
-- (void) showAlert: (NSString *) title withMessage: (NSString*) message{
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
-                                                          message:message
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-    
-    [myAlertView show];
 }
 
 @end

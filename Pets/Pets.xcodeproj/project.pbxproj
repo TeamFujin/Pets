@@ -23,6 +23,8 @@
 		209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82831A029BA20038CE29 /* OfferDetailsViewController.m */; };
 		209BD5D41A0679AF00692E5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209BD5D31A0679AF00692E5A /* CoreLocation.framework */; };
 		20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABEC1A0AB79F00586B9F /* FTUtils.m */; };
+		20A0ABFD1A0AC79A00586B9F /* ActiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABFC1A0AC79A00586B9F /* ActiveOffersViewController.m */; };
+		20A0AC001A0AC95500586B9F /* OffersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABFF1A0AC95500586B9F /* OffersHistoryViewController.m */; };
 		20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */; };
 		841C06871A06992500008225 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C067D1A06992500008225 /* AudioToolbox.framework */; };
 		841C06881A06992500008225 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C067E1A06992500008225 /* CFNetwork.framework */; };
@@ -85,6 +87,10 @@
 		209BD5D31A0679AF00692E5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		20A0ABEB1A0AB79F00586B9F /* FTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTUtils.h; sourceTree = "<group>"; };
 		20A0ABEC1A0AB79F00586B9F /* FTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTUtils.m; sourceTree = "<group>"; };
+		20A0ABFB1A0AC79A00586B9F /* ActiveOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveOffersViewController.h; sourceTree = "<group>"; };
+		20A0ABFC1A0AC79A00586B9F /* ActiveOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveOffersViewController.m; sourceTree = "<group>"; };
+		20A0ABFE1A0AC95500586B9F /* OffersHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersHistoryViewController.h; sourceTree = "<group>"; };
+		20A0ABFF1A0AC95500586B9F /* OffersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersHistoryViewController.m; sourceTree = "<group>"; };
 		20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactInfoViewController.h; sourceTree = "<group>"; };
 		20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactInfoViewController.m; sourceTree = "<group>"; };
 		841C067D1A06992500008225 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -235,6 +241,10 @@
 				209A77CD1A02F1F200A5BC2B /* OffersViewController.m */,
 				20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */,
 				20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */,
+				20A0ABFB1A0AC79A00586B9F /* ActiveOffersViewController.h */,
+				20A0ABFC1A0AC79A00586B9F /* ActiveOffersViewController.m */,
+				20A0ABFE1A0AC95500586B9F /* OffersHistoryViewController.h */,
+				20A0ABFF1A0AC95500586B9F /* OffersHistoryViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -397,7 +407,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A0ABFD1A0AC79A00586B9F /* ActiveOffersViewController.m in Sources */,
 				209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */,
+				20A0AC001A0AC95500586B9F /* OffersHistoryViewController.m in Sources */,
 				20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */,
 				84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */,
 				209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */,

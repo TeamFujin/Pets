@@ -11,6 +11,7 @@
 #import "FTDatabaseRequester.h"
 #import "Offer.h"
 #import "FTSpinner.h"
+#import "FTUtils.h"
 @interface HomeTableViewController ()
 
 @end
@@ -46,7 +47,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
           //  NSLog(@"%@", objects);
             [self.tableView reloadData];
         } else {
-              [[[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, but we could not retrieve the offers!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
         }
     }];
    // self.offerDetailsViewController = (OfferDetailsViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];

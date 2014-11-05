@@ -9,6 +9,7 @@
 #import "OfferDetailsViewController.h"
 #import "FTDatabaseRequester.h"
 #import "Deal.h"
+#import "FTUtils.h"
 
 @interface OfferDetailsViewController ()
 @property (strong, nonatomic) FTDatabaseRequester *databaseRequester;
@@ -80,21 +81,11 @@
     [self.databaseRequester addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
             //TODO use the future class for alert making!!!
-            [self showAlert:@"Success" withMessage:@"You can start checking for approval"];
+            [FTUtils showAlert:@"Success" withMessage:@"You can start checking for approval"];
         } else {
-            [self showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];
+            [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];
             NSLog(@"Error: %@", error);
         }
     }];
-}
-
-- (void) showAlert: (NSString *) title withMessage: (NSString*) message{
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
-                                                          message:message
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-    
-    [myAlertView show];
 }
 @end
