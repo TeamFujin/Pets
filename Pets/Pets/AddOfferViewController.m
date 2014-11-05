@@ -134,7 +134,6 @@
     offer.desc = description;
     offer.price = price;
     offer.active = YES;
-#warning do something about the stupid size
     offer.picture = imageBase64;
     offer.location.longitude = currentLongitude;
     offer.location.latitude = currentLatitude;

@@ -7,6 +7,9 @@
 //
 
 #import "ActiveOffersViewController.h"
+#import "FTDatabaseRequester.h"
+#import "FTUtils.h"
+#import "Offer.h"
 
 @interface ActiveOffersViewController ()
 
@@ -14,11 +17,23 @@
 
 @implementation ActiveOffersViewController{
     NSArray* recipes;
+    FTDatabaseRequester* db;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    recipes = [NSArray arrayWithObjects: @"Active offer", @"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer", nil];
+    db = [[FTDatabaseRequester alloc] init];
+    
+    [db getActiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
+        if(!error) {
+            recipes = [NSMutableArray arrayWithArray:offers];
+              NSLog(@"%@", offers);
+            [self.view setNeedsDisplay];
+        } else {
+            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve your active offers."];
+        }
+    }];
+//    recipes = [NSArray arrayWithObjects: @"Active offer", @"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer", nil];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -34,7 +49,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
+    Offer *offer = [recipes objectAtIndex:indexPath.row];
+    cell.textLabel.text = offer.title;
+    NSLog(@"%@", offer.title);
     return cell;
 }
 - (void)didReceiveMemoryWarning {
@@ -51,5 +68,15 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    //Get reference to receipt
+//    Offer *offer = [data objectAtIndex:indexPath.row];
+//    
+//    OfferDetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"offerDetails"];
+//    
+//    // Pass data to controller
+//    controller.offer = offer;
+//    [self.navigationController pushViewController:controller animated:YES];
+}
 @end

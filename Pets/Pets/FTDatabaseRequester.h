@@ -20,4 +20,6 @@
                   andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
 -(void)getBidsForUser: (PFObject*) userId
              andBlock: (void (^)(NSArray *bids, NSError *error)) block;
+-(void)getActiveOffersForUser:(PFObject*) user
+                     andBlock:(void (^)(NSArray *offers, NSError *error)) block;
 @end
