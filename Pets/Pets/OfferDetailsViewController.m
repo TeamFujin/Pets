@@ -7,9 +7,11 @@
 //
 
 #import "OfferDetailsViewController.h"
+#import "DatabaseRequester.h"
+#import "Deal.h"
 
 @interface OfferDetailsViewController ()
-
+@property (strong, nonatomic) DatabaseRequester *databaseRequester;
 @end
 
 @implementation OfferDetailsViewController
@@ -26,13 +28,24 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.offer) {
-        self.labelTitle.text = self.offer.title;
-        NSLog(@"Offer name: %@", self.offer.title);
+        
+        [self.databaseRequester getDetailsForOffer:self.offer andBlock:^(PFObject *object, NSError *error) {
+            self.offer = (Offer*) object;
+            self.labelTitle.text = self.offer.title;
+            self.labelDesc.text = self.offer.desc;
+            self.labelPrice.text = [NSString stringWithFormat:@"%@BGN", self.offer.price];
+            //TODO: make a class for decoding too
+            NSData *data = [[NSData alloc]initWithBase64EncodedString:self.offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            self.imageViewPicture.image = [UIImage imageWithData:data];
+            
+            NSLog(@"Offer name: %@", self.offer.title);
+        }];
     }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.databaseRequester = [[DatabaseRequester alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }
@@ -54,5 +67,30 @@
 */
 
 - (IBAction)actionWantPet:(id)sender {
+    Deal *deal = [[Deal alloc] init];
+    deal.wanterId = @"testId";
+    deal.offerId = self.offer.objectId;
+    deal.approved = NO;
+    deal.deleted = NO;
+    //TODO: check if user already pressed the button
+    [self.databaseRequester addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
+        if(succeeded) {
+            //TODO use the future class for alert making!!!
+            [self showAlert:@"Success" withMessage:@"You can start checking for approval"];
+        } else {
+            [self showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];
+            NSLog(@"Errorr: %@", error);
+        }
+    }];
+}
+
+- (void) showAlert: (NSString *) title withMessage: (NSString*) message{
+    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
+                                                          message:message
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles: nil];
+    
+    [myAlertView show];
 }
 @end

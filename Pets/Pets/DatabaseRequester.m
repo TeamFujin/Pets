@@ -24,4 +24,19 @@
         block(objects, error);
     }];
 }
+
+-(void)getDetailsForOffer: (Offer*) offer
+                 andBlock: (void (^)(PFObject *object, NSError *error)) block{
+    [offer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        block(object, error);
+    }];
+}
+
+-(void)addDealToDbWithDeal: (Deal *) deal
+                    andBlock: (void (^)(BOOL succeeded, NSError *error)) block{
+    [deal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        block(succeeded, error);
+    }];
+}
+
 @end

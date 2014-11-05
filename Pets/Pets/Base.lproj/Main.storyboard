@@ -371,15 +371,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-k0-bee"/>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N78-b3-Wmv">
-                                <rect key="frame" x="285" y="83" width="266" height="35"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-k0-bee">
+                                <rect key="frame" x="23" y="81" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="3mI-0H-bos"/>
+                                    <constraint firstAttribute="height" constant="200" id="osK-Xa-WzR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N78-b3-Wmv">
+                                <rect key="frame" x="238" y="97" width="266" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZc-Ks-1ZT">
+                                <rect key="frame" x="33" y="289" width="266" height="171"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLw-Nf-c6E">
+                                <rect key="frame" x="269" y="140" width="62" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="BGN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DNh-jC-fSN">
+                                <rect key="frame" x="269" y="184" width="205" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azj-br-NMN">
-                                <rect key="frame" x="408" y="508" width="161" height="59"/>
+                                <rect key="frame" x="227" y="468" width="129" height="27"/>
                                 <state key="normal" title="Want it!">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -389,8 +413,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JZc-Ks-1ZT" firstAttribute="leading" secondItem="6vL-k0-bee" secondAttribute="trailing" constant="58" id="GMG-2Q-h97"/>
+                            <constraint firstItem="6vL-k0-bee" firstAttribute="top" secondItem="0ee-fj-Srx" secondAttribute="bottom" constant="45" id="OvK-ik-Dt7"/>
+                            <constraint firstItem="DNh-jC-fSN" firstAttribute="top" secondItem="6vL-k0-bee" secondAttribute="bottom" constant="74" id="OyM-y7-D9P"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageViewPicture" destination="6vL-k0-bee" id="zHc-8T-64Y"/>
+                        <outlet property="labelDesc" destination="JZc-Ks-1ZT" id="1yv-e2-qqE"/>
+                        <outlet property="labelPrice" destination="DNh-jC-fSN" id="Pcb-kn-Ivg"/>
                         <outlet property="labelTitle" destination="N78-b3-Wmv" id="yGZ-6t-Hpm"/>
                     </connections>
                 </viewController>

@@ -10,7 +10,10 @@
 #import "Offer.h"
 
 @interface OfferDetailsViewController : UIViewController
-- (IBAction)actionWantPet:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewPicture;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
+@property (weak, nonatomic) IBOutlet UILabel *labelDesc;
+@property (weak, nonatomic) IBOutlet UILabel *labelPrice;
 @property (strong, nonatomic) Offer *offer;
+- (IBAction)actionWantPet:(id)sender;
 @end

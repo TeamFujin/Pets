@@ -179,6 +179,7 @@
     return [UIImage imageWithData:data];
 }
 
+//TODO: add this to a seperate class
 - (void) showAlert: (NSString *) title withMessage: (NSString*) message{
     UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
                                                           message:message
