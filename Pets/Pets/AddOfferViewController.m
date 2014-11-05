@@ -131,7 +131,7 @@
 //    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
 //    UIGraphicsEndImageContext();
     NSString *imageBase64 = [self encodeToBase64String:image];
-    Offer *offer = [Offer objectWithClassName:Offer.parseClassName];
+    Offer *offer = [[Offer alloc] init];
     offer.userId = [PFUser currentUser];
     offer.title = title;
     offer.desc = description;
