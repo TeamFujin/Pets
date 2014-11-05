@@ -42,19 +42,23 @@
 -(void)getBidsForUser: (PFObject*) userId
              andBlock: (void (^)(NSArray *bids, NSError *error)) block{
     PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
+   
     [query whereKey:@"wanterId" equalTo:userId];
+    //[query selectKeys:@[@"deleted", @"offerId", @"wanterId"]];
     [query includeKey:@"offerId"];
     [query includeKey:@"wanterId"];
-    
+    [query includeKey:@"createdAt"];
+    //[query selectKeys:@[@"approved", @"deleted", @"title"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *bids, NSError *error) {
         // Comments now contains the last ten comments, and the "post" field
         // has been populated. For example:
         for (PFObject *bid in bids) {
             // This does not require a network access.
             PFObject *offer = bid[@"offerId"];
-            NSLog(@"retrieved related offerId: %@", offer);
             PFObject *wanter = bid[@"offerId"];
-            NSLog(@"retrieved related wanterId: %@", wanter);
+            NSLog(@"%@", bid[@"deleted"]);
+            NSLog(@"%@", bid.objectId);
+            NSLog(@"%@", bid.createdAt);
         }
     }];
 }
