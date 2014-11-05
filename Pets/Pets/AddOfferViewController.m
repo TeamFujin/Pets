@@ -132,8 +132,7 @@
 //    UIGraphicsEndImageContext();
     NSString *imageBase64 = [self encodeToBase64String:image];
     Offer *offer = [Offer objectWithClassName:Offer.parseClassName];
-#warning use real facebookID here
-    offer.userId = @"testId"; //TODO: real facebookID goes here
+    offer.userId = [PFUser currentUser];
     offer.title = title;
     offer.desc = description;
     offer.price = price;

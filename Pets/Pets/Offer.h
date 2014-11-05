@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 
 @interface Offer : PFObject<PFSubclassing>
-@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) PFObject *userId;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSNumber *price;

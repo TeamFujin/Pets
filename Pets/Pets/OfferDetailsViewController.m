@@ -80,7 +80,7 @@
             [self showAlert:@"Success" withMessage:@"You can start checking for approval"];
         } else {
             [self showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];
-            NSLog(@"Errorr: %@", error);
+            NSLog(@"Error: %@", error);
         }
     }];
 }
