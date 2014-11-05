@@ -18,4 +18,6 @@
                  andBlock: (void (^)(PFObject *object, NSError *error)) block;
 -(void)addDealToDbWithDeal: (Deal *) deal
                   andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
+-(void)getBidsForUser: (PFObject*) userId
+             andBlock: (void (^)(NSArray *bids, NSError *error)) block;
 @end

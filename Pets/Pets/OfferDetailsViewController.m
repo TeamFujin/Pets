@@ -47,6 +47,9 @@
     [super viewDidLoad];
     self.databaseRequester = [[FTDatabaseRequester alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
+    [self.databaseRequester getBidsForUser:[PFUser currentUser] andBlock:^(NSArray *bids, NSError *error) {
+        NSLog(@"test: ");
+    }];
     [self configureView];
 }
 
@@ -69,7 +72,7 @@
 - (IBAction)actionWantPet:(id)sender {
     Deal *deal = [[Deal alloc] init];
     deal.wanterId = [PFUser currentUser];
-    deal.offerId = [PFObject objectWithoutDataWithClassName:@"Offers" objectId:self.offer.objectId];
+    deal.offerId = [PFObject objectWithoutDataWithClassName:[Offer parseClassName] objectId:self.offer.objectId];
     deal.approved = NO;
     deal.deleted = NO;
 
