@@ -11,3 +11,12 @@ Pets
 9. Compress add offer image - M
 10. Fix UI and constraints - M
 11. Connection - M
+12. Bids table view - M
+13. Offers history table view - M
+14. Show all bids on offers - E
+15. Static classes - M
+16. Gestures - E
+17. Push notifications
+18. Core data
+19. Refactoring
+20. Animations
