@@ -8,7 +8,7 @@
 
 #import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
-
+#import "FTUtils.h"
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -49,6 +49,7 @@
     }];
     self.emailLabel.text = self.email;
     self.phoneLabel.text = self.phone;
+    
 }
 /*
 #pragma mark - Navigation

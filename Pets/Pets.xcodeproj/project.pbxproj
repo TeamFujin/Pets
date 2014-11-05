@@ -22,6 +22,7 @@
 		209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82801A029B910038CE29 /* AddOfferViewController.m */; };
 		209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82831A029BA20038CE29 /* OfferDetailsViewController.m */; };
 		209BD5D41A0679AF00692E5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209BD5D31A0679AF00692E5A /* CoreLocation.framework */; };
+		20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABEC1A0AB79F00586B9F /* FTUtils.m */; };
 		20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */; };
 		841C06871A06992500008225 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C067D1A06992500008225 /* AudioToolbox.framework */; };
 		841C06881A06992500008225 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C067E1A06992500008225 /* CFNetwork.framework */; };
@@ -82,6 +83,8 @@
 		209B82821A029BA20038CE29 /* OfferDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailsViewController.h; sourceTree = "<group>"; };
 		209B82831A029BA20038CE29 /* OfferDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailsViewController.m; sourceTree = "<group>"; };
 		209BD5D31A0679AF00692E5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		20A0ABEB1A0AB79F00586B9F /* FTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTUtils.h; sourceTree = "<group>"; };
+		20A0ABEC1A0AB79F00586B9F /* FTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTUtils.m; sourceTree = "<group>"; };
 		20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactInfoViewController.h; sourceTree = "<group>"; };
 		20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactInfoViewController.m; sourceTree = "<group>"; };
 		841C067D1A06992500008225 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -287,6 +290,8 @@
 				841C06961A06D54200008225 /* FTDatabaseRequester.m */,
 				84AA8BE11A0A621D006CFC74 /* FTSpinner.h */,
 				84AA8BE21A0A621D006CFC74 /* FTSpinner.m */,
+				20A0ABEB1A0AB79F00586B9F /* FTUtils.h */,
+				20A0ABEC1A0AB79F00586B9F /* FTUtils.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				209B82751A02953A0038CE29 /* LoginViewController.m in Sources */,
 				209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */,
 				849B201F1A09979400F2C050 /* Deal.m in Sources */,
+				20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

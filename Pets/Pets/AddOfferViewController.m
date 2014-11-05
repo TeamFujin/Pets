@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "Offer.h"
 #import "FTDatabaseRequester.h"
+#import "FTUtils.h"
 
 @interface AddOfferViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
@@ -49,20 +50,20 @@
 
 - (IBAction)takePhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [self showAlert:@"Error" withMessage:@"Device has no camera"];
+        [FTUtils showAlert:@"Error" withMessage:@"Device has no camera"];
     } else {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
+        
     [self presentViewController:picker animated:YES completion:NULL];
     }
 }
 
 - (IBAction)selectPhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [self showAlert:@"Error" withMessage:@"Device has no camera"];
+        [FTUtils showAlert:@"Error" withMessage:@"Device has no camera"];
     } else {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -78,7 +79,6 @@
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     self.imageView.image = chosenImage;
     [picker dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
@@ -86,27 +86,24 @@
 
 - (IBAction)addLocationTaped:(id)sender {
     [self.locationManager startUpdatingLocation];
-    [self.locationManager requestWhenInUseAuthorization]; // Add this Line
+    [self.locationManager requestWhenInUseAuthorization];
 }
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
+    [FTUtils showAlert:@"Error" withMessage:@"Failed to get your location"];
 }
 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocation *currentLocation = newLocation;
-    
+    //get coordinates
     if (currentLocation != nil) {
-        currentLongitude = currentLocation.coordinate.longitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        currentLatitude = currentLocation.coordinate.latitude;//[NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
-        
+        currentLongitude = currentLocation.coordinate.longitude;
+        currentLatitude = currentLocation.coordinate.latitude;
     }
     //get adress
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
@@ -130,7 +127,7 @@
 //    [image drawInRect: CGRectMake(0, 0, 200, 200)];
 //    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
 //    UIGraphicsEndImageContext();
-    NSString *imageBase64 = [self encodeToBase64String:image];
+    NSString *imageBase64 = [FTUtils encodeToBase64String:image];
     Offer *offer = [[Offer alloc] init];
     offer.userId = [PFUser currentUser];
     offer.title = title;
@@ -149,9 +146,9 @@
     FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
     [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
-            [self showAlert:@"Success" withMessage:@"Your offer has been published!"];
+            [FTUtils showAlert:@"Success" withMessage:@"Your offer has been published!"];
         } else {
-            [self showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
+            [FTUtils showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
             NSLog(@"Errorr: %@", error);
         }
     }];
@@ -167,26 +164,6 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-}
-
-- (NSString *)encodeToBase64String:(UIImage *)image {
-    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-}
-
-- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
-    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
-    return [UIImage imageWithData:data];
-}
-
-//TODO: add this to a seperate class
-- (void) showAlert: (NSString *) title withMessage: (NSString*) message{
-    UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title
-                                                          message:message
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles: nil];
-    
-    [myAlertView show];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
