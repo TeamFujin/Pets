@@ -7,11 +7,11 @@
 //
 
 #import "OfferDetailsViewController.h"
-#import "DatabaseRequester.h"
+#import "FTDatabaseRequester.h"
 #import "Deal.h"
 
 @interface OfferDetailsViewController ()
-@property (strong, nonatomic) DatabaseRequester *databaseRequester;
+@property (strong, nonatomic) FTDatabaseRequester *databaseRequester;
 @end
 
 @implementation OfferDetailsViewController
@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.databaseRequester = [[DatabaseRequester alloc] init];
+    self.databaseRequester = [[FTDatabaseRequester alloc] init];
     // Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }

@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
 #import "Offer.h"
-#import "DatabaseRequester.h"
+#import "FTDatabaseRequester.h"
 
 @interface AddOfferViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
@@ -147,7 +147,7 @@
  //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
   //  PFFile *imageFile = [PFFile fileWithData:imageData];
   //  offer.picture = imageFile;
-    DatabaseRequester *db = [[DatabaseRequester alloc] init];
+    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
     [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
             [self showAlert:@"Success" withMessage:@"Your offer has been published!"];

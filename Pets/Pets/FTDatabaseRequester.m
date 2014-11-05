@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Gosho Goshev. All rights reserved.
 //
 
-#import "DatabaseRequester.h"
+#import "FTDatabaseRequester.h"
 
-@implementation DatabaseRequester
+@implementation FTDatabaseRequester
 -(void)addOfferToDbWithOffer: (Offer *) offer
                     andBlock: (void (^)(BOOL succeeded, NSError *error)) block{
     [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

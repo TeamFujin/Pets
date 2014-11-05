@@ -62,7 +62,7 @@
         PFUser *currUser = [PFUser currentUser];
         currUser.email = email;
         currUser[@"phone"] = phone;
-        [currUser save];
+        [currUser saveInBackground];
         [self performSegueWithIdentifier:@"AddInfoToProfile" sender:self];
     }
 }

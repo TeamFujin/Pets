@@ -10,7 +10,7 @@
 #import "Offer.h"
 #import "Deal.h"
 
-@interface DatabaseRequester : NSObject
+@interface FTDatabaseRequester : NSObject
 -(void)addOfferToDbWithOffer: (Offer *) offer
                     andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
 -(void)getAllActiveOffersWithBlock: (void (^)(NSArray *objects, NSError *error)) block;

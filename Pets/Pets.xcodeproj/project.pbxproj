@@ -34,13 +34,14 @@
 		841C068F1A06992500008225 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C06851A06992500008225 /* StoreKit.framework */; };
 		841C06901A06992500008225 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C06861A06992500008225 /* SystemConfiguration.framework */; };
 		841C06931A069BB500008225 /* Offer.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C06921A069BB500008225 /* Offer.m */; };
-		841C06971A06D54200008225 /* DatabaseRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C06961A06D54200008225 /* DatabaseRequester.m */; };
+		841C06971A06D54200008225 /* FTDatabaseRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C06961A06D54200008225 /* FTDatabaseRequester.m */; };
 		841C06991A06DE4200008225 /* HomeUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841C06981A06DE4200008225 /* HomeUITableViewCell.xib */; };
 		841C069C1A06DF0D00008225 /* HomeUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C069B1A06DF0D00008225 /* HomeUITableViewCell.m */; };
 		844F21EF1A07EC3400DD6D2A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21EC1A07EC3400DD6D2A /* Bolts.framework */; };
 		844F21F01A07EC3400DD6D2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21ED1A07EC3400DD6D2A /* Parse.framework */; };
 		844F21F11A07EC3400DD6D2A /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21EE1A07EC3400DD6D2A /* ParseFacebookUtils.framework */; };
 		849B201F1A09979400F2C050 /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B201E1A09979400F2C050 /* Deal.m */; };
+		84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA8BE21A0A621D006CFC74 /* FTSpinner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +96,8 @@
 		841C06861A06992500008225 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		841C06911A069BB500008225 /* Offer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Offer.h; sourceTree = "<group>"; };
 		841C06921A069BB500008225 /* Offer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Offer.m; sourceTree = "<group>"; };
-		841C06951A06D54200008225 /* DatabaseRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseRequester.h; sourceTree = "<group>"; };
-		841C06961A06D54200008225 /* DatabaseRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseRequester.m; sourceTree = "<group>"; };
+		841C06951A06D54200008225 /* FTDatabaseRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDatabaseRequester.h; sourceTree = "<group>"; };
+		841C06961A06D54200008225 /* FTDatabaseRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDatabaseRequester.m; sourceTree = "<group>"; };
 		841C06981A06DE4200008225 /* HomeUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUITableViewCell.xib; sourceTree = "<group>"; };
 		841C069A1A06DF0D00008225 /* HomeUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeUITableViewCell.h; sourceTree = "<group>"; };
 		841C069B1A06DF0D00008225 /* HomeUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeUITableViewCell.m; sourceTree = "<group>"; };
@@ -105,6 +106,8 @@
 		844F21EE1A07EC3400DD6D2A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = Libs/ParseSDK/ParseFacebookUtils.framework; sourceTree = "<group>"; };
 		849B201D1A09979400F2C050 /* Deal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deal.h; sourceTree = "<group>"; };
 		849B201E1A09979400F2C050 /* Deal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deal.m; sourceTree = "<group>"; };
+		84AA8BE11A0A621D006CFC74 /* FTSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSpinner.h; sourceTree = "<group>"; };
+		84AA8BE21A0A621D006CFC74 /* FTSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSpinner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,8 +283,10 @@
 		841C06941A06D4FF00008225 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				841C06951A06D54200008225 /* DatabaseRequester.h */,
-				841C06961A06D54200008225 /* DatabaseRequester.m */,
+				841C06951A06D54200008225 /* FTDatabaseRequester.h */,
+				841C06961A06D54200008225 /* FTDatabaseRequester.m */,
+				84AA8BE11A0A621D006CFC74 /* FTSpinner.h */,
+				84AA8BE21A0A621D006CFC74 /* FTSpinner.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -389,8 +394,9 @@
 			files = (
 				209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */,
 				20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */,
+				84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */,
 				209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */,
-				841C06971A06D54200008225 /* DatabaseRequester.m in Sources */,
+				841C06971A06D54200008225 /* FTDatabaseRequester.m in Sources */,
 				209B824F1A0294DE0038CE29 /* main.m in Sources */,
 				209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */,
 				841C06931A069BB500008225 /* Offer.m in Sources */,
