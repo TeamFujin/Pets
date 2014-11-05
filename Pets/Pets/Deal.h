@@ -9,8 +9,8 @@
 #import <Parse/Parse.h>
 
 @interface Deal : PFObject<PFSubclassing>
-@property (strong, nonatomic) NSString *offerId;
-@property (strong, nonatomic) NSString *wanterId;
+@property (strong, nonatomic) PFObject *offerId;
+@property (strong, nonatomic) PFObject *wanterId;
 @property BOOL approved;
 @property BOOL deleted;
 +(NSString *)parseClassName;

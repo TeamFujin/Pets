@@ -68,10 +68,11 @@
 
 - (IBAction)actionWantPet:(id)sender {
     Deal *deal = [[Deal alloc] init];
-    deal.wanterId = @"testId";
-    deal.offerId = self.offer.objectId;
+    deal.wanterId = [PFUser currentUser];
+    deal.offerId = [PFObject objectWithoutDataWithClassName:@"Offers" objectId:self.offer.objectId];
     deal.approved = NO;
     deal.deleted = NO;
+
     //TODO: check if user already pressed the button
     [self.databaseRequester addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
