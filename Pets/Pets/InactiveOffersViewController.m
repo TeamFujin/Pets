@@ -6,18 +6,19 @@
 //  Copyright (c) 2014 Gosho Goshev. All rights reserved.
 //
 
-#import "OffersHistoryViewController.h"
+#import "InactiveOffersViewController.h"
 
-@interface OffersHistoryViewController ()
+@interface InactiveOffersViewController ()
 
 @end
 
-@implementation OffersHistoryViewController{
+@implementation InactiveOffersViewController{
     NSArray* recipes;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     NSLog(@"Tab: %d", (int)self.tabBarController.selectedIndex );
     recipes = [NSArray arrayWithObjects: @"Old offer", @"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer", nil];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -51,5 +52,6 @@
  // Pass the selected object to the new view controller.
  }
  */
+
 
 @end

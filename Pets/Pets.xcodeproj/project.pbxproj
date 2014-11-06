@@ -10,7 +10,7 @@
 		2099DF981A0BE09D00A493F5 /* FTJokeDispenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099DF971A0BE09D00A493F5 /* FTJokeDispenser.m */; };
 		209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */; };
 		209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */; };
-		209A77CE1A02F1F200A5BC2B /* OffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CD1A02F1F200A5BC2B /* OffersViewController.m */; };
+		209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */; };
 		209B597A1A07EF2000C2C39C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209B59791A07EF2000C2C39C /* FacebookSDK.framework */; };
 		209B824F1A0294DE0038CE29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B824E1A0294DE0038CE29 /* main.m */; };
 		209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82511A0294DE0038CE29 /* AppDelegate.m */; };
@@ -24,8 +24,8 @@
 		209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82831A029BA20038CE29 /* OfferDetailsViewController.m */; };
 		209BD5D41A0679AF00692E5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209BD5D31A0679AF00692E5A /* CoreLocation.framework */; };
 		20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABEC1A0AB79F00586B9F /* FTUtils.m */; };
-		20A0ABFD1A0AC79A00586B9F /* ActiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABFC1A0AC79A00586B9F /* ActiveOffersViewController.m */; };
-		20A0AC001A0AC95500586B9F /* OffersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABFF1A0AC95500586B9F /* OffersHistoryViewController.m */; };
+		20A0ABFD1A0AC79A00586B9F /* OffersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABFC1A0AC79A00586B9F /* OffersHistoryViewController.m */; };
+		20A0AC001A0AC95500586B9F /* InactiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A0ABFF1A0AC95500586B9F /* InactiveOffersViewController.m */; };
 		20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */; };
 		841C06871A06992500008225 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C067D1A06992500008225 /* AudioToolbox.framework */; };
 		841C06881A06992500008225 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 841C067E1A06992500008225 /* CFNetwork.framework */; };
@@ -46,6 +46,7 @@
 		844F21F11A07EC3400DD6D2A /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21EE1A07EC3400DD6D2A /* ParseFacebookUtils.framework */; };
 		849B201F1A09979400F2C050 /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B201E1A09979400F2C050 /* Deal.m */; };
 		84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA8BE21A0A621D006CFC74 /* FTSpinner.m */; };
+		84AB2A031A0BD59900EB3ACA /* OfferBidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +66,8 @@
 		209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidsTableViewController.h; sourceTree = "<group>"; };
 		209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidsTableViewController.m; sourceTree = "<group>"; };
-		209A77CC1A02F1F200A5BC2B /* OffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersViewController.h; sourceTree = "<group>"; };
-		209A77CD1A02F1F200A5BC2B /* OffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersViewController.m; sourceTree = "<group>"; };
+		209A77CC1A02F1F200A5BC2B /* ActiveOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveOffersViewController.h; sourceTree = "<group>"; };
+		209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveOffersViewController.m; sourceTree = "<group>"; };
 		209B59791A07EF2000C2C39C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		209B82491A0294DE0038CE29 /* Pets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209B824D1A0294DE0038CE29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,10 +91,10 @@
 		209BD5D31A0679AF00692E5A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		20A0ABEB1A0AB79F00586B9F /* FTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTUtils.h; sourceTree = "<group>"; };
 		20A0ABEC1A0AB79F00586B9F /* FTUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTUtils.m; sourceTree = "<group>"; };
-		20A0ABFB1A0AC79A00586B9F /* ActiveOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveOffersViewController.h; sourceTree = "<group>"; };
-		20A0ABFC1A0AC79A00586B9F /* ActiveOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveOffersViewController.m; sourceTree = "<group>"; };
-		20A0ABFE1A0AC95500586B9F /* OffersHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersHistoryViewController.h; sourceTree = "<group>"; };
-		20A0ABFF1A0AC95500586B9F /* OffersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersHistoryViewController.m; sourceTree = "<group>"; };
+		20A0ABFB1A0AC79A00586B9F /* OffersHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffersHistoryViewController.h; sourceTree = "<group>"; };
+		20A0ABFC1A0AC79A00586B9F /* OffersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffersHistoryViewController.m; sourceTree = "<group>"; };
+		20A0ABFE1A0AC95500586B9F /* InactiveOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InactiveOffersViewController.h; sourceTree = "<group>"; };
+		20A0ABFF1A0AC95500586B9F /* InactiveOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InactiveOffersViewController.m; sourceTree = "<group>"; };
 		20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactInfoViewController.h; sourceTree = "<group>"; };
 		20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactInfoViewController.m; sourceTree = "<group>"; };
 		841C067D1A06992500008225 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -120,6 +121,8 @@
 		849B201E1A09979400F2C050 /* Deal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deal.m; sourceTree = "<group>"; };
 		84AA8BE11A0A621D006CFC74 /* FTSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSpinner.h; sourceTree = "<group>"; };
 		84AA8BE21A0A621D006CFC74 /* FTSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSpinner.m; sourceTree = "<group>"; };
+		84AB2A011A0BD59900EB3ACA /* OfferBidsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferBidsTableViewController.h; sourceTree = "<group>"; };
+		84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferBidsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,14 +243,16 @@
 				209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */,
 				209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */,
 				209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */,
-				209A77CC1A02F1F200A5BC2B /* OffersViewController.h */,
-				209A77CD1A02F1F200A5BC2B /* OffersViewController.m */,
+				209A77CC1A02F1F200A5BC2B /* ActiveOffersViewController.h */,
+				209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */,
 				20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */,
 				20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */,
-				20A0ABFB1A0AC79A00586B9F /* ActiveOffersViewController.h */,
-				20A0ABFC1A0AC79A00586B9F /* ActiveOffersViewController.m */,
-				20A0ABFE1A0AC95500586B9F /* OffersHistoryViewController.h */,
-				20A0ABFF1A0AC95500586B9F /* OffersHistoryViewController.m */,
+				20A0ABFB1A0AC79A00586B9F /* OffersHistoryViewController.h */,
+				20A0ABFC1A0AC79A00586B9F /* OffersHistoryViewController.m */,
+				20A0ABFE1A0AC95500586B9F /* InactiveOffersViewController.h */,
+				20A0ABFF1A0AC95500586B9F /* InactiveOffersViewController.m */,
+				84AB2A011A0BD59900EB3ACA /* OfferBidsTableViewController.h */,
+				84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -412,17 +417,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A0ABFD1A0AC79A00586B9F /* ActiveOffersViewController.m in Sources */,
+				20A0ABFD1A0AC79A00586B9F /* OffersHistoryViewController.m in Sources */,
 				209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */,
-				20A0AC001A0AC95500586B9F /* OffersHistoryViewController.m in Sources */,
+				20A0AC001A0AC95500586B9F /* InactiveOffersViewController.m in Sources */,
 				20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */,
 				84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */,
 				209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */,
 				841C06971A06D54200008225 /* FTDatabaseRequester.m in Sources */,
 				209B824F1A0294DE0038CE29 /* main.m in Sources */,
+				84AB2A031A0BD59900EB3ACA /* OfferBidsTableViewController.m in Sources */,
 				209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */,
 				841C06931A069BB500008225 /* Offer.m in Sources */,
-				209A77CE1A02F1F200A5BC2B /* OffersViewController.m in Sources */,
+				209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */,
 				209B827B1A029ABC0038CE29 /* ProfileViewController.m in Sources */,
 				209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */,
 				841C069C1A06DF0D00008225 /* HomeUITableViewCell.m in Sources */,

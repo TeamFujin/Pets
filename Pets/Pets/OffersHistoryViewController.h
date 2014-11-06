@@ -1,5 +1,5 @@
 //
-//  OffersHistoryViewController.h
+//  ActiveOffersViewController.h
 //  Pets
 //
 //  Created by Gosho Goshev on 11/5/14.
@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OffersHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

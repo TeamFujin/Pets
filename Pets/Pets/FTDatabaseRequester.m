@@ -54,9 +54,26 @@
 
 -(void)getActiveOffersForUser:(PFObject*) user
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block{
+//    PFQuery *query = [PFQuery queryWithClassName:[Offer parseClassName]];
+//    [query whereKey:@"userId" equalTo:user];
+//    [query whereKey:@"active" equalTo:@YES];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *offers, NSError *error) {
+//        block(offers, error);
+//    }];
+    [self getOffersForUser:user andActive:@YES andBlock:block];
+}
+
+-(void)getInActiveOffersForUser:(PFObject*) user
+                     andBlock:(void (^)(NSArray *offers, NSError *error)) block{
+    [self getOffersForUser:user andActive:@NO andBlock:block];
+}
+
+-(void)getOffersForUser:(PFObject*) user
+              andActive: (id) active
+               andBlock:(void (^)(NSArray *offers, NSError *error)) block{
     PFQuery *query = [PFQuery queryWithClassName:[Offer parseClassName]];
     [query whereKey:@"userId" equalTo:user];
-    [query whereKey:@"active" equalTo:@YES];
+    [query whereKey:@"active" equalTo:active];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offers, NSError *error) {
         block(offers, error);
     }];
