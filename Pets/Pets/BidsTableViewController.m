@@ -7,19 +7,31 @@
 //
 
 #import "BidsTableViewController.h"
+#import "FTDatabaseRequester.h"
 
 @interface BidsTableViewController ()
 
 @end
 
-@implementation BidsTableViewController
+@implementation BidsTableViewController{
+    FTDatabaseRequester *db;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    id test = @YES;
-    if(test) {
+    id test = @NO;
+    db = [[FTDatabaseRequester alloc] init];
+    if([test isEqualToValue:@YES]) {
         NSLog(@"In test if");
     }
+    
+    [db getRejectedBidsForUser:[PFUser currentUser] andBlock:^(NSArray *bids, NSError *error) {
+        if(!error){
+            NSLog(@"%@", bids);
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -41,18 +53,14 @@
 //}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
     return 0;
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-//    
-//    // Configure the cell...
-//    
-//    return cell;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    return cell;
+}
 
 /*
 // Override to support conditional editing of the table view.

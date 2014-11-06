@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BidsTableViewController : UITableViewController
+@interface BidsTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

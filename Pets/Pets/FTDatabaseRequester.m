@@ -60,7 +60,7 @@
     PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
     [query whereKey:@"wanterId" equalTo:userId];
     [query whereKey:@"approved" equalTo:approved];
-    if(!approved) {
+    if([approved isEqualToValue:@NO]) {
         [query whereKey:@"deleted" equalTo:deleted];
     }
     

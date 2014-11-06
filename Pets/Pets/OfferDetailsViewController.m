@@ -46,11 +46,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.databaseRequester = [[FTDatabaseRequester alloc] init];
-    // Do any additional setup after loading the view, typically from a nib.
-    [self.databaseRequester getBidsForUser:[PFUser currentUser] andBlock:^(NSArray *bids, NSError *error) {
-        NSLog(@"test: ");
-    }];
     [self configureView];
 }
 
