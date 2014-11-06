@@ -29,16 +29,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSString *email = self.emailTextField.text;
-    NSString *phone = self.phoneTextField.text;
-    if([segue.identifier isEqualToString:@"AddInfoToProfile"]){
-        ProfileViewController *toProfile = segue.destinationViewController;
-        toProfile.email = email;
-        toProfile.phone = phone;
-    }
-    
-}
 - (BOOL) emailIsValid: (NSString *) candidate {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];

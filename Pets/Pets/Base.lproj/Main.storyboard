@@ -19,36 +19,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3D-Dg-FiW">
-                                <rect key="frame" x="269" y="20" width="62" height="30"/>
-                                <state key="normal" title="Continue">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKp-7w-ZvE">
+                                <rect key="frame" x="229" y="285" width="143" height="30"/>
+                                <state key="normal" title="Login with Facebook">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Sad-mt-seu" kind="show" id="t2b-Ds-0Iz"/>
+                                    <action selector="fbLoginButtonTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZUb-km-9Hf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Getting facebook status.." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDE-Zd-ChO">
-                                <rect key="frame" x="16" y="178" width="264" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Pets, a mobile pet market bla blabla" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KQ-9K-6Lv">
+                                <rect key="frame" x="192" y="72" width="217" height="95"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="264" id="31N-pb-NXO"/>
+                                    <constraint firstAttribute="width" constant="217" id="CPN-CJ-CaL"/>
+                                    <constraint firstAttribute="height" constant="95" id="LRj-tc-qft"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-c2-bCY">
+                                <rect key="frame" x="269" y="247" width="62" height="30"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w9a-xI-Dcj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qDE-Zd-ChO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="114" id="END-8K-INh"/>
-                            <constraint firstItem="qDE-Zd-ChO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="L48-S0-8Ou"/>
-                            <constraint firstItem="s3D-Dg-FiW" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="a3Y-2e-ngO"/>
-                            <constraint firstItem="s3D-Dg-FiW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="nhv-jJ-EHg"/>
+                            <constraint firstItem="yKp-7w-ZvE" firstAttribute="centerX" secondItem="UEr-c2-bCY" secondAttribute="centerX" id="6jB-ID-OPV"/>
+                            <constraint firstItem="8KQ-9K-6Lv" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="Asb-5u-G8R"/>
+                            <constraint firstItem="yKp-7w-ZvE" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Fb7-Gy-MC5"/>
+                            <constraint firstItem="8KQ-9K-6Lv" firstAttribute="centerX" secondItem="UEr-c2-bCY" secondAttribute="centerX" id="MEz-xQ-asC"/>
+                            <constraint firstItem="yKp-7w-ZvE" firstAttribute="top" secondItem="UEr-c2-bCY" secondAttribute="bottom" constant="8" symbolic="YES" id="Pc7-Im-OLd"/>
+                            <constraint firstItem="UEr-c2-bCY" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="g2E-fT-CAJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mhq-0C-654"/>
                     <connections>
-                        <outlet property="loginStatusLabel" destination="qDE-Zd-ChO" id="2wg-R7-LxJ"/>
+                        <segue destination="Sad-mt-seu" kind="show" identifier="ToAddContactInfo" id="7Ds-a8-FRY"/>
+                        <segue destination="vee-Lx-VDm" kind="show" identifier="ToProfile" id="uCZ-hd-2aZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -58,7 +71,6 @@
         <!--Offers history-->
         <scene sceneID="DhO-TV-hgp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i3c-6F-wPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="biy-YM-IGo" customClass="OffersHistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rzt-gv-clV"/>
@@ -87,6 +99,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Offers history" id="fjd-h7-B1c"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i3c-6F-wPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1988" y="-545"/>
         </scene>
@@ -230,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FPX-Ct-2ew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="629" y="158"/>
+            <point key="canvasLocation" x="642" y="536"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="WUc-bo-EY2">
@@ -625,6 +638,7 @@
         <!--Navigation Controller-->
         <scene sceneID="AcW-z2-piR">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hIQ-Ev-pi0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AOn-9I-A5i" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rco-Lm-4GZ">
@@ -636,9 +650,11 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="1rM-39-tgK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hIQ-Ev-pi0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-874" y="158"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GmJ-TZ-ury"/>
+    </inferredMetricsTieBreakers>
 </document>
