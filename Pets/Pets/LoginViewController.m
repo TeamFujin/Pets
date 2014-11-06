@@ -23,14 +23,16 @@
     dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
     dispatch_async(myQueue, ^{
         while (true) {
-            BOOL asd = [FTUtils isConnectionAvailable];
-            NSLog(@"%d", asd);
+            BOOL connectionAvailable = [FTUtils isConnectionAvailable];
+            if (connectionAvailable == 0) {
+                break;
+            }
             [NSThread sleepForTimeInterval:3.0];
         }
         //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //});
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Task finished");
+            NSLog(@"No internet connection");
         });
     });
 }
