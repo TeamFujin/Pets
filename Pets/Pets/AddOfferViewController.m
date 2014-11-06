@@ -16,6 +16,7 @@
 @interface AddOfferViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextInput;
+@property (weak, nonatomic) IBOutlet UITextField *priceTextInput;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
@@ -119,6 +120,7 @@
     [self.locationManager stopUpdatingLocation];
 }
 - (IBAction)saveClicked:(id)sender {
+    if ([self validateOffer]) {
     NSString *title = self.titleTextInput.text;
     NSString *description = self.descriptionTextInput.text;
     NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
@@ -151,6 +153,7 @@
             NSLog(@"Errorr: %@", error);
         }
     }];
+    }
 }
 
 -(void)loadHardcodedImage{
@@ -172,6 +175,27 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+    
+}
+-(bool) validateOffer{
+    NSString *title = self.titleTextInput.text;
+    NSString *price = self.priceTextInput.text;
+
+    if(title.length == 0){
+        [FTUtils showAlert:@"Error" withMessage:@"Title is required"];
+        return false;
+    }
+    if(price.length == 0 || ![self validatePrice:price]){
+        [FTUtils showAlert:@"Error" withMessage:@"Price in invalid"];
+        return false;
+    }
+    return true;
+}
+-(BOOL) validatePrice: (NSString *) number{
+    NSString *regex = @"[0-9]*";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL match = [predicate evaluateWithObject:number];
+    return match;
 }
 /*
 #pragma mark - Navigation

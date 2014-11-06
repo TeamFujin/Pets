@@ -55,7 +55,7 @@
         currUser.email = email;
         currUser[@"phone"] = phone;
         [currUser saveInBackground];
-        [self performSegueWithIdentifier:@"AddInfoToProfile" sender:self];
+        [self performSegueWithIdentifier:@"ContactInfoToProfile" sender:self];
     }
 }
 
