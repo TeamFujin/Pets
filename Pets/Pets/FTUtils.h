@@ -14,4 +14,5 @@
       withMessage: (NSString*) message;
 +(NSString *)encodeToBase64String:(UIImage *)image;
 +(UIImage *)decodeBase64ToImage:(NSString *)strEncodeData;
++ (BOOL) isConnectionAvailable;
 @end
