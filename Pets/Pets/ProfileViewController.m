@@ -56,7 +56,6 @@
     PFUser *currUser = [PFUser currentUser];
     self.emailLabel.text =  currUser.email;
     self.phoneLabel.text =  currUser[@"phone"];
-    
 }
 /*
 #pragma mark - Navigation

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2099DF981A0BE09D00A493F5 /* FTJokeDispenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099DF971A0BE09D00A493F5 /* FTJokeDispenser.m */; };
+		2099DF9A1A0C1AB900A493F5 /* OfferUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */; };
+		2099DFA01A0C1BE500A493F5 /* OfferUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */; };
 		209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */; };
 		209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */; };
 		209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */; };
@@ -62,6 +64,9 @@
 /* Begin PBXFileReference section */
 		2099DF961A0BE09D00A493F5 /* FTJokeDispenser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTJokeDispenser.h; sourceTree = "<group>"; };
 		2099DF971A0BE09D00A493F5 /* FTJokeDispenser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTJokeDispenser.m; sourceTree = "<group>"; };
+		2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferUITableViewCell.xib; sourceTree = "<group>"; };
+		2099DF9E1A0C1BE500A493F5 /* OfferUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferUITableViewCell.h; sourceTree = "<group>"; };
+		2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferUITableViewCell.m; sourceTree = "<group>"; };
 		209A77C61A02E6D400A5BC2B /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidsTableViewController.h; sourceTree = "<group>"; };
@@ -277,6 +282,9 @@
 				841C069B1A06DF0D00008225 /* HomeUITableViewCell.m */,
 				849B201D1A09979400F2C050 /* Deal.h */,
 				849B201E1A09979400F2C050 /* Deal.m */,
+				2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */,
+				2099DF9E1A0C1BE500A493F5 /* OfferUITableViewCell.h */,
+				2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -398,6 +406,7 @@
 			files = (
 				209B82581A0294DE0038CE29 /* Main.storyboard in Resources */,
 				209B825D1A0294DE0038CE29 /* LaunchScreen.xib in Resources */,
+				2099DF9A1A0C1AB900A493F5 /* OfferUITableViewCell.xib in Resources */,
 				841C06991A06DE4200008225 /* HomeUITableViewCell.xib in Resources */,
 				209B825A1A0294DE0038CE29 /* Images.xcassets in Resources */,
 			);
@@ -436,6 +445,7 @@
 				209B82751A02953A0038CE29 /* LoginViewController.m in Sources */,
 				209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */,
 				849B201F1A09979400F2C050 /* Deal.m in Sources */,
+				2099DFA01A0C1BE500A493F5 /* OfferUITableViewCell.m in Sources */,
 				20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
