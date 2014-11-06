@@ -71,7 +71,7 @@
         <!--Inactive offers-->
         <scene sceneID="DhO-TV-hgp">
             <objects>
-                <viewController id="biy-YM-IGo" customClass="OffersHistoryViewController" sceneMemberID="viewController">
+                <viewController id="biy-YM-IGo" customClass="InactiveOffersViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rzt-gv-clV"/>
                         <viewControllerLayoutGuide type="bottom" id="yn6-UQ-N7T"/>
@@ -132,7 +132,7 @@
         <!--Active offers-->
         <scene sceneID="c3p-ON-qn4">
             <objects>
-                <viewController id="7QG-Nx-ler" customClass="OffersHistoryViewController" sceneMemberID="viewController">
+                <viewController id="7QG-Nx-ler" customClass="ActiveOffersViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tqi-qd-BMu"/>
                         <viewControllerLayoutGuide type="bottom" id="vd7-Jh-tXW"/>
