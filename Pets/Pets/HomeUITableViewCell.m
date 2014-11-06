@@ -10,6 +10,8 @@
 
 @implementation HomeUITableViewCell
 
+//static NSInteger rowHeight = 100;
+
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -20,4 +22,7 @@
     // Configure the view for the selected state
 }
 
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return rowHeight;
+//}
 @end

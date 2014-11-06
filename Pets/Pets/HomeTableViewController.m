@@ -19,8 +19,8 @@
 @implementation HomeTableViewController
 
 static NSInteger count = 0;
-static NSMutableArray *data;
 static NSInteger rowHeight = 100;
+static NSMutableArray *data;
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)viewDidLoad {
@@ -91,10 +91,6 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return rowHeight;
-}
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,6 +135,11 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     // Pass data to controller
     controller.offer = offer;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return rowHeight;
 }
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

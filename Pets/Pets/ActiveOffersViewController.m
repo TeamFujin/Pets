@@ -7,6 +7,7 @@
 //
 
 #import "ActiveOffersViewController.h"
+#import "HomeUITableViewCell.h"
 #import "FTDatabaseRequester.h"
 #import "FTUtils.h"
 #import "Offer.h"
@@ -20,15 +21,20 @@
     FTDatabaseRequester* db;
 }
 
+static NSString *cellIdentifier = @"HomeUITableViewCell";
+static NSInteger rowHeight = 100;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     db = [[FTDatabaseRequester alloc] init];
     
     [db getActiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
         if(!error) {
             recipes = [NSMutableArray arrayWithArray:offers];
               NSLog(@"%@", offers);
-            [self.view setNeedsDisplay];
+            [self.tableView reloadData];
         } else {
             [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve your active offers."];
         }
@@ -39,26 +45,27 @@
 {
     return [recipes count];
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    HomeUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    Offer *offer = recipes[indexPath.row];
+    NSLog(@"%@", offer.title);
+    cell.labelTitle.text = offer.title;
+    NSLog(@"%@", offer.price);
+    cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
+    if(offer.picture) {
+        NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        cell.imageViewPicture.image = [UIImage imageWithData:data];
+    }
+    else {
+        cell.imageViewPicture.image = nil;
     }
     
-    Offer *offer = [recipes objectAtIndex:indexPath.row];
-    cell.textLabel.text = offer.title;
-    NSLog(@"%@", offer.title);
     return cell;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return rowHeight;
+}
 /*
 #pragma mark - Navigation
 
