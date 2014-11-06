@@ -63,7 +63,7 @@
     [self getOffersForUser:user andActive:@YES andBlock:block];
 }
 
--(void)getInActiveOffersForUser:(PFObject*) user
+-(void)getInactiveOffersForUser:(PFObject*) user
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block{
     [self getOffersForUser:user andActive:@NO andBlock:block];
 }

@@ -7,40 +7,23 @@
 //
 
 #import "InactiveOffersViewController.h"
+#import "FTDatabaseRequester.h"
 
 @interface InactiveOffersViewController ()
 
 @end
 
 @implementation InactiveOffersViewController{
-    NSArray* recipes;
+    FTDatabaseRequester* db;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     NSLog(@"Tab: %d", (int)self.tabBarController.selectedIndex );
-    recipes = [NSArray arrayWithObjects: @"Old offer", @"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer",@"Old offer", nil];
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [recipes count];
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
-    return cell;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    db = [[FTDatabaseRequester alloc] init];
+    [db getInactiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
+        [super afterGettingDataFromDbWithData:offers andError:error];
+    }];
+    // Do any additional setup after loading the view.
 }
 
 /*

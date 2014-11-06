@@ -22,7 +22,7 @@
              andBlock: (void (^)(NSArray *bids, NSError *error)) block;
 -(void)getActiveOffersForUser:(PFObject*) user
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block;
--(void)getInActiveOffersForUser:(PFObject*) user
+-(void)getInactiveOffersForUser:(PFObject*) user
                        andBlock:(void (^)(NSArray *offers, NSError *error)) block;
 -(void)getOffersForUser:(PFObject*) user
               andActive: (id) active

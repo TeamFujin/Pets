@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OffersHistoryViewController.h"
 
-@interface InactiveOffersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface InactiveOffersViewController : OffersHistoryViewController
 
 @end

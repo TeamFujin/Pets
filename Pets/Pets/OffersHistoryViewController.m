@@ -8,48 +8,34 @@
 
 #import "OffersHistoryViewController.h"
 #import "HomeUITableViewCell.h"
-#import "FTDatabaseRequester.h"
 #import "FTUtils.h"
 #import "Offer.h"
 #import "OfferBidsTableViewController.h"
-
 
 @interface OffersHistoryViewController ()
 
 @end
 
-@implementation OffersHistoryViewController{
-    NSArray* recipes;
-    FTDatabaseRequester* db;
-}
+@implementation OffersHistoryViewController
 
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 static NSInteger rowHeight = 100;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"in here");
+    
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
-    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
-    db = [[FTDatabaseRequester alloc] init];
-    id active = @NO;
-    NSLog(@"%d", (int)self.tabBarController.selectedIndex );
-//    if((int) self.tabBarController.selectedIndex == -1){
-//        active = @YES;
-//         NSLog(@"in if");
-//    }
-    [db getOffersForUser:[PFUser currentUser] andActive:active andBlock:^(NSArray *offers, NSError *error) {
-       
-    }];
-//    recipes = [NSArray arrayWithObjects: @"Active offer", @"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer",@"Active offer", nil];
+    [self.tableViewActiveOffers registerNib:nib forCellReuseIdentifier:cellIdentifier];
+     [self.tableViewInactiveOffers registerNib:nib forCellReuseIdentifier:cellIdentifier];
 }
 -(void)afterGettingDataFromDbWithData:(NSArray*) data
                              andError: (NSError*) error {
     if(!error) {
-        recipes = [NSMutableArray arrayWithArray:data];
-        //    NSLog(@"%@", offers);
+        self.data = [NSMutableArray arrayWithArray:data];
+            NSLog(@"%@", data);
         NSLog(@"in success");
-        [self.tableView reloadData];
+        [self.tableViewActiveOffers reloadData];
+        [self.tableViewInactiveOffers reloadData];
     } else {
         [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve your active offers."];
     }
@@ -57,12 +43,12 @@ static NSInteger rowHeight = 100;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [recipes count];
+    return [self.data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HomeUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    Offer *offer = recipes[indexPath.row];
+    HomeUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    Offer *offer = self.data[indexPath.row];
     cell.labelTitle.text = offer.title;
     cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
     if(offer.picture) {
@@ -96,17 +82,5 @@ static NSInteger rowHeight = 100;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"In touch - %d", (int)self.tabBarController.selectedIndex == -1);//self.tabBarController.
-    if(self.tabBarController.selectedIndex == -1){
-        Offer *offer = [recipes objectAtIndex:indexPath.row];
-    
-        OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
-    
-        [controller setOffer:offer];
-        [self.navigationController pushViewController:controller animated:YES];
-    }
 }
 @end

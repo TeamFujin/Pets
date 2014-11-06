@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OffersHistoryViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UITableView *tableViewActiveOffers;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewInactiveOffers;
+@property (strong, nonatomic) NSArray *data;
+-(void)afterGettingDataFromDbWithData:(NSArray*) data
+                             andError: (NSError*) error;
 @end

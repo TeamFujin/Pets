@@ -7,21 +7,25 @@
 //
 
 #import "ActiveOffersViewController.h"
+#import "FTDatabaseRequester.h"
+#import "Offer.h"
+#import "OfferBidsTableViewController.h"
 
 @interface ActiveOffersViewController ()
 
 @end
 
-@implementation ActiveOffersViewController
+@implementation ActiveOffersViewController{
+    FTDatabaseRequester* db;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    db = [[FTDatabaseRequester alloc] init];
+    [db getActiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
+        [super afterGettingDataFromDbWithData:offers andError:error];
+    }];
     // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
@@ -34,4 +38,14 @@
 }
 */
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ //   NSLog(@"In touch - %d", (int)self.tabBarController.selectedIndex == -1);//self.tabBarController.
+        Offer *offer = [self.data objectAtIndex:indexPath.row];
+        
+        OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
+        
+        [controller setOffer:offer];
+        [self.navigationController pushViewController:controller animated:YES];
+}
 @end

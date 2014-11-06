@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OffersHistoryViewController.h"
 
-@interface ActiveOffersViewController : UITabBarController
+@interface ActiveOffersViewController : OffersHistoryViewController
 
 @end
