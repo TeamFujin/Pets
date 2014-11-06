@@ -10,7 +10,7 @@
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
 #import "FTUtils.h"
-
+#import <FacebookSDK/FacebookSDK.h>
 @interface AddContactInfoViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
@@ -51,9 +51,20 @@
         [FTUtils showAlert:@"Error" withMessage:@"Invalid phone number"];
     }
     else{
+        [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
+            if (error) {
+            }
+            else {
+                NSString *userName = [FBuser name];
+                PFUser *currUser = [PFUser currentUser];
+                currUser[@"displayName"] = userName;
+                [currUser saveInBackground];
+            }
+        }];
         PFUser *currUser = [PFUser currentUser];
         currUser.email = email;
         currUser[@"phone"] = phone;
+         //currUser[@"displayName"] = fbName;
         [currUser saveInBackground];
         [self performSegueWithIdentifier:@"ContactInfoToProfile" sender:self];
     }

@@ -23,6 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getPersonalInfo];
+    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"buttonImage.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [button setFrame:CGRectMake(0, 0, 49, 30)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,12 +36,13 @@
 }
 - (IBAction)logoutClicked:(id)sender {
     [FBSession.activeSession closeAndClearTokenInformation];
+    [PFUser logOut];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)getPersonalInfo{
     [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
         if (error) {
-            
         }
         else {
             NSString *userName = [FBuser name];
