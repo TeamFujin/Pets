@@ -12,6 +12,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "FTSpinner.h"
 #import "FTUtils.h"
+#import "FTJokeDispenser.h"
 @interface LoginViewController ()
 @end
 
@@ -19,20 +20,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [FTJokeDispenser showJoke];
+    [self startAsyncTask];
     
+}
+- (void) startAsyncTask{
     dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
     dispatch_async(myQueue, ^{
         while (true) {
             BOOL connectionAvailable = [FTUtils isConnectionAvailable];
-            if (connectionAvailable == 0) {
-                break;
+            NSLog(@"%d", connectionAvailable);
+            if (connectionAvailable != 1) {
+              break;
             }
-            [NSThread sleepForTimeInterval:3.0];
+            [NSThread sleepForTimeInterval:2.0];
         }
         //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //});
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"No internet connection");
+            [FTJokeDispenser showJoke];
+            [self startAsyncTask];
         });
     });
 }
