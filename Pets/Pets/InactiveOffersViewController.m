@@ -18,6 +18,7 @@
 }
 
 - (void)viewDidLoad {
+    self.tableView = self.tableViewInactiveOffers;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
     [db getInactiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {

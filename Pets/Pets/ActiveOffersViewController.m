@@ -20,6 +20,7 @@
 }
 
 - (void)viewDidLoad {
+    self.tableView = self.tableViewActiveOffers;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
     [db getActiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {

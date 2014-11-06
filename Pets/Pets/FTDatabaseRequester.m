@@ -39,10 +39,30 @@
     }];
 }
 
+-(void)getApprovedBidsForUser: (PFObject*) userId
+             andBlock: (void (^)(NSArray *bids, NSError *error)) block{
+    [self getBidsForUser:userId andApproved:@YES andDeleted:@NO andBlock:block];
+}
+
+-(void)getPendingBidsForUser: (PFObject*) userId
+                    andBlock: (void (^)(NSArray *bids, NSError *error)) block{
+    [self getBidsForUser:userId andApproved:@NO andDeleted:@NO andBlock:block];
+}
+-(void)getRejectedBidsForUser: (PFObject*) userId
+                     andBlock: (void (^)(NSArray *bids, NSError *error)) block{
+    [self getBidsForUser:userId andApproved:@NO andDeleted:@YES andBlock:block];
+}
+
 -(void)getBidsForUser: (PFObject*) userId
+          andApproved: (id) approved
+           andDeleted: (id) deleted
              andBlock: (void (^)(NSArray *bids, NSError *error)) block{
     PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
     [query whereKey:@"wanterId" equalTo:userId];
+    [query whereKey:@"approved" equalTo:approved];
+    if(!approved) {
+        [query whereKey:@"deleted" equalTo:deleted];
+    }
     
     [query includeKey:@"offerId"];
     [query includeKey:@"wanterId"];

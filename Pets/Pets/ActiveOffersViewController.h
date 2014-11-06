@@ -10,5 +10,5 @@
 #import "OffersHistoryViewController.h"
 
 @interface ActiveOffersViewController : OffersHistoryViewController
-
+@property (weak, nonatomic) IBOutlet UITableView *tableViewActiveOffers;
 @end

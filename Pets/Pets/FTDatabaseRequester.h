@@ -18,13 +18,14 @@
                  andBlock: (void (^)(PFObject *object, NSError *error)) block;
 -(void)addDealToDbWithDeal: (Deal *) deal
                   andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
--(void)getBidsForUser: (PFObject*) userId
+-(void)getApprovedBidsForUser: (PFObject*) userId
              andBlock: (void (^)(NSArray *bids, NSError *error)) block;
+-(void)getPendingBidsForUser: (PFObject*) userId
+                     andBlock: (void (^)(NSArray *bids, NSError *error)) block;
+-(void)getRejectedBidsForUser: (PFObject*) userId
+                     andBlock: (void (^)(NSArray *bids, NSError *error)) block;
 -(void)getActiveOffersForUser:(PFObject*) user
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block;
 -(void)getInactiveOffersForUser:(PFObject*) user
                        andBlock:(void (^)(NSArray *offers, NSError *error)) block;
--(void)getOffersForUser:(PFObject*) user
-              andActive: (id) active
-               andBlock:(void (^)(NSArray *offers, NSError *error)) block;
 @end

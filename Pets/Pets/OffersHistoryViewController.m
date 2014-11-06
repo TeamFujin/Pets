@@ -20,13 +20,11 @@
 
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 static NSInteger rowHeight = 100;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
-    [self.tableViewActiveOffers registerNib:nib forCellReuseIdentifier:cellIdentifier];
-     [self.tableViewInactiveOffers registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
 }
 -(void)afterGettingDataFromDbWithData:(NSArray*) data
                              andError: (NSError*) error {
@@ -34,10 +32,9 @@ static NSInteger rowHeight = 100;
         self.data = [NSMutableArray arrayWithArray:data];
             NSLog(@"%@", data);
         NSLog(@"in success");
-        [self.tableViewActiveOffers reloadData];
-        [self.tableViewInactiveOffers reloadData];
+        [self.tableView reloadData];
     } else {
-        [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve your active offers."];
+        [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
     }
 }
 
