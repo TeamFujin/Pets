@@ -95,7 +95,7 @@
 }
 - (IBAction)continueTaped:(id)sender {
     PFUser *currUser = [PFUser currentUser];
-    if(false){//currUser.email != nil
+    if(currUser.email != nil){
         [self performSegueWithIdentifier:@"ToProfile" sender:self];
     }
     else{
