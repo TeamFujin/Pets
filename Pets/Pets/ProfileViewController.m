@@ -23,9 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getPersonalInfo];
-    BOOL asd = [FTUtils isConnectionAvailable];
-    NSLog(@"%d", asd);
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

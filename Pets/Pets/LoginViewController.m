@@ -12,6 +12,7 @@
 #import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "FTSpinner.h"
 #import "FTUtils.h"
+#import "ProfileViewController.h"
 #import "FTJokeDispenser.h"
 @interface LoginViewController ()
 @end
@@ -20,16 +21,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [FTJokeDispenser showJoke];
     [self startAsyncTask];
-    
 }
+
 - (void) startAsyncTask{
     dispatch_queue_t myQueue = dispatch_queue_create("My Queue",NULL);
     dispatch_async(myQueue, ^{
         while (true) {
             BOOL connectionAvailable = [FTUtils isConnectionAvailable];
-            NSLog(@"%d", connectionAvailable);
+            //NSLog(@"%d", connectionAvailable);
             if (connectionAvailable != 1) {
               break;
             }
@@ -63,9 +63,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self resignFirstResponder];
     [super viewWillDisappear:animated];
-}
-- (void) logstuff{
-    NSLog(@"STUFF");
 }
 - (IBAction)fbLoginButtonTaped:(id)sender {
     // Set permissions required from the facebook user account
@@ -110,6 +107,7 @@
     if ([PFUser currentUser] && // Check if user is cached
         [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         NSLog(@"User is already logged in !");
+        [self performSegueWithIdentifier:@"ToProfile" sender:self];
     }
 }
 - (void)didReceiveMemoryWarning {
