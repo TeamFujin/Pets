@@ -12,6 +12,7 @@
 #import "Offer.h"
 #import "FTSpinner.h"
 #import "FTUtils.h"
+
 @interface HomeTableViewController ()
 
 @end
@@ -30,32 +31,17 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:100 andScale:3.5f];
     [spinner startSpinning];
-//    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0,0,100,100)];
-//    CGAffineTransform transform = CGAffineTransformMakeScale(3.5f, 3.5f);
-//    spinner.transform = transform;
-//    spinner.color = [UIColor blueColor];
-//    spinner.center = self.view.center;
-//    [spinner startAnimating];
-//    [self.tableView addSubview:spinner];
 
     [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
-//        [spinner removeFromSuperview];
         [spinner stopSpinning];
         if(!error) {
             count = objects.count;
             data = [NSMutableArray arrayWithArray:objects];
-          //  NSLog(@"%@", objects);
             [self.tableView reloadData];
         } else {
             [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
         }
     }];
-   // self.offerDetailsViewController = (OfferDetailsViewController *) [[self.splitViewController.viewControllers lastObject] topViewController];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

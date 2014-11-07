@@ -14,6 +14,7 @@
 #import "FTUtils.h"
 #import "ProfileViewController.h"
 #import "FTJokeDispenser.h"
+
 @interface LoginViewController ()
 @end
 
@@ -35,24 +36,11 @@
             }
             [NSThread sleepForTimeInterval:2.0];
         }
-        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //});
         dispatch_async(dispatch_get_main_queue(), ^{
             [FTJokeDispenser showJoke];
             [self startAsyncTask];
         });
     });
-}
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    if (motion == UIEventSubtypeMotionShake)
-    {
-        // your code
-    }
-}
-
--(BOOL)canBecomeFirstResponder {
-    return YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -67,10 +55,11 @@
 - (IBAction)fbLoginButtonTaped:(id)sender {
     // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
-    
-    // Login PFUser using Facebook
+   
+    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
+    [spinner startSpinning];
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        // Hide loading indicator
+        [spinner stopSpinning];
         
         if (!user) {
             NSString *errorMessage = nil;

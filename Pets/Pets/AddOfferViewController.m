@@ -14,12 +14,14 @@
 #import "FTUtils.h"
 
 @interface AddOfferViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *priceTextInput;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
+
 @end
 
 @implementation AddOfferViewController{
@@ -41,24 +43,21 @@
     
     self.imageView.image = image;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-- (IBAction)sliderChanged:(id)sender {
-    NSString *price =[NSString stringWithFormat:@"%@ BGN", [[NSNumber numberWithInteger:(int)self.slider.value] stringValue]];
-    self.sliderLabel.text = price;
 }
 
 - (IBAction)takePhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [FTUtils showAlert:@"Error" withMessage:@"Device has no camera"];
     } else {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         
-    [self presentViewController:picker animated:YES completion:NULL];
+        [self presentViewController:picker animated:YES completion:NULL];
     }
 }
 
@@ -66,12 +65,12 @@
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         [FTUtils showAlert:@"Error" withMessage:@"Device has no camera"];
     } else {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    [self presentViewController:picker animated:YES completion:NULL];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        [self presentViewController:picker animated:YES completion:NULL];
     }
 }
 
@@ -121,38 +120,38 @@
 }
 - (IBAction)saveClicked:(id)sender {
     if ([self validateOffer]) {
-    NSString *title = self.titleTextInput.text;
-    NSString *description = self.descriptionTextInput.text;
-    NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
-    UIImage *image = self.imageView.image;
-//    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
-//    [image drawInRect: CGRectMake(0, 0, 200, 200)];
-//    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-    NSString *imageBase64 = [FTUtils encodeToBase64String:image];
-    Offer *offer = [[Offer alloc] init];
-    offer.userId = [PFUser currentUser];
-    offer.title = title;
-    offer.desc = description;
-    offer.price = price;
-    offer.active = YES;
-    offer.picture = imageBase64;
-    offer.location.longitude = currentLongitude;
-    offer.location.latitude = currentLatitude;
-    offer.address = adress;
-    
- //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
-  //  PFFile *imageFile = [PFFile fileWithData:imageData];
-  //  offer.picture = imageFile;
-    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-    [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded) {
-            [FTUtils showAlert:@"Success" withMessage:@"Your offer has been published!"];
-        } else {
-            [FTUtils showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
-            NSLog(@"Errorr: %@", error);
-        }
-    }];
+        NSString *title = self.titleTextInput.text;
+        NSString *description = self.descriptionTextInput.text;
+        NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
+        UIImage *image = self.imageView.image;
+        //    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
+        //    [image drawInRect: CGRectMake(0, 0, 200, 200)];
+        //    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+        //    UIGraphicsEndImageContext();
+        NSString *imageBase64 = [FTUtils encodeToBase64String:image];
+        Offer *offer = [[Offer alloc] init];
+        offer.userId = [PFUser currentUser];
+        offer.title = title;
+        offer.desc = description;
+        offer.price = price;
+        offer.active = YES;
+        offer.picture = imageBase64;
+        offer.location.longitude = currentLongitude;
+        offer.location.latitude = currentLatitude;
+        offer.address = adress;
+        
+        //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
+        //  PFFile *imageFile = [PFFile fileWithData:imageData];
+        //  offer.picture = imageFile;
+        FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+        [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
+            if(succeeded) {
+                [FTUtils showAlert:@"Success" withMessage:@"Your offer has been published!"];
+            } else {
+                [FTUtils showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
+                NSLog(@"Errorr: %@", error);
+            }
+        }];
     }
 }
 
@@ -180,7 +179,7 @@
 -(bool) validateOffer{
     NSString *title = self.titleTextInput.text;
     NSString *price = self.priceTextInput.text;
-
+    
     if(title.length == 0){
         [FTUtils showAlert:@"Error" withMessage:@"Title is required"];
         return false;
@@ -197,14 +196,5 @@
     BOOL match = [predicate evaluateWithObject:number];
     return match;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
