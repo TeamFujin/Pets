@@ -23,7 +23,6 @@
     [db getApprovedBidsForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
         [super afterGettingDataFromDbWithData:offers andError:error];
     }];
-    // Do any additional setup after loading the view.
 }
 
 /*

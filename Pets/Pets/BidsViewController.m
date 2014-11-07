@@ -20,7 +20,7 @@
 @implementation BidsViewController
 
 static NSString *cellIdentifier = @"OfferUITableViewCell";
-static NSInteger rowHeight = 150;
+static NSInteger rowHeight = 100;
 - (void)viewDidLoad {
     [super viewDidLoad];
     

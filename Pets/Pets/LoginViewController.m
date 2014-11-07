@@ -30,7 +30,6 @@
     dispatch_async(myQueue, ^{
         while (true) {
             BOOL connectionAvailable = [FTUtils isConnectionAvailable];
-            //NSLog(@"%d", connectionAvailable);
             if (connectionAvailable != 1) {
               break;
             }
@@ -52,9 +51,9 @@
     [self resignFirstResponder];
     [super viewWillDisappear:animated];
 }
+
 - (IBAction)fbLoginButtonTaped:(id)sender {
-    // Set permissions required from the facebook user account
-    NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+    NSArray *permissionsArray = @[ @"user_about_me", @"email", @"user_birthday", @"user_location"];
    
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
     [spinner startSpinning];
@@ -65,7 +64,6 @@
             NSString *errorMessage = nil;
             if (!error) {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
-                errorMessage = @"Uh oh. The user cancelled the Facebook login.";
             } else {
                 NSLog(@"An error occurred: %@", error);
                 errorMessage = [error localizedDescription];
@@ -79,8 +77,6 @@
             }
         }
     }];
-    
-    // Show loading indicator until login is finished
 }
 - (IBAction)continueTaped:(id)sender {
     if ([PFUser currentUser] && // Check if user is cached
@@ -95,25 +91,10 @@
     }else{
         [FTUtils showAlert:@"Error" withMessage:@"You are not logged in !"];
     }
-    
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

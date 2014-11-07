@@ -66,6 +66,7 @@
     
     return [emailTest evaluateWithObject:candidate];
 }
+
 -(BOOL) phoneIsValid: (NSString*) candidate{
     NSString *phoneRegex = @"[0123456789][0-9]{6}([0-9]{3})?";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
