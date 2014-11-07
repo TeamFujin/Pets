@@ -31,7 +31,6 @@
 }
 
 - (void)viewDidLoad {
-    self.title = @"Add Offer";
     [super viewDidLoad];
     [self loadHardcodedImage];
     [self initializeLocationManager];

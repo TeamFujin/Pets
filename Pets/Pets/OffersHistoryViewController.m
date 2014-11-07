@@ -21,7 +21,6 @@
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 static NSInteger rowHeight = 100;
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];

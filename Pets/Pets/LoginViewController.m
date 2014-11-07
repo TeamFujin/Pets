@@ -20,12 +20,8 @@
 @implementation LoginViewController
 
 - (void)viewDidLoad {
-    self.title = @"Login";
     [super viewDidLoad];
     [self startAsyncTask];
-    //UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc]initWithTitle:@"Profile" style:UIBarButtonItemStylePlain target:self action:@selector(doneClicked:)];
-    //self.navigationItem.rightBarButtonItems = @[rightBarButton, doneButton];
-    
 }
 
 - (void) startAsyncTask{
@@ -39,11 +35,24 @@
             }
             [NSThread sleepForTimeInterval:2.0];
         }
+        //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //});
         dispatch_async(dispatch_get_main_queue(), ^{
             [FTJokeDispenser showJoke];
             [self startAsyncTask];
         });
     });
+}
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        // your code
+    }
+}
+
+-(BOOL)canBecomeFirstResponder {
+    return YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -56,13 +65,13 @@
     [super viewWillDisappear:animated];
 }
 - (IBAction)fbLoginButtonTaped:(id)sender {
-    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:100 andScale:3.5f];
-    [spinner startSpinning];
+    // Set permissions required from the facebook user account
     NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
     
     // Login PFUser using Facebook
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        [spinner stopSpinning];
+        // Hide loading indicator
+        
         if (!user) {
             NSString *errorMessage = nil;
             if (!error) {
@@ -82,7 +91,7 @@
         }
     }];
     
-    
+    // Show loading indicator until login is finished
 }
 - (IBAction)continueTaped:(id)sender {
     PFUser *currUser = [PFUser currentUser];
@@ -103,6 +112,17 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

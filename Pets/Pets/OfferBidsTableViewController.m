@@ -11,7 +11,6 @@
 #import "FTUtils.h"
 #import "OfferBidsUITableViewCell.h"
 #import "Deal.h"
-#import "WebFacebookViewController.h"
 
 @interface OfferBidsTableViewController ()
 
@@ -83,19 +82,13 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
     Deal *deal = [bidsData objectAtIndex:indexPath.row];
     PFUser *user = deal[@"wanterId"];
     NSString *facebookId = user[@"facebookId"];
-//    NSLog(@"Password %@", user.password);
-//    NSLog(@"ObjectId %@", user.objectId);
-//    NSLog(@"Email %@", user[@"email"]);
-//    NSLog(@"authData %@", user[@"authData"]);
-//    NSLog(@"www.facebook.com/%@", facebookId);
-//    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
-//    [[UIApplication sharedApplication] openURL:url];
-    
-    WebFacebookViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"webFacebook"];
-    
-    // Pass data to controller
-    controller.facebookId = facebookId;
-    [self.navigationController pushViewController:controller animated:YES];
+    NSLog(@"Password %@", user.password);
+    NSLog(@"ObjectId %@", user.objectId);
+    NSLog(@"Email %@", user[@"email"]);
+    NSLog(@"authData %@", user[@"authData"]);
+    NSLog(@"www.facebook.com/%@", facebookId);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
+    [[UIApplication sharedApplication] openURL:url];
 }
 /*
 // Override to support conditional editing of the table view.

@@ -17,14 +17,11 @@
 
 @implementation OfferDetailsViewController
 
-- (void)viewDidLoad {
-    self.title = @"Details";
-    [super viewDidLoad];
-    [self configureView];
-}
 - (void)setOffer:(id)newOffer {
     if (_offer != newOffer) {
         _offer = newOffer;
+        
+        
         // Update the view.
         [self configureView];
     }
@@ -48,7 +45,10 @@
     }
 }
 
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configureView];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
