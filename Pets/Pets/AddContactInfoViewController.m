@@ -58,6 +58,7 @@
                 NSString *userName = [FBuser name];
                 PFUser *currUser = [PFUser currentUser];
                 currUser[@"displayName"] = userName;
+                currUser[@"facebookId"] = FBuser.objectID;
                 [currUser saveInBackground];
             }
         }];

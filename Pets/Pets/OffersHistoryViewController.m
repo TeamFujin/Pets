@@ -31,6 +31,8 @@ static NSInteger rowHeight = 100;
     if(!error) {
         self.data = [NSMutableArray arrayWithArray:data];
             NSLog(@"%@", data);
+         //   NSLog(@"%@", data);
+        //NSLog(@"in success");
         [self.tableView reloadData];
     } else {
         [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];

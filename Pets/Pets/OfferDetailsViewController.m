@@ -72,10 +72,11 @@
     deal.offerId = [PFObject objectWithoutDataWithClassName:[Offer parseClassName] objectId:self.offer.objectId];
     deal.approved = NO;
     deal.deleted = NO;
+    //TODO: check if you are not the owner of this offer
+
     //TODO: check if user already pressed the button
     [self.databaseRequester addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
-            //TODO use the future class for alert making!!!
             [FTUtils showAlert:@"Success" withMessage:@"You can start checking for approval"];
         } else {
             [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];

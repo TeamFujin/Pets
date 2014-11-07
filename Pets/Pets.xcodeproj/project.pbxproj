@@ -54,6 +54,8 @@
 		849B201F1A09979400F2C050 /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B201E1A09979400F2C050 /* Deal.m */; };
 		84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA8BE21A0A621D006CFC74 /* FTSpinner.m */; };
 		84AB2A031A0BD59900EB3ACA /* OfferBidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */; };
+		84AF66041A0CD2A40039553F /* OfferBidsUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84AF66031A0CD2A40039553F /* OfferBidsUITableViewCell.xib */; };
+		84AF66071A0CD33D0039553F /* OfferBidsUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AF66061A0CD33D0039553F /* OfferBidsUITableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,9 @@
 		84AA8BE21A0A621D006CFC74 /* FTSpinner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSpinner.m; sourceTree = "<group>"; };
 		84AB2A011A0BD59900EB3ACA /* OfferBidsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferBidsTableViewController.h; sourceTree = "<group>"; };
 		84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferBidsTableViewController.m; sourceTree = "<group>"; };
+		84AF66031A0CD2A40039553F /* OfferBidsUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferBidsUITableViewCell.xib; sourceTree = "<group>"; };
+		84AF66051A0CD33D0039553F /* OfferBidsUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferBidsUITableViewCell.h; sourceTree = "<group>"; };
+		84AF66061A0CD33D0039553F /* OfferBidsUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferBidsUITableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +337,9 @@
 				2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */,
 				2099DF9E1A0C1BE500A493F5 /* OfferUITableViewCell.h */,
 				2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */,
+				84AF66031A0CD2A40039553F /* OfferBidsUITableViewCell.xib */,
+				84AF66051A0CD33D0039553F /* OfferBidsUITableViewCell.h */,
+				84AF66061A0CD33D0039553F /* OfferBidsUITableViewCell.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -455,6 +463,7 @@
 				209B825D1A0294DE0038CE29 /* LaunchScreen.xib in Resources */,
 				2099DF9A1A0C1AB900A493F5 /* OfferUITableViewCell.xib in Resources */,
 				841C06991A06DE4200008225 /* HomeUITableViewCell.xib in Resources */,
+				84AF66041A0CD2A40039553F /* OfferBidsUITableViewCell.xib in Resources */,
 				209B825A1A0294DE0038CE29 /* Images.xcassets in Resources */,
 				209A5A3C1A0CE3EC00F4FF81 /* images.jpg in Resources */,
 			);
@@ -497,7 +506,11 @@
 				209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */,
 				849B201F1A09979400F2C050 /* Deal.m in Sources */,
 				2099DFA01A0C1BE500A493F5 /* OfferUITableViewCell.m in Sources */,
+
 				209A5A3F1A0CE4CA00F4FF81 /* BidsViewController.m in Sources */,
+
+				84AF66071A0CD33D0039553F /* OfferBidsUITableViewCell.m in Sources */,
+
 				20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

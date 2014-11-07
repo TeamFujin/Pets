@@ -53,25 +53,6 @@
     [self getBidsForUser:userId andApproved:@NO andDeleted:@YES andBlock:block];
 }
 
--(void)getBidsForUser: (PFObject*) userId
-          andApproved: (id) approved
-           andDeleted: (id) deleted
-             andBlock: (void (^)(NSArray *bids, NSError *error)) block{
-    PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
-    [query whereKey:@"wanterId" equalTo:userId];
-    [query whereKey:@"approved" equalTo:approved];
-    if([approved isEqualToValue:@NO]) {
-        [query whereKey:@"deleted" equalTo:deleted];
-    }
-    
-    [query includeKey:@"offerId"];
-    [query includeKey:@"wanterId"];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *bids, NSError *error) {
-        block(bids, error);
-    }];
-}
-
 -(void)getActiveOffersForUser:(PFObject*) user
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block{
 //    PFQuery *query = [PFQuery queryWithClassName:[Offer parseClassName]];
@@ -88,6 +69,19 @@
     [self getOffersForUser:user andActive:@NO andBlock:block];
 }
 
+-(void)getOfferBidsForOffer: (PFObject*) offer
+                     andBlock: (void (^)(NSArray *bids, NSError *error)) block{
+    PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
+    [query whereKey:@"offerId" equalTo:offer];
+    [query whereKey:@"deleted" equalTo:@NO];
+    [query includeKey:@"wanterId"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *bids, NSError *error) {
+        block(bids, error);
+    }];
+
+}
+
 -(void)getOffersForUser:(PFObject*) user
               andActive: (id) active
                andBlock:(void (^)(NSArray *offers, NSError *error)) block{
@@ -96,6 +90,26 @@
     [query whereKey:@"active" equalTo:active];
     [query findObjectsInBackgroundWithBlock:^(NSArray *offers, NSError *error) {
         block(offers, error);
+    }];
+}
+
+
+-(void)getBidsForUser: (PFObject*) userId
+          andApproved: (id) approved
+           andDeleted: (id) deleted
+             andBlock: (void (^)(NSArray *bids, NSError *error)) block{
+    PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
+    [query whereKey:@"wanterId" equalTo:userId];
+    [query whereKey:@"approved" equalTo:approved];
+    if([approved isEqualToValue:@NO]) {
+        [query whereKey:@"deleted" equalTo:deleted];
+    }
+    
+    [query includeKey:@"offerId"];
+    [query includeKey:@"wanterId"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *bids, NSError *error) {
+        block(bids, error);
     }];
 }
 @end

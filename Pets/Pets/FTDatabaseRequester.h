@@ -28,4 +28,6 @@
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block;
 -(void)getInactiveOffersForUser:(PFObject*) user
                        andBlock:(void (^)(NSArray *offers, NSError *error)) block;
+-(void)getOfferBidsForOffer: (PFObject*) offer
+                   andBlock: (void (^)(NSArray *bids, NSError *error)) block;
 @end

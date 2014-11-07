@@ -394,7 +394,7 @@
         <!--Offer Details View Controller-->
         <scene sceneID="LDb-rq-faM">
             <objects>
-                <viewController storyboardIdentifier="offerDetails" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mN7-F8-50y" customClass="OfferDetailsViewController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="offerDetails" storyboardIdentifier="offerDetails" id="mN7-F8-50y" customClass="OfferDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0ee-fj-Srx"/>
                         <viewControllerLayoutGuide type="bottom" id="W0d-Qs-Bh4"/>
@@ -731,6 +731,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7C-Bu-JS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="972" y="894"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="h2w-4R-XcJ">
+            <objects>
+                <viewController id="h5a-zN-D7g" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iib-2q-YgI"/>
+                        <viewControllerLayoutGuide type="bottom" id="KdD-Ps-vXF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XwJ-Cq-35Z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lze-TR-X6K">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WmV-wa-4ZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-793" y="-539"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AcW-z2-piR">

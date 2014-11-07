@@ -7,14 +7,20 @@
 //
 
 #import "OfferBidsTableViewController.h"
+#import "FTDatabaseRequester.h"
+#import "FTUtils.h"
+#import "OfferBidsUITableViewCell.h"
+#import "Deal.h"
 
 @interface OfferBidsTableViewController ()
 
 @end
 
 @implementation OfferBidsTableViewController{
-    NSArray *bids;
+    NSMutableArray *bidsData;
+    FTDatabaseRequester *db;
 }
+static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
 
 - (void)setOffer:(id)newOffer {
     if (_offer != newOffer) {
@@ -24,7 +30,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    db = [[FTDatabaseRequester alloc] init];
+    [db getOfferBidsForOffer:self.offer andBlock:^(NSArray *bids, NSError *error) {
+        if(!error) {
+            bidsData = [NSMutableArray arrayWithArray:bids];
+              NSLog(@"%@", bids);
+            [self.tableView reloadData];
+        } else {
+            [FTUtils showAlert:@"We are sorry" withMessage:@"We can't show you who wants your pet right now."];
+            NSLog(@"Error in offerBids: %@", error);
+        }
+    }];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -34,31 +52,44 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 10;
-}
-
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//#warning Incomplete method implementation.
-//    // Return the number of rows in the section.
-//    return 0;
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+//    return bidsData.count;
 //}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return bidsData.count;
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    OfferBidsUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    NSLog(@"%@", cell);
+    Deal *deal = bidsData[indexPath.row];
+    PFUser *user = deal[@"wanterId"];
+    NSLog(@"PFUser: %@", user);
+    cell.labelName.text = [NSString stringWithFormat:@"Name: %@", user[@"displayName"]];
     
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Get reference to receipt
+    Deal *deal = [bidsData objectAtIndex:indexPath.row];
+    PFUser *user = deal[@"wanterId"];
+    NSString *facebookId = user[@"facebookId"];
+    NSLog(@"Password %@", user.password);
+    NSLog(@"ObjectId %@", user.objectId);
+    NSLog(@"Email %@", user[@"email"]);
+    NSLog(@"authData %@", user[@"authData"]);
+    NSLog(@"www.facebook.com/%@", facebookId);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
+    [[UIApplication sharedApplication] openURL:url];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
