@@ -10,6 +10,7 @@
 #import "OfferUITableViewCell.h"
 #import "HomeUITableViewCell.h"
 #import "FTUtils.h"
+#import "Deal.h"
 #import "Offer.h"
 
 @interface BidsViewController ()
@@ -19,7 +20,7 @@
 @implementation BidsViewController
 
 static NSString *cellIdentifier = @"OfferUITableViewCell";
-static NSInteger rowHeight = 100;
+static NSInteger rowHeight = 150;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -44,7 +45,8 @@ static NSInteger rowHeight = 100;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OfferUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    Offer *offer = self.data[indexPath.row];
+    Deal *bid = self.data[indexPath.row];
+    Offer *offer = (Offer *)bid.offerId;
     cell.labelTItle.text = offer.title;
     cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
     if(offer.picture) {

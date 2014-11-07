@@ -13,28 +13,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0d-e7-Ccl">
-                        <rect key="frame" x="167" y="8" width="33" height="21"/>
+                        <rect key="frame" x="172" y="8" width="110" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKj-Q4-Lnk">
-                        <rect key="frame" x="167" y="37" width="40" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P3n-qq-gSA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8E6-O2-EDI">
                         <rect key="frame" x="0.0" y="0.0" width="164" height="130"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKj-Q4-Lnk">
+                        <rect key="frame" x="172" y="37" width="115" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="image" destination="P3n-qq-gSA" id="fMb-Jy-SqZ"/>
+                <outlet property="image" destination="8E6-O2-EDI" id="dzJ-ho-xPa"/>
                 <outlet property="labelPrice" destination="gKj-Q4-Lnk" id="UjL-Qp-ARZ"/>
                 <outlet property="labelTItle" destination="P0d-e7-Ccl" id="zXv-Ns-mbQ"/>
             </connections>
-            <point key="canvasLocation" x="303" y="95"/>
+            <point key="canvasLocation" x="303" y="93"/>
         </tableViewCell>
     </objects>
 </document>

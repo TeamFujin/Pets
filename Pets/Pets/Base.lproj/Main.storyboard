@@ -641,10 +641,10 @@
             </objects>
             <point key="canvasLocation" x="1981" y="156"/>
         </scene>
-        <!--Item3-->
+        <!--Rejected-->
         <scene sceneID="cvD-dp-4fz">
             <objects>
-                <viewController id="5ER-tq-hDC" sceneMemberID="viewController">
+                <viewController id="5ER-tq-hDC" customClass="RejectedBidsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BqX-r2-GVC"/>
                         <viewControllerLayoutGuide type="bottom" id="sER-8n-IjQ"/>
@@ -652,19 +652,32 @@
                     <view key="view" contentMode="scaleToFill" id="kSO-Pu-1oe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xv2-z4-HC7">
+                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="5ER-tq-hDC" id="AAc-pj-esq"/>
+                                    <outlet property="delegate" destination="5ER-tq-hDC" id="ME5-Iw-3PR"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item3" id="5s6-q0-OTJ"/>
+                    <tabBarItem key="tabBarItem" title="Rejected" id="5s6-q0-OTJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableViewRejectedBids" destination="xv2-z4-HC7" id="kpJ-Iz-Jcs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxj-YI-f3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1653" y="1645"/>
         </scene>
-        <!--Item 2-->
+        <!--Pending-->
         <scene sceneID="257-7J-cV6">
             <objects>
-                <viewController id="NWX-8e-RhV" sceneMemberID="viewController">
+                <viewController id="NWX-8e-RhV" customClass="PendingBidsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jcn-Ao-PVb"/>
                         <viewControllerLayoutGuide type="bottom" id="NfT-Hv-KLN"/>
@@ -672,15 +685,28 @@
                     <view key="view" contentMode="scaleToFill" id="x3z-lG-ET7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Mg-uT-ysY">
+                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="NWX-8e-RhV" id="xDV-HO-TlK"/>
+                                    <outlet property="delegate" destination="NWX-8e-RhV" id="0hb-WS-hS9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="6Dr-k9-dD9"/>
+                    <tabBarItem key="tabBarItem" title="Pending" id="6Dr-k9-dD9"/>
+                    <connections>
+                        <outlet property="tableViewPendingBids" destination="3Mg-uT-ysY" id="5Kg-jl-RCN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZo-RO-m26" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="972" y="1645"/>
         </scene>
-        <!--Item 1-->
+        <!--Approved-->
         <scene sceneID="aQ6-KK-gMW">
             <objects>
                 <viewController id="2eP-0m-Elx" customClass="ApprovedBidsViewController" sceneMemberID="viewController">
@@ -703,7 +729,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="xqQ-zg-cbl"/>
+                    <tabBarItem key="tabBarItem" title="Approved" id="xqQ-zg-cbl"/>
                     <connections>
                         <outlet property="tableViewApprovedBids" destination="RW5-Hk-R4Z" id="9Ld-tl-Rbb"/>
                     </connections>

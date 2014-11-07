@@ -8,7 +8,6 @@
 
 #import "ApprovedBidsViewController.h"
 #import "FTDatabaseRequester.h"
-#import "Offer.h"
 @interface ApprovedBidsViewController ()
 
 @end
@@ -21,7 +20,7 @@
     self.tableView = self.tableViewApprovedBids;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
-    [db getActiveOffersForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
+    [db getApprovedBidsForUser:[PFUser currentUser] andBlock:^(NSArray *offers, NSError *error) {
         [super afterGettingDataFromDbWithData:offers andError:error];
     }];
     // Do any additional setup after loading the view.
