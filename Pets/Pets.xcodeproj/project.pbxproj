@@ -10,6 +10,11 @@
 		2099DF981A0BE09D00A493F5 /* FTJokeDispenser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099DF971A0BE09D00A493F5 /* FTJokeDispenser.m */; };
 		2099DF9A1A0C1AB900A493F5 /* OfferUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */; };
 		2099DFA01A0C1BE500A493F5 /* OfferUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */; };
+		209A5A3C1A0CE3EC00F4FF81 /* images.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 209A5A3B1A0CE3EC00F4FF81 /* images.jpg */; };
+		209A5A3F1A0CE4CA00F4FF81 /* BidsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A5A3E1A0CE4CA00F4FF81 /* BidsViewController.m */; };
+		209A5A431A0CE50100F4FF81 /* ApprovedBidsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A5A421A0CE50100F4FF81 /* ApprovedBidsViewController.m */; };
+		209A5A461A0CE77C00F4FF81 /* PendingBidsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A5A451A0CE77C00F4FF81 /* PendingBidsViewController.m */; };
+		209A5A491A0CE79500F4FF81 /* RejectedBidsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A5A481A0CE79500F4FF81 /* RejectedBidsViewController.m */; };
 		209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */; };
 		209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */; };
 		209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */; };
@@ -67,6 +72,15 @@
 		2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferUITableViewCell.xib; sourceTree = "<group>"; };
 		2099DF9E1A0C1BE500A493F5 /* OfferUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferUITableViewCell.h; sourceTree = "<group>"; };
 		2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferUITableViewCell.m; sourceTree = "<group>"; };
+		209A5A3B1A0CE3EC00F4FF81 /* images.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpg; sourceTree = "<group>"; };
+		209A5A3D1A0CE4CA00F4FF81 /* BidsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidsViewController.h; sourceTree = "<group>"; };
+		209A5A3E1A0CE4CA00F4FF81 /* BidsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidsViewController.m; sourceTree = "<group>"; };
+		209A5A411A0CE50100F4FF81 /* ApprovedBidsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApprovedBidsViewController.h; sourceTree = "<group>"; };
+		209A5A421A0CE50100F4FF81 /* ApprovedBidsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApprovedBidsViewController.m; sourceTree = "<group>"; };
+		209A5A441A0CE77C00F4FF81 /* PendingBidsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingBidsViewController.h; sourceTree = "<group>"; };
+		209A5A451A0CE77C00F4FF81 /* PendingBidsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingBidsViewController.m; sourceTree = "<group>"; };
+		209A5A471A0CE79500F4FF81 /* RejectedBidsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectedBidsViewController.h; sourceTree = "<group>"; };
+		209A5A481A0CE79500F4FF81 /* RejectedBidsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedBidsViewController.m; sourceTree = "<group>"; };
 		209A77C61A02E6D400A5BC2B /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidsTableViewController.h; sourceTree = "<group>"; };
@@ -163,6 +177,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		209A5A3A1A0CE3BE00F4FF81 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				209A5A3B1A0CE3EC00F4FF81 /* images.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		209A5A4A1A0CE7A300F4FF81 /* BidsTableControllers */ = {
+			isa = PBXGroup;
+			children = (
+				209A5A3D1A0CE4CA00F4FF81 /* BidsViewController.h */,
+				209A5A3E1A0CE4CA00F4FF81 /* BidsViewController.m */,
+				209A5A411A0CE50100F4FF81 /* ApprovedBidsViewController.h */,
+				209A5A421A0CE50100F4FF81 /* ApprovedBidsViewController.m */,
+				209A5A441A0CE77C00F4FF81 /* PendingBidsViewController.h */,
+				209A5A451A0CE77C00F4FF81 /* PendingBidsViewController.m */,
+				209A5A471A0CE79500F4FF81 /* RejectedBidsViewController.h */,
+				209A5A481A0CE79500F4FF81 /* RejectedBidsViewController.m */,
+			);
+			name = BidsTableControllers;
+			sourceTree = "<group>";
+		};
+		209A5A4B1A0CE7CD00F4FF81 /* OffersTableControllers */ = {
+			isa = PBXGroup;
+			children = (
+				20A0ABFB1A0AC79A00586B9F /* OffersHistoryViewController.h */,
+				20A0ABFC1A0AC79A00586B9F /* OffersHistoryViewController.m */,
+				209A77CC1A02F1F200A5BC2B /* ActiveOffersViewController.h */,
+				209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */,
+				20A0ABFE1A0AC95500586B9F /* InactiveOffersViewController.h */,
+				20A0ABFF1A0AC95500586B9F /* InactiveOffersViewController.m */,
+			);
+			name = OffersTableControllers;
+			sourceTree = "<group>";
+		};
 		209B59781A07EF2000C2C39C /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +244,7 @@
 		209B824B1A0294DE0038CE29 /* Pets */ = {
 			isa = PBXGroup;
 			children = (
+				209A5A3A1A0CE3BE00F4FF81 /* Images */,
 				841C06941A06D4FF00008225 /* Controllers */,
 				841C066E1A068EC900008225 /* Models */,
 				209B82721A02951E0038CE29 /* ViewControllers */,
@@ -238,26 +289,22 @@
 			children = (
 				209B82731A02953A0038CE29 /* LoginViewController.h */,
 				209B82741A02953A0038CE29 /* LoginViewController.m */,
-				209B82791A029ABC0038CE29 /* ProfileViewController.h */,
-				209B827A1A029ABC0038CE29 /* ProfileViewController.m */,
-				209B827F1A029B910038CE29 /* AddOfferViewController.h */,
-				209B82801A029B910038CE29 /* AddOfferViewController.m */,
-				209B82821A029BA20038CE29 /* OfferDetailsViewController.h */,
-				209B82831A029BA20038CE29 /* OfferDetailsViewController.m */,
-				209A77C61A02E6D400A5BC2B /* HomeTableViewController.h */,
-				209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */,
-				209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */,
-				209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */,
-				209A77CC1A02F1F200A5BC2B /* ActiveOffersViewController.h */,
-				209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */,
 				20AAB1C81A0519A1008518B5 /* AddContactInfoViewController.h */,
 				20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */,
-				20A0ABFB1A0AC79A00586B9F /* OffersHistoryViewController.h */,
-				20A0ABFC1A0AC79A00586B9F /* OffersHistoryViewController.m */,
-				20A0ABFE1A0AC95500586B9F /* InactiveOffersViewController.h */,
-				20A0ABFF1A0AC95500586B9F /* InactiveOffersViewController.m */,
+				209B82791A029ABC0038CE29 /* ProfileViewController.h */,
+				209B827A1A029ABC0038CE29 /* ProfileViewController.m */,
+				209A77C61A02E6D400A5BC2B /* HomeTableViewController.h */,
+				209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */,
+				209B82821A029BA20038CE29 /* OfferDetailsViewController.h */,
+				209B82831A029BA20038CE29 /* OfferDetailsViewController.m */,
+				209B827F1A029B910038CE29 /* AddOfferViewController.h */,
+				209B82801A029B910038CE29 /* AddOfferViewController.m */,
+				209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */,
+				209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */,
 				84AB2A011A0BD59900EB3ACA /* OfferBidsTableViewController.h */,
 				84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */,
+				209A5A4B1A0CE7CD00F4FF81 /* OffersTableControllers */,
+				209A5A4A1A0CE7A300F4FF81 /* BidsTableControllers */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -409,6 +456,7 @@
 				2099DF9A1A0C1AB900A493F5 /* OfferUITableViewCell.xib in Resources */,
 				841C06991A06DE4200008225 /* HomeUITableViewCell.xib in Resources */,
 				209B825A1A0294DE0038CE29 /* Images.xcassets in Resources */,
+				209A5A3C1A0CE3EC00F4FF81 /* images.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,22 +478,26 @@
 				209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */,
 				20A0AC001A0AC95500586B9F /* InactiveOffersViewController.m in Sources */,
 				20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */,
+				209A5A461A0CE77C00F4FF81 /* PendingBidsViewController.m in Sources */,
 				84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */,
 				209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */,
 				841C06971A06D54200008225 /* FTDatabaseRequester.m in Sources */,
 				209B824F1A0294DE0038CE29 /* main.m in Sources */,
 				84AB2A031A0BD59900EB3ACA /* OfferBidsTableViewController.m in Sources */,
+				209A5A431A0CE50100F4FF81 /* ApprovedBidsViewController.m in Sources */,
 				209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */,
 				841C06931A069BB500008225 /* Offer.m in Sources */,
 				209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */,
 				209B827B1A029ABC0038CE29 /* ProfileViewController.m in Sources */,
 				209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */,
+				209A5A491A0CE79500F4FF81 /* RejectedBidsViewController.m in Sources */,
 				841C069C1A06DF0D00008225 /* HomeUITableViewCell.m in Sources */,
 				2099DF981A0BE09D00A493F5 /* FTJokeDispenser.m in Sources */,
 				209B82751A02953A0038CE29 /* LoginViewController.m in Sources */,
 				209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */,
 				849B201F1A09979400F2C050 /* Deal.m in Sources */,
 				2099DFA01A0C1BE500A493F5 /* OfferUITableViewCell.m in Sources */,
+				209A5A3F1A0CE4CA00F4FF81 /* BidsViewController.m in Sources */,
 				20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

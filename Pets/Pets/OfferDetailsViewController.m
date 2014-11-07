@@ -21,6 +21,7 @@
     if (_offer != newOffer) {
         _offer = newOffer;
         
+        
         // Update the view.
         [self configureView];
     }
@@ -28,8 +29,8 @@
 
 - (void)configureView {
     // Update the user interface for the detail item.
+    
     if (self.offer) {
-        
         [self.databaseRequester getDetailsForOffer:self.offer andBlock:^(PFObject *object, NSError *error) {
             self.offer = (Offer*) object;
             self.labelTitle.text = self.offer.title;
@@ -71,7 +72,6 @@
     deal.offerId = [PFObject objectWithoutDataWithClassName:[Offer parseClassName] objectId:self.offer.objectId];
     deal.approved = NO;
     deal.deleted = NO;
-
     //TODO: check if user already pressed the button
     [self.databaseRequester addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {

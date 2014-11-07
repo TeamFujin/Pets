@@ -127,6 +127,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     //Get reference to receipt
     Offer *offer = [data objectAtIndex:indexPath.row];
     

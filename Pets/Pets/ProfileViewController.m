@@ -23,13 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getPersonalInfo];
-    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"buttonImage.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [button setFrame:CGRectMake(0, 0, 49, 30)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
