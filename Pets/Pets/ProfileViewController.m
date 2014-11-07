@@ -48,7 +48,6 @@
         }
         else {
             NSString *userName = [FBuser name];
-            self.nameLabel.text = userName;
             
             NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:userImageURL]];
@@ -57,6 +56,7 @@
         }
     }];
     PFUser *currUser = [PFUser currentUser];
+    self.nameLabel.text = currUser[@"displayName"];;
     self.emailLabel.text =  currUser.email;
     self.phoneLabel.text =  currUser[@"phone"];
 }

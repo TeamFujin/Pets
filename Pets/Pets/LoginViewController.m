@@ -83,21 +83,23 @@
     // Show loading indicator until login is finished
 }
 - (IBAction)continueTaped:(id)sender {
-    PFUser *currUser = [PFUser currentUser];
-    if(currUser.email != nil){
-        [self performSegueWithIdentifier:@"ToProfile" sender:self];
+    if ([PFUser currentUser] && // Check if user is cached
+        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        PFUser *currUser = [PFUser currentUser];
+        if(currUser.email != nil){
+            [self performSegueWithIdentifier:@"ToProfile" sender:self];
+        }
+        else{
+            [self performSegueWithIdentifier:@"ToAddContactInfo" sender:self];
+        }
+    }else{
+        [FTUtils showAlert:@"Error" withMessage:@"You are not logged in !"];
     }
-    else{
-        [self performSegueWithIdentifier:@"ToAddContactInfo" sender:self];
-    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //if ([PFUser currentUser] && // Check if user is cached
-      //  [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-       // NSLog(@"User is already logged in !");
-        //[self performSegueWithIdentifier:@"ToAddContactInfo" sender:self];
-    //}
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

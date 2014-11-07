@@ -33,6 +33,7 @@
 }
 
 - (void)viewDidLoad {
+    self.title = @"Add new Offer";
     [super viewDidLoad];
     [self loadHardcodedImage];
     [self initializeLocationManager];
@@ -122,7 +123,7 @@
     if ([self validateOffer]) {
         NSString *title = self.titleTextInput.text;
         NSString *description = self.descriptionTextInput.text;
-        NSNumber *price = [NSNumber numberWithInteger:(int)self.slider.value];
+        NSNumber *price = [NSNumber numberWithInt: [self.priceTextInput.text intValue]];
         UIImage *image = self.imageView.image;
         //    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
         //    [image drawInRect: CGRectMake(0, 0, 200, 200)];

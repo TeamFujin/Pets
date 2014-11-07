@@ -25,13 +25,20 @@ static NSMutableArray *data;
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)viewDidLoad {
+    self.title = @"All Offers";
     [super viewDidLoad];
+    UIBarButtonItem * addItemBtn = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                    target:self
+                                    action:@selector(goToAddOffer)];
+    self.navigationItem.rightBarButtonItem = addItemBtn;
+    
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:100 andScale:3.5f];
+    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:70 andScale:2.5f];
     [spinner startSpinning];
-
+    
     [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
         [spinner stopSpinning];
         if(!error) {
@@ -42,6 +49,10 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
             [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
         }
     }];
+}
+
+-(void)goToAddOffer{
+    [self performSegueWithIdentifier:@"ToAddOffer" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,51 +76,45 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     HomeUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     Offer *offer = data[indexPath.row];
     cell.labelTitle.text = offer.title;
-    cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
+    NSNumber *price = offer.price;
+    if ([price isEqual:@0]) {
+        cell.labelPrice.text = @"FREE";
+    }
+    else{
+        cell.labelPrice.text = [NSString stringWithFormat:@"Price: %@BGN", price];
+    }
     if(offer.picture) {
         NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.imageViewPicture.image = [UIImage imageWithData:data];
     }
- else {
-    cell.imageViewPicture.image = nil;
- }
+    else {
+        cell.imageViewPicture.image = nil;
+    }
     
     return cell;
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
