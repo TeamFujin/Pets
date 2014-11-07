@@ -9,11 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OfferUITableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIView *image;
-@property (weak, nonatomic) IBOutlet UIView *titleLabel;
-@property (weak, nonatomic) IBOutlet UIView *priceLabel;
-@property (weak, nonatomic) IBOutlet UIView *authorNameLabel;
-@property (weak, nonatomic) IBOutlet UIView *authorEmailLabel;
-@property (weak, nonatomic) IBOutlet UIView *authorPhoneLabel;
-
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *labelTItle;
+@property (weak, nonatomic) IBOutlet UILabel *labelPrice;
 @end

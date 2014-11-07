@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getPersonalInfo];
+    PFUser *currUser = [PFUser currentUser];
+    NSLog(@"%@", currUser[@"authData"]);
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -104,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3c-6F-wPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1988" y="-545"/>
+            <point key="canvasLocation" x="2658" y="-1241"/>
         </scene>
         <!--Offer Bids Table View Controller-->
         <scene sceneID="ESE-Gf-N9E">
@@ -122,7 +122,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZF7-Zj-wdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="-545"/>
+            <point key="canvasLocation" x="3346" y="-525"/>
         </scene>
         <!--Active offers-->
         <scene sceneID="c3p-ON-qn4">
@@ -161,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JqM-31-XTq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="634" y="-545"/>
+            <point key="canvasLocation" x="2658" y="-537"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ILP-j7-DgH">
@@ -180,7 +180,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeJ-7j-yM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316" y="-545"/>
+            <point key="canvasLocation" x="1948" y="-821"/>
         </scene>
         <!--Add Contact Info View Controller-->
         <scene sceneID="HzI-kK-jUP">
@@ -618,7 +618,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLx-fq-ygR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1988" y="846"/>
+            <point key="canvasLocation" x="1708" y="894"/>
         </scene>
         <!--Home Table View Controller-->
         <scene sceneID="5Qq-ku-0fM">
@@ -659,7 +659,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxj-YI-f3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981" y="1585"/>
+            <point key="canvasLocation" x="1653" y="1645"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="257-7J-cV6">
@@ -678,12 +678,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZo-RO-m26" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="1585"/>
+            <point key="canvasLocation" x="972" y="1645"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="aQ6-KK-gMW">
             <objects>
-                <viewController id="2eP-0m-Elx" customClass="BidsTableViewController" sceneMemberID="viewController">
+                <viewController id="2eP-0m-Elx" customClass="ApprovedBidsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eww-lZ-L9g"/>
                         <viewControllerLayoutGuide type="bottom" id="EFV-tl-nur"/>
@@ -691,13 +691,26 @@
                     <view key="view" contentMode="scaleToFill" id="do9-cm-aH1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RW5-Hk-R4Z">
+                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2eP-0m-Elx" id="pih-IH-HOb"/>
+                                    <outlet property="delegate" destination="2eP-0m-Elx" id="7DV-l6-JJJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="xqQ-zg-cbl"/>
+                    <connections>
+                        <outlet property="tableViewApprovedBids" destination="RW5-Hk-R4Z" id="9Ld-tl-Rbb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du6-UP-GJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="606" y="1585"/>
+            <point key="canvasLocation" x="278" y="1645"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gAv-OO-Fvc">
@@ -717,7 +730,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7C-Bu-JS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1308" y="846"/>
+            <point key="canvasLocation" x="972" y="894"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AcW-z2-piR">
