@@ -28,6 +28,15 @@
                                     <action selector="fbLoginButtonTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZUb-km-9Hf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-c2-bCY">
+                                <rect key="frame" x="269" y="247" width="62" height="30"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w9a-xI-Dcj"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Pets, a mobile pet market bla blabla" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8KQ-9K-6Lv">
                                 <rect key="frame" x="192" y="72" width="217" height="95"/>
                                 <constraints>
@@ -38,15 +47,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-c2-bCY">
-                                <rect key="frame" x="269" y="247" width="62" height="30"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="continueTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w9a-xI-Dcj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="142"/>
+            <point key="canvasLocation" x="-111" y="142"/>
         </scene>
         <!--Inactive offers-->
         <scene sceneID="DhO-TV-hgp">
@@ -318,15 +318,6 @@
                                     <action selector="logoutClicked:" destination="vee-Lx-VDm" eventType="touchUpInside" id="XV9-PO-Lzh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-Yw-MY7">
-                                <rect key="frame" x="29" y="419" width="64" height="30"/>
-                                <state key="normal" title="Add offer">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1zm-Wi-V1Z" kind="show" id="4Ar-Ct-1Gh"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone No." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rj3-DR-Lie">
                                 <rect key="frame" x="161" y="182" width="301" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -361,9 +352,7 @@
                             <constraint firstItem="SxT-FF-ZNO" firstAttribute="top" secondItem="s1s-0C-gZn" secondAttribute="bottom" constant="32" id="6G2-7k-gXI"/>
                             <constraint firstItem="crw-Ba-hwH" firstAttribute="trailing" secondItem="OJO-PU-qK1" secondAttribute="trailing" id="CWu-1m-AZa"/>
                             <constraint firstItem="OJO-PU-qK1" firstAttribute="top" secondItem="s1s-0C-gZn" secondAttribute="bottom" constant="44" id="Ff6-d2-kuj"/>
-                            <constraint firstItem="1Ku-Yw-MY7" firstAttribute="top" secondItem="cAe-N9-tr0" secondAttribute="bottom" constant="14" id="Hor-lx-fGh"/>
                             <constraint firstItem="kGc-SP-0Py" firstAttribute="top" secondItem="jr7-Nt-bY1" secondAttribute="bottom" constant="8" symbolic="YES" id="Lge-MK-oYS"/>
-                            <constraint firstItem="1Ku-Yw-MY7" firstAttribute="leading" secondItem="cAe-N9-tr0" secondAttribute="leading" id="PSX-hD-cqP"/>
                             <constraint firstItem="vIC-dG-ivV" firstAttribute="top" secondItem="s1s-0C-gZn" secondAttribute="bottom" constant="197" id="Sla-98-LOQ"/>
                             <constraint firstItem="cAe-N9-tr0" firstAttribute="top" secondItem="kGc-SP-0Py" secondAttribute="bottom" constant="8" symbolic="YES" id="VgL-AI-wu1"/>
                             <constraint firstItem="kGc-SP-0Py" firstAttribute="leading" secondItem="cAe-N9-tr0" secondAttribute="leading" id="XZ2-GO-URo"/>
@@ -618,7 +607,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLx-fq-ygR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1708" y="894"/>
+            <point key="canvasLocation" x="1981" y="870"/>
         </scene>
         <!--Home Table View Controller-->
         <scene sceneID="5Qq-ku-0fM">
@@ -635,6 +624,7 @@
                     </tableView>
                     <connections>
                         <segue destination="mN7-F8-50y" kind="show" identifier="showOfferDetails" id="U3Z-Qr-C2t"/>
+                        <segue destination="1zm-Wi-V1Z" kind="show" identifier="ToAddOffer" id="VZX-0e-fEa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyB-To-GLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -672,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxj-YI-f3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1653" y="1645"/>
+            <point key="canvasLocation" x="1981" y="1629"/>
         </scene>
         <!--Pending-->
         <scene sceneID="257-7J-cV6">
@@ -704,7 +694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZo-RO-m26" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="1645"/>
+            <point key="canvasLocation" x="1308" y="1629"/>
         </scene>
         <!--Approved-->
         <scene sceneID="aQ6-KK-gMW">
@@ -736,7 +726,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du6-UP-GJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="1645"/>
+            <point key="canvasLocation" x="590" y="1629"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gAv-OO-Fvc">
@@ -756,7 +746,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7C-Bu-JS3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="894"/>
+            <point key="canvasLocation" x="1308" y="890"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="h2w-4R-XcJ">
@@ -780,7 +770,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WmV-wa-4ZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-793" y="-539"/>
+            <point key="canvasLocation" x="-777" y="-739"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AcW-z2-piR">

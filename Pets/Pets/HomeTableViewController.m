@@ -12,6 +12,7 @@
 #import "Offer.h"
 #import "FTSpinner.h"
 #import "FTUtils.h"
+
 @interface HomeTableViewController ()
 
 @end
@@ -25,21 +26,22 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem * addItemBtn = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                    target:self
+                                    action:@selector(goToAddOffer)];
+    self.navigationItem.rightBarButtonItem = addItemBtn;
+    
+    
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+    
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:100 andScale:3.5f];
     [spinner startSpinning];
-//    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0,0,100,100)];
-//    CGAffineTransform transform = CGAffineTransformMakeScale(3.5f, 3.5f);
-//    spinner.transform = transform;
-//    spinner.color = [UIColor blueColor];
-//    spinner.center = self.view.center;
-//    [spinner startAnimating];
-//    [self.tableView addSubview:spinner];
-
+    
     [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
-//        [spinner removeFromSuperview];
         [spinner stopSpinning];
         if(!error) {
             count = objects.count;
@@ -60,6 +62,10 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+-(void)goToAddOffer{
+    [self performSegueWithIdentifier:@"ToAddOffer" sender:self];
 }
 
 #pragma mark - Table view data source
