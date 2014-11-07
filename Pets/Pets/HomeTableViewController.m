@@ -81,7 +81,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
         cell.labelPrice.text = @"FREE";
     }
     else{
-        cell.labelPrice.text = [NSString stringWithFormat:@"Price: %@BGN", price];
+        cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }
     if(offer.picture) {
         NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];

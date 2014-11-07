@@ -13,26 +13,26 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5GC-fV-KwG" id="DCP-jD-rqD">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wl-IS-tBY">
-                        <rect key="frame" x="185" y="69" width="135" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="135" id="3yE-mz-TCd"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TAc-Pm-NGb">
-                        <rect key="frame" x="0.0" y="0.0" width="122" height="99"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAc-Pm-NGb">
+                        <rect key="frame" x="0.0" y="1" width="122" height="99"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="122" id="ZYZ-mJ-onR"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xes-q2-iuv">
-                        <rect key="frame" x="130" y="-8" width="176" height="47"/>
+                        <rect key="frame" x="130" y="8" width="176" height="31"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="47" id="4Eg-Vd-29c"/>
+                            <constraint firstAttribute="height" constant="31" id="4Eg-Vd-29c"/>
                             <constraint firstAttribute="width" constant="176" id="xTA-at-eJJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Medium" family="Kohinoor Devanagari" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wl-IS-tBY">
+                        <rect key="frame" x="130" y="58" width="135" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="1lf-0i-fRM"/>
+                            <constraint firstAttribute="width" constant="135" id="3yE-mz-TCd"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -40,11 +40,12 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="9Wl-IS-tBY" firstAttribute="leading" secondItem="xes-q2-iuv" secondAttribute="leading" id="7gW-Ui-0V2"/>
                     <constraint firstItem="TAc-Pm-NGb" firstAttribute="leading" secondItem="DCP-jD-rqD" secondAttribute="leading" id="Ih4-xI-YHb"/>
-                    <constraint firstItem="TAc-Pm-NGb" firstAttribute="bottom" secondItem="9Wl-IS-tBY" secondAttribute="bottom" id="JTH-mv-RwI"/>
-                    <constraint firstItem="TAc-Pm-NGb" firstAttribute="top" secondItem="DCP-jD-rqD" secondAttribute="top" id="Khq-oL-nQc"/>
+                    <constraint firstItem="TAc-Pm-NGb" firstAttribute="bottom" secondItem="9Wl-IS-tBY" secondAttribute="bottom" constant="11" id="JTH-mv-RwI"/>
+                    <constraint firstItem="TAc-Pm-NGb" firstAttribute="top" secondItem="DCP-jD-rqD" secondAttribute="top" constant="1" id="Khq-oL-nQc"/>
                     <constraint firstItem="xes-q2-iuv" firstAttribute="leading" secondItem="TAc-Pm-NGb" secondAttribute="trailing" constant="8" symbolic="YES" id="cAW-eh-ebm"/>
-                    <constraint firstItem="9Wl-IS-tBY" firstAttribute="top" secondItem="xes-q2-iuv" secondAttribute="bottom" constant="7" id="p5a-Ik-26w"/>
+                    <constraint firstItem="9Wl-IS-tBY" firstAttribute="top" secondItem="xes-q2-iuv" secondAttribute="bottom" constant="20" id="p5a-Ik-26w"/>
                     <constraint firstAttribute="bottomMargin" secondItem="TAc-Pm-NGb" secondAttribute="bottom" constant="-11" id="rM0-b6-uMr"/>
                 </constraints>
             </tableViewCellContentView>
@@ -53,7 +54,7 @@
                 <outlet property="labelPrice" destination="9Wl-IS-tBY" id="j5b-FG-cHH"/>
                 <outlet property="labelTitle" destination="xes-q2-iuv" id="NTL-Ce-Tm9"/>
             </connections>
-            <point key="canvasLocation" x="107" y="69.5"/>
+            <point key="canvasLocation" x="107" y="68.5"/>
         </tableViewCell>
     </objects>
 </document>

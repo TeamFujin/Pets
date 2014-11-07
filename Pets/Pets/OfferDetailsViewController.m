@@ -12,7 +12,9 @@
 #import "FTUtils.h"
 
 @interface OfferDetailsViewController ()
+
 @property (strong, nonatomic) FTDatabaseRequester *databaseRequester;
+
 @end
 
 @implementation OfferDetailsViewController
