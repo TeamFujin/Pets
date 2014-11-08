@@ -21,6 +21,7 @@
     PFQuery *query = [PFQuery queryWithClassName:Offer.parseClassName];
     [query selectKeys:@[@"title", @"price", @"picture"]];
     [query whereKey:@"active" equalTo:@YES];
+    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         block(objects, error);
     }];

@@ -10,32 +10,26 @@
 #import "FTDatabaseRequester.h"
 #import "Deal.h"
 #import "FTUtils.h"
+#import "FTSpinner.h"
 
 @interface OfferDetailsViewController ()
 @end
 
 @implementation OfferDetailsViewController{
     FTDatabaseRequester *db;
-    BOOL didPressWantButton;
 }
 
 - (void)viewDidLoad {
     self.title = @"Details";
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
-    didPressWantButton = 0;
-    NSLog(@"viewDidLoad before calling configureView");
     [self configureView];
-    NSLog(@"viewDidLoad after calling configureView");
 }
 
 - (void)setOffer:(id)newOffer {
     if (_offer != newOffer) {
         _offer = newOffer;
-        // Update the view.
-        NSLog(@"setOffer before calling configureView");
         [self configureView];
-        NSLog(@"setOffer after calling configureView");
     }
 }
 
@@ -43,7 +37,10 @@
   //  NSLog(@"configureView offer: %@", self.offer);
     if (self.offer) {
         NSLog(@"in if before query");
+        FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
+        [spinner startSpinning];
         [db getDetailsForOffer:self.offer andBlock:^(PFObject *object, NSError *error) {
+            [spinner stopSpinning];
             if(!error) {
             self.offer = (Offer*) object;
             self.labelTitle.text = self.offer.title;

@@ -162,7 +162,7 @@ static NSString *labelTextApproved;
                     [FTUtils showAlert:@"Congratulations" withMessage:@"Your pet has a new family!"];
                     approvedDeal.approved = @YES;
                     weakSelf.offer.active = 0;
-                    OfferBidsUITableViewCell* cell =
+                    OfferBidsUITableViewCell* cell = (OfferBidsUITableViewCell*)
                          [weakSelf.tableView cellForRowAtIndexPath:indexPathForApprovedBid];
                     cell.labelApproved.text = labelTextApproved;
                 } else {
@@ -180,12 +180,13 @@ static NSString *labelTextApproved;
         if (!deal.approved) {
             deal[@"deleted"] = @YES;
             [deal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if(!succeeded) {
+                if(succeeded) {
+                    [bidsData removeObjectAtIndex:indexPath.row];
+                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                } else {
                     [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong and we couldn't delete this"];
                 }
             }];
-            [bidsData removeObjectAtIndex:indexPath.row];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         } else {
             [FTUtils showAlert:@"Better keep it" withMessage:@"It would be better to have info about your pet's new owner"];
         }

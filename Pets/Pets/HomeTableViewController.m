@@ -94,14 +94,30 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     return cell;
 }
 
-/*
+
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the specified item to be editable.
  return YES;
  }
- */
-
+ 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Offer *offer = data[indexPath.row];
+        offer.active = 0;
+        [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(succeeded) {
+                [data removeObjectAtIndex:indexPath.row];
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            } else {
+                [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you can't delete your pet offer right now"];
+            }
+        }];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
 /*
  // Override to support rearranging the table view.
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {

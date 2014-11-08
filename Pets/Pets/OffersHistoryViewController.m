@@ -11,12 +11,15 @@
 #import "FTUtils.h"
 #import "Offer.h"
 #import "OfferBidsTableViewController.h"
+#import "FTSpinner.h"
 
 @interface OffersHistoryViewController ()
 
 @end
 
-@implementation OffersHistoryViewController
+@implementation OffersHistoryViewController{
+    FTSpinner *spinner;
+}
 
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 static NSInteger rowHeight = 100;
@@ -25,9 +28,13 @@ static NSInteger rowHeight = 100;
     
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    
+    spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
+    [spinner startSpinning];
 }
 -(void)afterGettingDataFromDbWithData:(NSArray*) data
                              andError: (NSError*) error {
+    [spinner stopSpinning];
     if(!error) {
         self.data = [NSMutableArray arrayWithArray:data];
          //   NSLog(@"%@", data);
