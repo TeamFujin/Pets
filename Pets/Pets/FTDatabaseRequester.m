@@ -101,6 +101,17 @@
     }];
 }
 
+-(void)checkIfAlreadyAppliedForOffer: (NSString*) offerId
+                             andUser: (NSString*) userId
+                            andBlock: (void (^)(NSArray *deals, NSError *error)) block{
+    PFQuery *query = [PFQuery queryWithClassName:[Deal parseClassName]];
+    [query whereKey:@"offerId" equalTo:[PFObject objectWithoutDataWithClassName:[Offer parseClassName] objectId:offerId]];
+    [query whereKey:@"wanterId" equalTo:[PFObject objectWithoutDataWithClassName:[PFUser parseClassName] objectId:userId]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *deals, NSError *error) {
+        block(deals, error);
+    }];
+}
+
 //Private methods
 -(void)getOffersForUser:(PFObject*) user
               andActive: (id) active

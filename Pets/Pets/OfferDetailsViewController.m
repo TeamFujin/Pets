@@ -16,12 +16,14 @@
 
 @implementation OfferDetailsViewController{
     FTDatabaseRequester *db;
+    BOOL didPressWantButton;
 }
 
 - (void)viewDidLoad {
     self.title = @"Details";
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
+    didPressWantButton = 0;
     NSLog(@"viewDidLoad before calling configureView");
     [self configureView];
     NSLog(@"viewDidLoad after calling configureView");
@@ -46,7 +48,12 @@
             self.offer = (Offer*) object;
             self.labelTitle.text = self.offer.title;
             self.labelDesc.text = self.offer.desc;
-            self.labelPrice.text = [NSString stringWithFormat:@"%@BGN", self.offer.price];
+                if ([self.offer.price isEqual:@0]) {
+                    self.labelPrice.text = @"FREE";
+                }
+                else{
+                    self.labelPrice.text = [NSString stringWithFormat:@"%@BGN", self.offer.price];
+                }
             //TODO: make a class for decoding too
             NSData *data = [[NSData alloc]initWithBase64EncodedString:self.offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
             self.imageViewPicture.image = [UIImage imageWithData:data];
@@ -65,21 +72,48 @@
 }
 
 - (IBAction)actionWantPet:(id)sender {
-    Deal *deal = [[Deal alloc] init];
-    deal.wanterId = [PFUser currentUser];
-    deal.offerId = [PFObject objectWithoutDataWithClassName:[Offer parseClassName] objectId:self.offer.objectId];
-    deal.approved = NO;
-    deal.deleted = NO;
-    //TODO: check if you are not the owner of this offer
-
-    //TODO: check if user already pressed the button
-    [db addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded) {
-            [FTUtils showAlert:@"Success" withMessage:@"You can start checking for approval"];
+   // NSLog(@"self.offer.userId : %@", self.offer.userId );
+   // NSLog(@"[PFUser currentUser].objectId: %@", [PFUser currentUser].objectId );
+    NSString *userId = self.offer.userId.objectId;
+    NSString *offerId = self.offer.objectId;
+    NSString *currUserId = [PFUser currentUser].objectId;
+  //  NSLog(@"offerId: %@", offerId);
+   // NSLog(@"userId: %@", userId);
+//    
+//    NSLog(@"deals: %@", deals);
+//    if(!error) {
+//        if(deals.count > 0) {
+//            didApply = 1;
+//        }
+//    }
+    if(!([currUserId isEqual:userId])) {
+        [db checkIfAlreadyAppliedForOffer:offerId andUser:currUserId andBlock:^(NSArray *deals, NSError *error) {
+            if(!error) {
+                NSLog(@"deals: %@", deals);
+                    if(!(deals.count > 0)) {
+                        Deal *deal = [[Deal alloc] init];
+                        deal.wanterId = [PFUser currentUser];
+                        deal.offerId = self.offer;
+                        deal.approved = NO;
+                        deal.deleted = NO;
+                        
+                        [db addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
+                            if(succeeded) {
+                                [FTUtils showAlert:@"Success" withMessage:@"You can start checking for approval"];
+                            } else {
+                                [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+                    } else {
+                        [FTUtils showAlert:@"Already applied" withMessage:@"You can go check if you're approved"];
+                    }
+                } else {
+                    [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, something went wrong. Check your internet connection."];
+                }
+            }];
         } else {
-            [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you couldn't get this pet..."];
-            NSLog(@"Error: %@", error);
+            [FTUtils showAlert:@"This is your pet...for now" withMessage:@"You published this pet offer, remember?"];
         }
-    }];
 }
 @end

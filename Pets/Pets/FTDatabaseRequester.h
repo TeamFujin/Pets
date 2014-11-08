@@ -11,6 +11,7 @@
 #import "Deal.h"
 
 @interface FTDatabaseRequester : NSObject
+
 -(void)addOfferToDbWithOffer: (Offer *) offer
                     andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
 -(void)getAllActiveOffersWithBlock: (void (^)(NSArray *objects, NSError *error)) block;
@@ -32,4 +33,7 @@
                    andBlock: (void (^)(NSArray *bids, NSError *error)) block;
 -(void)updateDealForApprovalWithDeal: (Deal*) deal
                    andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
+-(void)checkIfAlreadyAppliedForOffer: (NSString*) offerId
+                             andUser: (NSString*) userId
+                            andBlock: (void (^)(NSArray *deals, NSError *error)) block;
 @end
