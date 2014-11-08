@@ -7,9 +7,10 @@
 //
 
 #import <Parse/Parse.h>
+#import "Offer.h"
 
 @interface Deal : PFObject<PFSubclassing>
-@property (strong, nonatomic) PFObject *offerId;
+@property (strong, nonatomic) Offer *offerId;
 @property (strong, nonatomic) PFObject *wanterId;
 @property BOOL approved;
 @property BOOL deleted;

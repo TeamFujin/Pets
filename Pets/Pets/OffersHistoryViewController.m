@@ -68,17 +68,18 @@ static NSInteger rowHeight = 100;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
-#pragma mark - Navigation
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ //   NSLog(@"In touch - %d", (int)self.tabBarController.selectedIndex == -1);//self.tabBarController.
+        Offer *offer = [self.data objectAtIndex:indexPath.row];
+
+        OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
+
+        [controller setOffer:offer];
+        [self.navigationController pushViewController:controller animated:YES];
+}
+
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

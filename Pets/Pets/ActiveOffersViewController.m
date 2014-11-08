@@ -40,14 +40,14 @@
 }
 */
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
- //   NSLog(@"In touch - %d", (int)self.tabBarController.selectedIndex == -1);//self.tabBarController.
-        Offer *offer = [self.data objectAtIndex:indexPath.row];
-        
-        OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
-        
-        [controller setOffer:offer];
-        [self.navigationController pushViewController:controller animated:YES];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+// //   NSLog(@"In touch - %d", (int)self.tabBarController.selectedIndex == -1);//self.tabBarController.
+//        Offer *offer = [self.data objectAtIndex:indexPath.row];
+//        
+//        OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
+//        
+//        [controller setOffer:offer];
+//        [self.navigationController pushViewController:controller animated:YES];
+//}
 @end

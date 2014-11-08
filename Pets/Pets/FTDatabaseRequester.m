@@ -17,6 +17,7 @@
 }
 
 -(void)getAllActiveOffersWithBlock: (void (^)(NSArray *objects, NSError *error)) block{
+    //TODO sort them by date
     PFQuery *query = [PFQuery queryWithClassName:Offer.parseClassName];
     [query selectKeys:@[@"title", @"price", @"picture"]];
     [query whereKey:@"active" equalTo:@YES];
@@ -82,6 +83,22 @@
 
 }
 
+-(void)updateDealForApprovalWithDeal: (Deal*) deal
+          andBlock: (void (^)(BOOL succeeded, NSError *error)) block{
+    NSLog(@"Deal from ftdata... : %@", deal);
+    deal.approved = @YES;
+    
+//    Offer *offer = deal.offerId;
+//    offer.active = @NO;
+//    NSLog(@"Offer from ftdata... : %@", offer);
+//    deal.offerId = offer;
+    deal.offerId.active = 0;
+    [deal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        block(succeeded, error);
+    }];
+}
+
+//Private methods
 -(void)getOffersForUser:(PFObject*) user
               andActive: (id) active
                andBlock:(void (^)(NSArray *offers, NSError *error)) block{

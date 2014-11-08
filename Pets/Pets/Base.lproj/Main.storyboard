@@ -100,6 +100,7 @@
                     <tabBarItem key="tabBarItem" tag="1" title="Inactive offers" id="fjd-h7-B1c"/>
                     <connections>
                         <outlet property="tableViewInactiveOffers" destination="3fp-Ry-bYi" id="9LM-Ca-uAZ"/>
+                        <segue destination="HW3-U9-p9y" kind="show" id="hb6-o7-wTe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3c-6F-wPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -850,6 +851,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="hb6-o7-wTe"/>
         <segue reference="uCZ-hd-2aZ"/>
     </inferredMetricsTieBreakers>
 </document>

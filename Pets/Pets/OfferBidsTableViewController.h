@@ -12,5 +12,5 @@
 @interface OfferBidsTableViewController : UITableViewController<UIGestureRecognizerDelegate, UIAlertViewDelegate>
 - (IBAction)longpress:(UILongPressGestureRecognizer*)sender;
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender;
-@property (strong, nonatomic, readwrite) Offer *offer;
+@property (strong, nonatomic) Offer *offer;
 @end
