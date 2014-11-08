@@ -47,7 +47,13 @@ static NSInteger rowHeight = 100;
     HomeUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     Offer *offer = self.data[indexPath.row];
     cell.labelTitle.text = offer.title;
-    cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
+    NSNumber *price = offer.price;
+    if ([price isEqual:@0]) {
+        cell.labelPrice.text = @"FREE";
+    }
+    else{
+        cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
+    }
     if(offer.picture) {
         NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.imageViewPicture.image = [UIImage imageWithData:data];

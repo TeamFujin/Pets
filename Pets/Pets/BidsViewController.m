@@ -31,7 +31,6 @@ static NSInteger rowHeight = 100;
                              andError: (NSError*) error {
     if(!error) {
         self.data = [NSMutableArray arrayWithArray:data];
-        NSLog(@"%@", data);
         [self.tableView reloadData];
     } else {
         [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
@@ -44,12 +43,26 @@ static NSInteger rowHeight = 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     OfferUITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UIButton *yourBtn = (UIButton *) [cell viewWithTag:1];
+    [yourBtn setHidden:YES];
     Deal *bid = self.data[indexPath.row];
     Offer *offer = (Offer *)bid.offerId;
+    if(bid.approved == YES){
+        [yourBtn setHidden:NO];
+        [yourBtn addTarget:self
+                    action:@selector(showOfferAuthorContacts)
+          forControlEvents:UIControlEventTouchUpInside];
+    }
     cell.labelTItle.text = offer.title;
-    cell.labelPrice.text = [NSString stringWithFormat:@"Price: #%@BGN", offer.price];
-    if(offer.picture) {
+    NSNumber *price = offer.price;
+    if ([price isEqual:@0]) {
+        cell.labelPrice.text = @"FREE";
+    }
+    else{
+        cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
+    }    if(offer.picture) {
         NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.image.image = [UIImage imageWithData:data];
     }
@@ -59,7 +72,9 @@ static NSInteger rowHeight = 100;
     
     return cell;
 }
-
+-(void) showOfferAuthorContacts{
+    NSLog(@"Show autor contacts");
+}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;
 }

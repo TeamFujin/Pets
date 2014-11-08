@@ -325,15 +325,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIC-dG-ivV">
-                                <rect key="frame" x="16" y="237" width="41" height="30"/>
-                                <state key="normal" title="Home">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="qqk-t1-3xC" kind="show" id="GHu-To-Ksy"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jr7-Nt-bY1">
                                 <rect key="frame" x="16" y="275" width="77" height="30"/>
                                 <state key="normal" title="Your Offers">
@@ -388,6 +379,15 @@
                                     <constraint firstAttribute="width" constant="137" id="nOe-lE-MAt"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIC-dG-ivV">
+                                <rect key="frame" x="16" y="237" width="63" height="30"/>
+                                <state key="normal" title="All Offers">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="qqk-t1-3xC" kind="show" id="GHu-To-Ksy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -686,8 +686,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xv2-z4-HC7">
-                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="xv2-z4-HC7">
+                                <rect key="frame" x="0.0" y="72" width="600" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="5ER-tq-hDC" id="AAc-pj-esq"/>
@@ -696,6 +696,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xv2-z4-HC7" secondAttribute="trailing" id="C4k-iO-3zp"/>
+                            <constraint firstItem="xv2-z4-HC7" firstAttribute="bottom" secondItem="sER-8n-IjQ" secondAttribute="top" id="maE-59-5Uz"/>
+                            <constraint firstItem="xv2-z4-HC7" firstAttribute="top" secondItem="BqX-r2-GVC" secondAttribute="bottom" constant="8" id="uEi-gj-5xl"/>
+                            <constraint firstItem="xv2-z4-HC7" firstAttribute="leading" secondItem="kSO-Pu-1oe" secondAttribute="leading" id="xDe-UX-Kmx"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Rejected" id="5s6-q0-OTJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -705,7 +711,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxj-YI-f3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1985" y="1645"/>
+            <point key="canvasLocation" x="1981" y="1651"/>
         </scene>
         <!--Pending-->
         <scene sceneID="257-7J-cV6">
@@ -719,8 +725,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Mg-uT-ysY">
-                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3Mg-uT-ysY">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="NWX-8e-RhV" id="xDV-HO-TlK"/>
@@ -729,6 +735,9 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Mg-uT-ysY" firstAttribute="top" secondItem="x3z-lG-ET7" secondAttribute="topMargin" constant="64" id="qSu-cB-P8z"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pending" id="6Dr-k9-dD9"/>
                     <connections>
@@ -751,8 +760,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RW5-Hk-R4Z">
-                                <rect key="frame" x="0.0" y="-49" width="600" height="600"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RW5-Hk-R4Z">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2eP-0m-Elx" id="pih-IH-HOb"/>
@@ -761,6 +770,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RW5-Hk-R4Z" firstAttribute="leading" secondItem="do9-cm-aH1" secondAttribute="leading" id="2Dv-q9-51X"/>
+                            <constraint firstAttribute="trailing" secondItem="RW5-Hk-R4Z" secondAttribute="trailing" id="5ii-XE-E8d"/>
+                            <constraint firstItem="RW5-Hk-R4Z" firstAttribute="top" secondItem="Eww-lZ-L9g" secondAttribute="bottom" constant="-64" id="IFh-op-m3g"/>
+                            <constraint firstItem="RW5-Hk-R4Z" firstAttribute="bottom" secondItem="EFV-tl-nur" secondAttribute="top" id="uYZ-14-zhh"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Approved" id="xqQ-zg-cbl"/>
                     <connections>
@@ -769,7 +784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Du6-UP-GJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="634" y="1645"/>
+            <point key="canvasLocation" x="634" y="1632"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gAv-OO-Fvc">

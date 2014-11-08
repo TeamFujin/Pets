@@ -17,6 +17,7 @@
 }
 
 - (void)viewDidLoad {
+    [self.tabBarController setTitle:@"Approved Bids"];
     self.tableView = self.tableViewApprovedBids;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
