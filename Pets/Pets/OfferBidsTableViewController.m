@@ -11,6 +11,7 @@
 #import "FTUtils.h"
 #import "OfferBidsUITableViewCell.h"
 #import "Deal.h"
+#import "WebFacebookViewController.h"
 
 @interface OfferBidsTableViewController ()
 
@@ -104,11 +105,11 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OfferBidsUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    NSLog(@"%@", cell);
+   // NSLog(@"%@", cell);
     Deal *deal = bidsData[indexPath.row];
     PFUser *user = deal[@"wanterId"];
-    NSLog(@"PFUser: %@", user);
-    cell.labelName.text = [NSString stringWithFormat:@"Name: %@", user[@"displayName"]];
+    //NSLog(@"PFUser: %@", user);
+    cell.labelName.text = [NSString stringWithFormat:@"%@", user[@"displayName"]];
     
     return cell;
 }
@@ -119,13 +120,19 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
     Deal *deal = [bidsData objectAtIndex:indexPath.row];
     PFUser *user = deal[@"wanterId"];
     NSString *facebookId = user[@"facebookId"];
-    NSLog(@"Password %@", user.password);
-    NSLog(@"ObjectId %@", user.objectId);
-    NSLog(@"Email %@", user[@"email"]);
-    NSLog(@"authData %@", user[@"authData"]);
-    NSLog(@"www.facebook.com/%@", facebookId);
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
-    [[UIApplication sharedApplication] openURL:url];
+    //    NSLog(@"Password %@", user.password);
+    //    NSLog(@"ObjectId %@", user.objectId);
+    //    NSLog(@"Email %@", user[@"email"]);
+    //    NSLog(@"authData %@", user[@"authData"]);
+    //    NSLog(@"www.facebook.com/%@", facebookId);
+    //    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
+    //    [[UIApplication sharedApplication] openURL:url];
+    
+    WebFacebookViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"webFacebook"];
+    
+    // Pass data to controller
+    controller.facebookId = facebookId;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -177,18 +184,25 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
     CGPoint point = [sender locationInView:self.tableView];
     
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-        if (indexPath == nil){
-            NSLog(@"couldn't find index path");
-        } else {
+        if (!(indexPath == nil)){
+            [[[UIAlertView alloc] initWithTitle:@"Give your pet" message:@"Are you sure you want to give your pet to this person?" delegate:nil cancelButtonTitle:@"No, keep my pet!" otherButtonTitles:@"Yes, seems legit!", nil] show];
             // get the cell at indexPath (the one you long pressed)
             OfferBidsUITableViewCell* cell =
-            [self.tableView cellForRowAtIndexPath:indexPath];//cellForItemAtIndexPath:indexPath];
-            NSLog(@"cell.labelName.text: %@", cell.labelName.text);
-            NSLog(@"cell: %@", cell);
+           [self.tableView cellForRowAtIndexPath:indexPath];//cellForItemAtIndexPath:indexPath];
+       //     NSLog(@"cell.labelName.text: %@", cell.labelName.text);
+       //     NSLog(@"cell: %@", cell);
+        } else {
+            [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingers"];
         }
 
 }
 
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    NSLog(@"Button index: %ld", buttonIndex);
+//}
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    NSLog(@"Button index: %ld", buttonIndex);
+}
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender {
     CGPoint point = [sender locationInView:self.tableView];
     
@@ -200,7 +214,7 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
         deal[@"deleted"] = @YES;
         [deal saveInBackground];
     } else {
-        [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingures"];
+        [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingers"];
     }
 
 }

@@ -51,6 +51,7 @@
 		844F21EF1A07EC3400DD6D2A /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21EC1A07EC3400DD6D2A /* Bolts.framework */; };
 		844F21F01A07EC3400DD6D2A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21ED1A07EC3400DD6D2A /* Parse.framework */; };
 		844F21F11A07EC3400DD6D2A /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844F21EE1A07EC3400DD6D2A /* ParseFacebookUtils.framework */; };
+		849607F31A0DA0A5007488A1 /* WebFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 849607F21A0DA0A5007488A1 /* WebFacebookViewController.m */; };
 		849B201F1A09979400F2C050 /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B201E1A09979400F2C050 /* Deal.m */; };
 		84AA8BE31A0A621D006CFC74 /* FTSpinner.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AA8BE21A0A621D006CFC74 /* FTSpinner.m */; };
 		84AB2A031A0BD59900EB3ACA /* OfferBidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */; };
@@ -138,6 +139,8 @@
 		844F21EC1A07EC3400DD6D2A /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Libs/ParseSDK/Bolts.framework; sourceTree = "<group>"; };
 		844F21ED1A07EC3400DD6D2A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Libs/ParseSDK/Parse.framework; sourceTree = "<group>"; };
 		844F21EE1A07EC3400DD6D2A /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtils.framework; path = Libs/ParseSDK/ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		849607F11A0DA0A5007488A1 /* WebFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebFacebookViewController.h; sourceTree = "<group>"; };
+		849607F21A0DA0A5007488A1 /* WebFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebFacebookViewController.m; sourceTree = "<group>"; };
 		849B201D1A09979400F2C050 /* Deal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deal.h; sourceTree = "<group>"; };
 		849B201E1A09979400F2C050 /* Deal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deal.m; sourceTree = "<group>"; };
 		84AA8BE11A0A621D006CFC74 /* FTSpinner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSpinner.h; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */,
 				84AB2A011A0BD59900EB3ACA /* OfferBidsTableViewController.h */,
 				84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */,
+				849607F11A0DA0A5007488A1 /* WebFacebookViewController.h */,
+				849607F21A0DA0A5007488A1 /* WebFacebookViewController.m */,
 				209A5A4B1A0CE7CD00F4FF81 /* OffersTableControllers */,
 				209A5A4A1A0CE7A300F4FF81 /* BidsTableControllers */,
 			);
@@ -484,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A0ABFD1A0AC79A00586B9F /* OffersHistoryViewController.m in Sources */,
+				849607F31A0DA0A5007488A1 /* WebFacebookViewController.m in Sources */,
 				209B82841A029BA20038CE29 /* OfferDetailsViewController.m in Sources */,
 				20A0AC001A0AC95500586B9F /* InactiveOffersViewController.m in Sources */,
 				20AAB1CA1A0519A1008518B5 /* AddContactInfoViewController.m in Sources */,
@@ -506,11 +512,8 @@
 				209B82811A029B910038CE29 /* AddOfferViewController.m in Sources */,
 				849B201F1A09979400F2C050 /* Deal.m in Sources */,
 				2099DFA01A0C1BE500A493F5 /* OfferUITableViewCell.m in Sources */,
-
 				209A5A3F1A0CE4CA00F4FF81 /* BidsViewController.m in Sources */,
-
 				84AF66071A0CD33D0039553F /* OfferBidsUITableViewCell.m in Sources */,
-
 				20A0ABED1A0AB79F00586B9F /* FTUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

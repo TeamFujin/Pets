@@ -122,6 +122,9 @@
                             <outletCollection property="gestureRecognizers" destination="Ato-8y-R8I" appends="YES" id="5Rg-Ds-7pt"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="By9-LJ-tNS" kind="show" id="gqg-dg-bIH"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZF7-Zj-wdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="nrU-RY-817">
@@ -136,6 +139,33 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3346" y="-525"/>
+        </scene>
+        <!--Web Facebook View Controller-->
+        <scene sceneID="tPu-fO-icI">
+            <objects>
+                <viewController restorationIdentifier="webFacebook" storyboardIdentifier="webFacebook" id="By9-LJ-tNS" customClass="WebFacebookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JGQ-1b-sXS"/>
+                        <viewControllerLayoutGuide type="bottom" id="76C-iS-Qnb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jV0-s7-I0Z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MjC-tg-ja5">
+                                <rect key="frame" x="-1" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webViewFacebook" destination="MjC-tg-ja5" id="erd-sA-AAs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8hq-1H-My5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4060" y="-525"/>
         </scene>
         <!--Active offers-->
         <scene sceneID="c3p-ON-qn4">
