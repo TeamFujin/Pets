@@ -32,11 +32,20 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
     [super viewDidLoad];
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
+    
+//    UILongPressGestureRecognizer *lpgr
+//    = [[UILongPressGestureRecognizer alloc]
+//       initWithTarget:self action:@selector(handleLongPress:)];
+//    lpgr.minimumPressDuration = .5; //seconds
+//    lpgr.delegate = self;
+//    [self.tableView addGestureRecognizer:lpgr];
+    
     db = [[FTDatabaseRequester alloc] init];
+    //TODO: use static or weakSelf here
     [db getOfferBidsForOffer:self.offer andBlock:^(NSArray *bids, NSError *error) {
         if(!error) {
             bidsData = [NSMutableArray arrayWithArray:bids];
-              NSLog(@"%@", bids);
+          //    NSLog(@"%@", bids);
             [self.tableView reloadData];
         } else {
             [FTUtils showAlert:@"We are sorry" withMessage:@"We can't show you who wants your pet right now."];
@@ -48,6 +57,34 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+//-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+//{
+//    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+//        return;
+//    }
+//    CGPoint p = [gestureRecognizer locationInView:self.tableView];
+//    
+//    NSIndexPath *indexPath = [self.tableView indexPathForItemAtPoint:p];
+//    if (indexPath == nil){
+//        NSLog(@"couldn't find index path");
+//    } else {
+//        // get the cell at indexPath (the one you long pressed)
+//        UICollectionViewCell* cell =
+//        [self.tableView cellForItemAtIndexPath:indexPath];
+//        // do stuff with the cell
+//    }
+//    //lpgr.delaysTouchesBegan = YES;
+//}
+
+- (void)longPress:(UILongPressGestureRecognizer*)gesture
+{
+    if ( gesture.state == UIGestureRecognizerStateEnded ) {
+        
+        UICollectionViewCell *cellLongPressed = (UICollectionViewCell *) gesture.view;
+        NSLog(@"Gesture: %@", cellLongPressed);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,25 +127,26 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
     [[UIApplication sharedApplication] openURL:url];
 }
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
+
+// Override to support conditional editing of the table view.
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    // Return NO if you do not want the specified item to be editable.
+//    return YES;
+//}
+
+
+
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }   
+//}
+
 
 /*
 // Override to support rearranging the table view.
@@ -134,4 +172,36 @@ static NSString *cellIdentifier = @"OfferBidsUITableViewCell";
 }
 */
 
+- (IBAction)longpress:(UILongPressGestureRecognizer*)sender {
+    NSLog(@"Long press");
+    CGPoint point = [sender locationInView:self.tableView];
+    
+        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+        if (indexPath == nil){
+            NSLog(@"couldn't find index path");
+        } else {
+            // get the cell at indexPath (the one you long pressed)
+            OfferBidsUITableViewCell* cell =
+            [self.tableView cellForRowAtIndexPath:indexPath];//cellForItemAtIndexPath:indexPath];
+            NSLog(@"cell.labelName.text: %@", cell.labelName.text);
+            NSLog(@"cell: %@", cell);
+        }
+
+}
+
+- (IBAction)swipe:(UISwipeGestureRecognizer *)sender {
+    CGPoint point = [sender locationInView:self.tableView];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    if (!(indexPath == nil)){
+        OfferBidsUITableViewCell* cell =
+        [self.tableView cellForRowAtIndexPath:indexPath];
+        Deal *deal = bidsData[indexPath.row];
+        deal[@"deleted"] = @YES;
+        [deal saveInBackground];
+    } else {
+        [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingures"];
+    }
+
+}
 @end

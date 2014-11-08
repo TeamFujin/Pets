@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Offer.h"
 
-@interface OfferBidsTableViewController : UITableViewController
+@interface OfferBidsTableViewController : UITableViewController<UIGestureRecognizerDelegate>
+- (IBAction)longpress:(UILongPressGestureRecognizer*)sender;
+- (IBAction)swipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic, readwrite) Offer *offer;
 @end

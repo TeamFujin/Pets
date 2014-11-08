@@ -30,7 +30,6 @@ static NSInteger rowHeight = 100;
                              andError: (NSError*) error {
     if(!error) {
         self.data = [NSMutableArray arrayWithArray:data];
-            NSLog(@"%@", data);
          //   NSLog(@"%@", data);
         //NSLog(@"in success");
         [self.tableView reloadData];

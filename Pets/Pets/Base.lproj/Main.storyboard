@@ -114,13 +114,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <connections>
                             <outlet property="dataSource" destination="HW3-U9-p9y" id="Gfz-4K-3cA"/>
                             <outlet property="delegate" destination="HW3-U9-p9y" id="R7P-vb-1FE"/>
+                            <outletCollection property="gestureRecognizers" destination="nrU-RY-817" appends="YES" id="OT5-Jm-Fzt"/>
+                            <outletCollection property="gestureRecognizers" destination="Ato-8y-R8I" appends="YES" id="5Rg-Ds-7pt"/>
                         </connections>
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZF7-Zj-wdU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="nrU-RY-817">
+                    <connections>
+                        <action selector="longpress:" destination="HW3-U9-p9y" id="gS2-2w-qan"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="Ato-8y-R8I">
+                    <connections>
+                        <action selector="swipe:" destination="HW3-U9-p9y" id="iAG-5O-OgM"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3346" y="-525"/>
         </scene>
@@ -180,7 +193,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeJ-7j-yM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="-821"/>
+            <point key="canvasLocation" x="1981" y="-693"/>
         </scene>
         <!--Add Contact Info View Controller-->
         <scene sceneID="HzI-kK-jUP">
