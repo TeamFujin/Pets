@@ -28,9 +28,12 @@
 
 -(void)getDetailsForOffer: (Offer*) offer
                  andBlock: (void (^)(PFObject *object, NSError *error)) block{
+    NSLog(@"in getDetailsForOffer before query");
     [offer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        NSLog(@"in block");
         block(object, error);
     }];
+    NSLog(@"in getDetailsForOffer after query");
 }
 
 -(void)addDealToDbWithDeal: (Deal *) deal

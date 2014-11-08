@@ -12,32 +12,37 @@
 #import "FTUtils.h"
 
 @interface OfferDetailsViewController ()
-
-@property (strong, nonatomic) FTDatabaseRequester *databaseRequester;
-
 @end
 
-@implementation OfferDetailsViewController
+@implementation OfferDetailsViewController{
+    FTDatabaseRequester *db;
+}
 
 - (void)viewDidLoad {
     self.title = @"Details";
     [super viewDidLoad];
+    db = [[FTDatabaseRequester alloc] init];
+    NSLog(@"viewDidLoad before calling configureView");
     [self configureView];
+    NSLog(@"viewDidLoad after calling configureView");
 }
 
 - (void)setOffer:(id)newOffer {
     if (_offer != newOffer) {
         _offer = newOffer;
         // Update the view.
+        NSLog(@"setOffer before calling configureView");
         [self configureView];
+        NSLog(@"setOffer after calling configureView");
     }
 }
 
 - (void)configureView {
-    // Update the user interface for the detail item.
-    
+  //  NSLog(@"configureView offer: %@", self.offer);
     if (self.offer) {
-        [self.databaseRequester getDetailsForOffer:self.offer andBlock:^(PFObject *object, NSError *error) {
+        NSLog(@"in if before query");
+        [db getDetailsForOffer:self.offer andBlock:^(PFObject *object, NSError *error) {
+            if(!error) {
             self.offer = (Offer*) object;
             self.labelTitle.text = self.offer.title;
             self.labelDesc.text = self.offer.desc;
@@ -47,7 +52,11 @@
             self.imageViewPicture.image = [UIImage imageWithData:data];
             
             NSLog(@"Offer name: %@", self.offer.title);
+            } else {
+                [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, we can't show you this pet's details right now"];
+            }
         }];
+        NSLog(@"in if after query");
     }
 }
 
@@ -64,7 +73,7 @@
     //TODO: check if you are not the owner of this offer
 
     //TODO: check if user already pressed the button
-    [self.databaseRequester addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
+    [db addDealToDbWithDeal:deal andBlock:^(BOOL succeeded, NSError *error) {
         if(succeeded) {
             [FTUtils showAlert:@"Success" withMessage:@"You can start checking for approval"];
         } else {
