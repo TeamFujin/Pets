@@ -100,10 +100,6 @@ static NSInteger rowHeight = 100;
         }];
         
     }
-<<<<<<< Updated upstream
-    
-=======
->>>>>>> Stashed changes
 }
 /*
  #pragma mark - Navigation
