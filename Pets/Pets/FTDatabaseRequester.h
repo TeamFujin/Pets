@@ -31,6 +31,7 @@
                        andBlock:(void (^)(NSArray *offers, NSError *error)) block;
 -(void)getOfferBidsForOffer: (PFObject*) offer
                    andBlock: (void (^)(NSArray *bids, NSError *error)) block;
+-(void)getJokesWithBlock: (void (^)(NSArray *jokes, NSError *error)) block;
 -(void)updateDealForApprovalWithDeal: (Deal*) deal
                    andBlock: (void (^)(BOOL succeeded, NSError *error)) block;
 -(void)checkIfAlreadyAppliedForOffer: (NSString*) offerId

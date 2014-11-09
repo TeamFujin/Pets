@@ -85,7 +85,15 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *bids, NSError *error) {
         block(bids, error);
     }];
+}
 
+-(void)getJokesWithBlock: (void (^)(NSArray *jokes, NSError *error)) block{
+    PFQuery *query = [PFQuery queryWithClassName:@"Jokes"];
+    [query selectKeys:@[@"Joke"]];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *jokes, NSError *error) {
+        block(jokes, error);
+    }];
 }
 
 -(void)updateDealForApprovalWithDeal: (Deal*) deal
