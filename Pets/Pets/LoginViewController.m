@@ -14,7 +14,7 @@
 #import "FTUtils.h"
 #import "ProfileViewController.h"
 #import "FTJokeDispenser.h"
-
+#import <CoreData/CoreData.h>
 @interface LoginViewController ()
 @end
 
@@ -24,6 +24,26 @@
     self.title = @"Login";
     [super viewDidLoad];
     [self startAsyncTask];
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    // Create a new managed object
+    NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
+    [joke setValue:@"FUNNY JOKE HERE" forKey:@"body"];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Joke"];
+    NSMutableArray *devices = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSManagedObject *device = [devices objectAtIndex:0];
+    NSLog(@"%@", [device valueForKey:@"body"]);
+    //NSLog(devices);
+
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
 }
 
 - (void) startAsyncTask{
