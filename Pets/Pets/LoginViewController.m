@@ -15,26 +15,32 @@
 #import "ProfileViewController.h"
 #import "FTJokeDispenser.h"
 #import <CoreData/CoreData.h>
+#import "FTDatabaseRequester.h"
+
 @interface LoginViewController ()
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController{
+    
+}
 
 - (void)viewDidLoad {
     self.title = @"Login";
     [super viewDidLoad];
+    [self saveJokesToCoreData];
     [self startAsyncTask];
-    NSManagedObjectContext *context = [self managedObjectContext];
-    
-    // Create a new managed object
-    NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
-    [joke setValue:@"FUNNY JOKE HERE" forKey:@"body"];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Joke"];
-    NSMutableArray *devices = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
-    NSManagedObject *device = [devices objectAtIndex:0];
-    NSLog(@"%@", [device valueForKey:@"body"]);
-    //NSLog(devices);
+}
 
+- (void) saveJokesToCoreData{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+    [db getJokesWithBlock:^(NSArray *objects, NSError *error) {
+        for (NSDictionary *obj in objects) {
+            NSString *jokeBody = [obj objectForKey:@"Joke"];
+            NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
+            [joke setValue:jokeBody forKey:@"body"];
+        }
+    }];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -57,7 +63,8 @@
             [NSThread sleepForTimeInterval:2.0];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [FTJokeDispenser showJoke];
+            FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
+            [dispenser showJoke];
             [self startAsyncTask];
         });
     });

@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface FTJokeDispenser : NSObject
-+ (void) showJoke;
+- (void) showJoke;
 @end
