@@ -150,6 +150,21 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     return rowHeight;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:70 andScale:2.5f];
+    [spinner startSpinning];
+    [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
+        [spinner stopSpinning];
+        if(!error) {
+            count = objects.count;
+            data = [NSMutableArray arrayWithArray:objects];
+            [self.tableView reloadData];
+        } else {
+            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
+        }
+    }];
+}
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //    NSLog(@"in prepareForSegue");
 //    if ([[segue identifier] isEqualToString:@"showOfferDetails"]) {

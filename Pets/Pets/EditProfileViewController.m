@@ -1,35 +1,36 @@
 //
-//  AddContactInfoViewController.m
+//  EditProfileViewController.m
 //  Pets
 //
-//  Created by Gosho Goshev on 11/1/14.
+//  Created by Gosho Goshev on 11/8/14.
 //  Copyright (c) 2014 Gosho Goshev. All rights reserved.
 //
 
-#import "AddContactInfoViewController.h"
-#import "ProfileViewController.h"
-#import <Parse/Parse.h>
+#import "EditProfileViewController.h"
 #import "FTUtils.h"
-#import <FacebookSDK/FacebookSDK.h>
+#import "FTDatabaseRequester.h"
 
-@interface AddContactInfoViewController ()
+@interface EditProfileViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *displayNameTextField;
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 
 @end
 
-@implementation AddContactInfoViewController
+@implementation EditProfileViewController
 
 - (void)viewDidLoad {
+    self.title = @"Edit Profile";
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)continueClicked:(id)sender {
+- (IBAction)saveTaped:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *phone = self.phoneTextField.text;
     if(![self emailIsValid:email]){
@@ -39,27 +40,14 @@
         [FTUtils showAlert:@"Error" withMessage:@"Invalid phone number"];
     }
     else{
-        [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
-            if (error) {
-                [FTUtils showAlert:@"Error" withMessage:@"Unable to connect to server."];
-            }
-            else {
-                NSString *userName = [FBuser name];
-                PFUser *currUser = [PFUser currentUser];
-                currUser[@"displayName"] = userName;
-                currUser[@"facebookId"] = FBuser.objectID;
-                [currUser saveInBackground];
-            }
-        }];
-        
         PFUser *currUser = [PFUser currentUser];
+        currUser[@"displayName"] = self.displayNameTextField.text;
         currUser[@"contactEmail"] = email;
         currUser[@"contactPhone"] = phone;
         [currUser saveInBackground];
-        [self performSegueWithIdentifier:@"ContactInfoToProfile" sender:self];
+        [self performSegueWithIdentifier:@"ToProfile" sender:self];
     }
 }
-
 - (BOOL) emailIsValid: (NSString *) candidate {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
@@ -72,5 +60,14 @@
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phoneRegex];
     return [phoneTest evaluateWithObject:candidate];
 }
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

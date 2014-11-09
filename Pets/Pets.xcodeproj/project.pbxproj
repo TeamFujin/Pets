@@ -16,8 +16,9 @@
 		209A5A461A0CE77C00F4FF81 /* PendingBidsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A5A451A0CE77C00F4FF81 /* PendingBidsViewController.m */; };
 		209A5A491A0CE79500F4FF81 /* RejectedBidsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A5A481A0CE79500F4FF81 /* RejectedBidsViewController.m */; };
 		209A77C81A02E6D400A5BC2B /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */; };
-		209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */; };
 		209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */; };
+		209B286B1A0EE33D006A96D9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B286A1A0EE33D006A96D9 /* EditProfileViewController.m */; };
+		209B286E1A0EF126006A96D9 /* BidAuthorContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B286D1A0EF126006A96D9 /* BidAuthorContactsViewController.m */; };
 		209B597A1A07EF2000C2C39C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 209B59791A07EF2000C2C39C /* FacebookSDK.framework */; };
 		209B824F1A0294DE0038CE29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B824E1A0294DE0038CE29 /* main.m */; };
 		209B82521A0294DE0038CE29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 209B82511A0294DE0038CE29 /* AppDelegate.m */; };
@@ -86,10 +87,12 @@
 		209A5A481A0CE79500F4FF81 /* RejectedBidsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectedBidsViewController.m; sourceTree = "<group>"; };
 		209A77C61A02E6D400A5BC2B /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
-		209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidsTableViewController.h; sourceTree = "<group>"; };
-		209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidsTableViewController.m; sourceTree = "<group>"; };
 		209A77CC1A02F1F200A5BC2B /* ActiveOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveOffersViewController.h; sourceTree = "<group>"; };
 		209A77CD1A02F1F200A5BC2B /* ActiveOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveOffersViewController.m; sourceTree = "<group>"; };
+		209B28691A0EE33D006A96D9 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		209B286A1A0EE33D006A96D9 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		209B286C1A0EF126006A96D9 /* BidAuthorContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BidAuthorContactsViewController.h; sourceTree = "<group>"; };
+		209B286D1A0EF126006A96D9 /* BidAuthorContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BidAuthorContactsViewController.m; sourceTree = "<group>"; };
 		209B59791A07EF2000C2C39C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		209B82491A0294DE0038CE29 /* Pets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		209B824D1A0294DE0038CE29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				209A5A451A0CE77C00F4FF81 /* PendingBidsViewController.m */,
 				209A5A471A0CE79500F4FF81 /* RejectedBidsViewController.h */,
 				209A5A481A0CE79500F4FF81 /* RejectedBidsViewController.m */,
+				209B286C1A0EF126006A96D9 /* BidAuthorContactsViewController.h */,
+				209B286D1A0EF126006A96D9 /* BidAuthorContactsViewController.m */,
 			);
 			name = BidsTableControllers;
 			sourceTree = "<group>";
@@ -301,14 +306,14 @@
 				20AAB1C91A0519A1008518B5 /* AddContactInfoViewController.m */,
 				209B82791A029ABC0038CE29 /* ProfileViewController.h */,
 				209B827A1A029ABC0038CE29 /* ProfileViewController.m */,
+				209B28691A0EE33D006A96D9 /* EditProfileViewController.h */,
+				209B286A1A0EE33D006A96D9 /* EditProfileViewController.m */,
 				209A77C61A02E6D400A5BC2B /* HomeTableViewController.h */,
 				209A77C71A02E6D400A5BC2B /* HomeTableViewController.m */,
 				209B82821A029BA20038CE29 /* OfferDetailsViewController.h */,
 				209B82831A029BA20038CE29 /* OfferDetailsViewController.m */,
 				209B827F1A029B910038CE29 /* AddOfferViewController.h */,
 				209B82801A029B910038CE29 /* AddOfferViewController.m */,
-				209A77C91A02F0E200A5BC2B /* BidsTableViewController.h */,
-				209A77CA1A02F0E200A5BC2B /* BidsTableViewController.m */,
 				84AB2A011A0BD59900EB3ACA /* OfferBidsTableViewController.h */,
 				84AB2A021A0BD59900EB3ACA /* OfferBidsTableViewController.m */,
 				849607F11A0DA0A5007488A1 /* WebFacebookViewController.h */,
@@ -504,7 +509,8 @@
 				841C06931A069BB500008225 /* Offer.m in Sources */,
 				209A77CE1A02F1F200A5BC2B /* ActiveOffersViewController.m in Sources */,
 				209B827B1A029ABC0038CE29 /* ProfileViewController.m in Sources */,
-				209A77CB1A02F0E200A5BC2B /* BidsTableViewController.m in Sources */,
+				209B286E1A0EF126006A96D9 /* BidAuthorContactsViewController.m in Sources */,
+				209B286B1A0EE33D006A96D9 /* EditProfileViewController.m in Sources */,
 				209A5A491A0CE79500F4FF81 /* RejectedBidsViewController.m in Sources */,
 				841C069C1A06DF0D00008225 /* HomeUITableViewCell.m in Sources */,
 				2099DF981A0BE09D00A493F5 /* FTJokeDispenser.m in Sources */,

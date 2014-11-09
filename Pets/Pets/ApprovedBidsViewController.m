@@ -8,6 +8,8 @@
 
 #import "ApprovedBidsViewController.h"
 #import "FTDatabaseRequester.h"
+#import "OfferDetailsViewController.h"
+
 @interface ApprovedBidsViewController ()
 
 @end
@@ -25,6 +27,8 @@
         [super afterGettingDataFromDbWithData:offers andError:error];
     }];
 }
+
+
 
 /*
  #pragma mark - Navigation

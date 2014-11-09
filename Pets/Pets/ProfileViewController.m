@@ -57,8 +57,8 @@
     }];
     PFUser *currUser = [PFUser currentUser];
     self.nameLabel.text = currUser[@"displayName"];;
-    self.emailLabel.text =  currUser.email;
-    self.phoneLabel.text =  currUser[@"phone"];
+    self.emailLabel.text =  currUser[@"contactEmail"];
+    self.phoneLabel.text =  currUser[@"contactPhone"];
 }
 
 @end

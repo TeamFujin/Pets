@@ -12,6 +12,7 @@
 #import "Offer.h"
 #import "FTDatabaseRequester.h"
 #import "FTUtils.h"
+#import "AddOfferViewController.h"
 
 @interface AddOfferViewController ()
 
@@ -33,7 +34,7 @@
 }
 
 - (void)viewDidLoad {
-    self.title = @"Add new Offer";
+    self.title = @"Add New Offer";
     [super viewDidLoad];
     [self loadHardcodedImage];
     [self initializeLocationManager];
@@ -148,6 +149,9 @@
         [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
             if(succeeded) {
                 [FTUtils showAlert:@"Success" withMessage:@"Your offer has been published!"];
+                AddOfferViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeTableViewController"];
+                
+                [self.navigationController pushViewController:controller animated:YES];
             } else {
                 [FTUtils showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
                 NSLog(@"Errorr: %@", error);

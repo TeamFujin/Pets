@@ -13,6 +13,7 @@
 #import "Deal.h"
 #import "Offer.h"
 #import "FTSpinner.h"
+#import "BidAuthorContactsViewController.h"
 
 @interface BidsViewController ()
 
@@ -83,6 +84,20 @@ static NSInteger rowHeight = 100;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Deal *bid = self.data[indexPath.row];
+    
+    if(bid.approved == YES){
+        BidAuthorContactsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"BidAuthorContactsViewController"];
+        Offer *offer = (Offer *)bid.offerId;
+        PFUser *author = (PFUser *)[offer.userId fetchIfNeeded];
+        controller.author = author;
+        NSLog(@"%@", controller.author.email);
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+  
 }
 /*
  #pragma mark - Navigation

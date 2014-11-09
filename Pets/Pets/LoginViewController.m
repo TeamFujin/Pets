@@ -21,6 +21,7 @@
 @implementation LoginViewController
 
 - (void)viewDidLoad {
+    self.title = @"Login";
     [super viewDidLoad];
     [self startAsyncTask];
 }
@@ -82,7 +83,7 @@
     if ([PFUser currentUser] && // Check if user is cached
         [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         PFUser *currUser = [PFUser currentUser];
-        if(currUser.email != nil){
+        if(currUser[@"contactEmail"] != nil && currUser[@"contactPhone"] != nil){
             [self performSegueWithIdentifier:@"ToProfile" sender:self];
         }
         else{
@@ -91,6 +92,9 @@
     }else{
         [FTUtils showAlert:@"Error" withMessage:@"You are not logged in !"];
     }
+}
+- (IBAction)helpTaped:(id)sender {
+    [FTUtils showAlert:@"Hi!" withMessage:@"Show some basic info for the app, developers contact info, etc.."];
 }
 
 - (void)didReceiveMemoryWarning {
