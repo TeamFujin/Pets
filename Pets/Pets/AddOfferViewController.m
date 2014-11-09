@@ -117,7 +117,7 @@
             placemark = [placemarks lastObject];
             //placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country
             adress = placemark.thoroughfare;
-            NSLog(@"%@", placemark.thoroughfare);
+            [FTUtils showAlert:@"Location included." withMessage:adress];
         } else {
             NSLog(@"didUpdateToLocation%@", error.debugDescription);
         }
@@ -131,7 +131,6 @@
         NSNumber *price = [NSNumber numberWithInt: [self.priceTextInput.text intValue]];
         UIImage *image = self.imageView.image;
        
-        NSString *imageBase64 = [FTUtils encodeToBase64String:image];
         Offer *offer = [[Offer alloc] init];
         offer.userId = [PFUser currentUser];
         offer.title = title;

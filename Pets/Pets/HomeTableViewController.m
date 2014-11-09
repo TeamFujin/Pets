@@ -83,13 +83,13 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 //        cell.imageViewPicture.image = nil;
 //    }
         if(offer.photo) {
-            NSData *data = [offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            cell.imageViewPicture.image = [UIImage imageWithData:data ];
+            [offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+              cell.imageViewPicture.image = [UIImage imageWithData:data ];
+            }];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            
         } else {
             cell.imageViewPicture.image = nil;
         }
-
-    
     return cell;
 }
 
@@ -128,20 +128,6 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
        // }
     }
 }
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -159,32 +145,4 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;
 }
-
-//-(void)viewWillAppear:(BOOL)animated{
-//    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-//    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:70 andScale:2.5f];
-//    [spinner startSpinning];
-//    [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
-//        [spinner stopSpinning];
-//        if(!error) {
-//            data = [NSMutableArray arrayWithArray:objects];
-//            [self.tableView reloadData];
-//        } else {
-//            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
-//        }
-//    }];
-//}
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    NSLog(@"in prepareForSegue");
-//    if ([[segue identifier] isEqualToString:@"showOfferDetails"]) {
-//         NSLog(@"in prepareForSegue");
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        Offer *offer = data[indexPath.row];
-//        OfferDetailsViewController *controller = (OfferDetailsViewController *)[[segue destinationViewController] topViewController];
-//        [controller setOffer:offer];
-//      //  controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-//        //controller.navigationItem.leftItemsSupplementBackButton = YES;
-//    }
-//}
-
 @end
