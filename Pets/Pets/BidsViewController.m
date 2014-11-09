@@ -93,11 +93,14 @@ static NSInteger rowHeight = 100;
     if(bid.approved == YES){
         BidAuthorContactsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"BidAuthorContactsViewController"];
         Offer *offer = (Offer *)bid.offerId;
-        PFUser *author = (PFUser *)[offer.userId fetchIfNeeded];
-        controller.author = author;
-        [self.navigationController pushViewController:controller animated:YES];
+        [offer.userId fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            PFUser* author = (PFUser *) object;
+            controller.author = author;
+            [self.navigationController pushViewController:controller animated:YES];
+        }];
+        
     }
-  
+    
 }
 /*
  #pragma mark - Navigation

@@ -42,8 +42,10 @@
             [spinner stopSpinning];
             if(!error) {
                 self.offer = (Offer*) object;
-                PFUser *author = (PFUser *)[self.offer.userId fetchIfNeeded];
-                self.labelAuthorName.text = author[@"displayName"];
+                [self.offer.userId fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                    PFUser *author = (PFUser *)[self.offer.userId fetchIfNeeded];
+                    self.labelAuthorName.text = author[@"displayName"];
+                }];
                 self.labelTitle.text = self.offer.title;
                 self.labelDesc.text = self.offer.desc;
                 if ([self.offer.price isEqual:@0]) {
