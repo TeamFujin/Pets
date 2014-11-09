@@ -54,8 +54,14 @@
                 else{
                     self.labelPrice.text = [NSString stringWithFormat:@"%@BGN", self.offer.price];
                 }
-                NSData *data = [[NSData alloc]initWithBase64EncodedString:self.offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-                self.imageViewPicture.image = [UIImage imageWithData:data];
+                
+                if(self.offer.photo) {
+                    NSData *data = [self.offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                    self.imageViewPicture.image = [UIImage imageWithData:data ];
+                } else {
+                    self.imageViewPicture.image = nil;
+                }
+
                 
             } else {
                 [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, we can't show you this pet's details right now"];

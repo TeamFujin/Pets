@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *picture;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) PFGeoPoint *location;
+@property (nonatomic, strong) PFFile *photo;
 @property BOOL active;
 
 +(NSString *)parseClassName;

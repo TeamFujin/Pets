@@ -25,7 +25,6 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 static NSInteger rowHeight = 100;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
@@ -61,8 +60,8 @@ static NSInteger rowHeight = 100;
     else{
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }
-    if(offer.picture) {
-        NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if(offer.photo) {
+        NSData *data = [offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.imageViewPicture.image = [UIImage imageWithData:data];
     }
     else {

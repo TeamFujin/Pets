@@ -42,9 +42,12 @@
     self.titleTextInput.delegate = self;
     self.descriptionTextInput.delegate = self;
     
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];
-    
-    self.imageView.image = image;
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pravda-team.ru/eng/image/photo/9/4/6/66946.jpeg"]]];//@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];
+        UIGraphicsBeginImageContext(CGSizeMake(200, 200));
+        [image drawInRect: CGRectMake(0, 0, 200, 200)];
+        UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    self.imageView.image = smallImage;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,10 +130,7 @@
         NSString *description = self.descriptionTextInput.text;
         NSNumber *price = [NSNumber numberWithInt: [self.priceTextInput.text intValue]];
         UIImage *image = self.imageView.image;
-        //    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
-        //    [image drawInRect: CGRectMake(0, 0, 200, 200)];
-        //    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-        //    UIGraphicsEndImageContext();
+       
         NSString *imageBase64 = [FTUtils encodeToBase64String:image];
         Offer *offer = [[Offer alloc] init];
         offer.userId = [PFUser currentUser];
@@ -138,14 +138,14 @@
         offer.desc = description;
         offer.price = price;
         offer.active = YES;
-        offer.picture = imageBase64;
+     //   offer.picture = imageBase64;
         offer.location.longitude = currentLongitude;
         offer.location.latitude = currentLatitude;
         offer.address = adress;
         
-        //   NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
-        //  PFFile *imageFile = [PFFile fileWithData:imageData];
-        //  offer.picture = imageFile;
+           NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
+          PFFile *imageFile = [PFFile fileWithData:imageData];
+          offer.photo = imageFile;
         FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
         [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
             if(succeeded) {

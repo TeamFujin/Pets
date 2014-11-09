@@ -70,8 +70,8 @@ static NSInteger rowHeight = 100;
     }
     else{
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
-    }    if(offer.picture) {
-        NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    }    if(offer.photo) {
+        NSData *data = [offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.image.image = [UIImage imageWithData:data];
     }
     else {
@@ -100,7 +100,10 @@ static NSInteger rowHeight = 100;
         }];
         
     }
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
 }
 /*
  #pragma mark - Navigation

@@ -17,6 +17,7 @@
 @dynamic active;
 @dynamic address;
 @dynamic location;
+@dynamic photo;
 
 +(void) load {
     [self registerSubclass];
