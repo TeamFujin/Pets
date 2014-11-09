@@ -19,7 +19,7 @@
 -(void)getAllActiveOffersWithBlock: (void (^)(NSArray *objects, NSError *error)) block{
     //TODO sort them by date
     PFQuery *query = [PFQuery queryWithClassName:Offer.parseClassName];
-    [query selectKeys:@[@"title", @"price", @"picture"]];
+    [query selectKeys:@[@"title", @"price", @"picture", @"userId"]];
     [query whereKey:@"active" equalTo:@YES];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {

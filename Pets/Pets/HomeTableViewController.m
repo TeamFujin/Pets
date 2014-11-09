@@ -19,7 +19,6 @@
 
 @implementation HomeTableViewController
 
-static NSInteger count = 0;
 static NSInteger rowHeight = 100;
 static NSMutableArray *data;
 static NSString *cellIdentifier = @"HomeUITableViewCell";
@@ -37,7 +36,6 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
         [spinner stopSpinning];
         if(!error) {
-            count = objects.count;
             data = [NSMutableArray arrayWithArray:objects];
             [self.tableView reloadData];
         } else {
@@ -56,33 +54,32 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 0;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return count;
+    return data.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[HomeUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     Offer *offer = data[indexPath.row];
     cell.labelTitle.text = offer.title;
     NSNumber *price = offer.price;
     if ([price isEqual:@0]) {
         cell.labelPrice.text = @"FREE";
-    }
-    else{
+    } else{
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }
     if(offer.picture) {
         NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
         cell.imageViewPicture.image = [UIImage imageWithData:data];
-    }
-    else {
+    } else {
         cell.imageViewPicture.image = nil;
     }
     
@@ -92,25 +89,36 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
+     Offer *offer = data[indexPath.row];
+     if ([offer.userId.objectId isEqual:[PFUser currentUser].objectId]) {
+         return YES;
+     }
+     
+     return NO;
  }
  
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+       // && ([offer.userId.objectId isEqual:[PFUser currentUser].objectId])) {
+     //   if(offer.userId.objectId isEqual:[PFUser currentUser]) {
         Offer *offer = data[indexPath.row];
-        offer.active = 0;
-        [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if(succeeded) {
-                [data removeObjectAtIndex:indexPath.row];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            } else {
-                [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you can't delete your pet offer right now"];
-            }
-        }];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            offer.active = 0;
+            __weak HomeTableViewController *weakSelf = self;
+            [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if(succeeded) {
+                    //     [weakSelf.tableView beginUpdates];
+                  //  NSLog(@"Before remove: %lu", data.count);
+                    [data removeObjectAtIndex:indexPath.row];
+                   // NSLog(@"After remove: %lu", data.count);
+                    [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    //       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    //  [weakSelf.tableView endUpdates];
+                } else {
+                    [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you can't delete your pet offer right now"];
+                }
+            }];
+       // }
     }
 }
 /*
@@ -145,21 +153,20 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     return rowHeight;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:70 andScale:2.5f];
-    [spinner startSpinning];
-    [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
-        [spinner stopSpinning];
-        if(!error) {
-            count = objects.count;
-            data = [NSMutableArray arrayWithArray:objects];
-            [self.tableView reloadData];
-        } else {
-            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
-        }
-    }];
-}
+//-(void)viewWillAppear:(BOOL)animated{
+//    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+//    FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:70 andScale:2.5f];
+//    [spinner startSpinning];
+//    [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
+//        [spinner stopSpinning];
+//        if(!error) {
+//            data = [NSMutableArray arrayWithArray:objects];
+//            [self.tableView reloadData];
+//        } else {
+//            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
+//        }
+//    }];
+//}
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //    NSLog(@"in prepareForSegue");
 //    if ([[segue identifier] isEqualToString:@"showOfferDetails"]) {

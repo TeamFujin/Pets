@@ -179,10 +179,11 @@ static NSString *labelTextApproved;
         Deal *deal = bidsData[indexPath.row];
         if (!deal.approved) {
             deal[@"deleted"] = @YES;
+            __weak OfferBidsTableViewController *weakSelf = self;
             [deal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(succeeded) {
                     [bidsData removeObjectAtIndex:indexPath.row];
-                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 } else {
                     [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong and we couldn't delete this"];
                 }
