@@ -38,15 +38,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-c2-bCY">
-                                <rect key="frame" x="269" y="247" width="62" height="30"/>
-                                <state key="normal" title="Continue">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="continueTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w9a-xI-Dcj"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUm-bM-ugO">
                                 <rect key="frame" x="284" y="323" width="32" height="30"/>
                                 <state key="normal" title="Help">
@@ -54,6 +45,15 @@
                                 </state>
                                 <connections>
                                     <action selector="helpTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KlP-eX-yOy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEr-c2-bCY">
+                                <rect key="frame" x="269" y="247" width="62" height="30"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continueTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w9a-xI-Dcj"/>
                                 </connections>
                             </button>
                         </subviews>

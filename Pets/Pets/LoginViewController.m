@@ -133,7 +133,7 @@
     }
 }
 - (IBAction)helpTaped:(id)sender {
-    NSString *message = @"This is Pets, a native iOs app developed for the Mobile Apps track of Telerik Academy 2014. \n If you have any suggestions/bug reports, you contact us at: \n https://github.com/martin-dzhonov \n https://github.com/ssnaky";
+    NSString *message = @"This is Pets, a native iOS app developed for the Mobile Apps track of Telerik Academy 2014. \n If you have any suggestions/bug reports, you contact us at: \n https://github.com/martin-dzhonov \n https://github.com/ssnaky";
     [FTUtils showAlert:@"Hi!" withMessage:message];
 }
 

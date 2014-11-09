@@ -59,9 +59,11 @@ static NSInteger rowHeight = 100;
     Offer *offer = (Offer *)bid.offerId;
     if(bid.approved == YES){
         [yourBtn setHidden:NO];
+        yourBtn.tag = indexPath.row;
         [yourBtn addTarget:self
-                    action:@selector(showOfferAuthorContacts)
+                    action:@selector(yourButtonClicked:)
           forControlEvents:UIControlEventTouchUpInside];
+        
     }
     cell.labelTItle.text = offer.title;
     NSNumber *price = offer.price;
@@ -80,14 +82,27 @@ static NSInteger rowHeight = 100;
     
     return cell;
 }
--(void) showOfferAuthorContacts{
-    NSLog(@"Show autor contacts");
+-(void)yourButtonClicked:(UIButton*)sender
+{
+    Deal *bid = self.data[sender.tag];
+    
+    if(bid.approved == YES){
+        BidAuthorContactsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"BidAuthorContactsViewController"];
+        Offer *offer = (Offer *)bid.offerId;
+        [offer.userId fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            PFUser* author = (PFUser *) object;
+            controller.author = author;
+            [self.navigationController pushViewController:controller animated:YES];
+        }];
+        
+    }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     Deal *bid = self.data[indexPath.row];
     
     if(bid.approved == YES){
@@ -100,6 +115,7 @@ static NSInteger rowHeight = 100;
         }];
         
     }
+     */
 }
 /*
  #pragma mark - Navigation
