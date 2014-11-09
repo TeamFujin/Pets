@@ -58,18 +58,24 @@
    
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
     [spinner startSpinning];
+    if ([PFUser currentUser] && // Check if user is cached
+        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [spinner stopSpinning];
+        [FTUtils showAlert:@"Um.." withMessage:@"You are already logged in"];
+    }
+    else{
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         [spinner stopSpinning];
         
         if (!user) {
             NSString *errorMessage = nil;
             if (!error) {
-                NSLog(@"Uh oh. The user cancelled the Facebook login.");
+                NSLog(@"The user cancelled the Facebook login.");
             } else {
+                [FTUtils showAlert:@"Error" withMessage:@"Unable to log in with Facebook"];
                 NSLog(@"An error occurred: %@", error);
                 errorMessage = [error localizedDescription];
             }
-            [FTUtils showAlert:@"Error" withMessage:@"Unable to log in with Facebook"];
         } else {
             if (user.isNew) {
                 NSLog(@"User with facebook signed up and logged in!");
@@ -78,6 +84,7 @@
             }
         }
     }];
+    }
 }
 - (IBAction)continueTaped:(id)sender {
     if ([PFUser currentUser] && // Check if user is cached

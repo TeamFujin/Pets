@@ -16,7 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(self.author.email);
     self.nameLabel.text = self.author[@"displayName"];
     self.emaiLabel.text = self.author[@"contactEmail"];
     self.phoneLabel.text = self.author[@"contactPhone"];

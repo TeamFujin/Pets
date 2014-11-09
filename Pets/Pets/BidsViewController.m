@@ -21,6 +21,7 @@
 
 @implementation BidsViewController{
     FTSpinner *spinner;
+    PFUser *currAuthor;
 }
 
 static NSString *cellIdentifier = @"OfferUITableViewCell";
@@ -94,7 +95,6 @@ static NSInteger rowHeight = 100;
         Offer *offer = (Offer *)bid.offerId;
         PFUser *author = (PFUser *)[offer.userId fetchIfNeeded];
         controller.author = author;
-        NSLog(@"%@", controller.author.email);
         [self.navigationController pushViewController:controller animated:YES];
     }
   

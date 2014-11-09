@@ -27,11 +27,6 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 - (void)viewDidLoad {
     self.title = @"All Offers";
     [super viewDidLoad];
-    UIBarButtonItem * addItemBtn = [[UIBarButtonItem alloc]
-                                    initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                    target:self
-                                    action:@selector(goToAddOffer)];
-    self.navigationItem.rightBarButtonItem = addItemBtn;
     
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];

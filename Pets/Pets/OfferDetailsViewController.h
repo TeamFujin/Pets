@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UILabel *labelDesc;
 @property (weak, nonatomic) IBOutlet UILabel *labelPrice;
+@property (weak, nonatomic) IBOutlet UILabel *labelAuthorName;
 @property (strong, nonatomic) Offer *offer;
 - (IBAction)actionWantPet:(id)sender;
 

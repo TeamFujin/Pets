@@ -41,7 +41,8 @@
     geocoder = [[CLGeocoder alloc] init];
     self.titleTextInput.delegate = self;
     self.descriptionTextInput.delegate = self;
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];//@"http://i.imgur.com/4ciIEEe.jpg"]]];
+    
+    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];
     
     self.imageView.image = image;
 }
@@ -184,10 +185,15 @@
 -(bool) validateOffer{
     NSString *title = self.titleTextInput.text;
     NSString *price = self.priceTextInput.text;
+    NSString *desc = self.descriptionTextInput.text;
     
     if(title.length == 0){
         [FTUtils showAlert:@"Error" withMessage:@"Title is required"];
         return false;
+    }
+    if(desc.length > 100){
+        [FTUtils showAlert:@"Error" withMessage:@"Description too long"];
+        return  false;
     }
     if(price.length == 0 || ![self validatePrice:price]){
         [FTUtils showAlert:@"Error" withMessage:@"Price in invalid"];
