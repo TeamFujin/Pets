@@ -33,15 +33,15 @@
     NSString *email = self.emailTextField.text;
     NSString *phone = self.phoneTextField.text;
     if(![self emailIsValid:email]){
-        [FTUtils showAlert:@"Error" withMessage:@"Invalid email"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Invalid email"];
     }
     else if(! [self phoneIsValid:phone]){
-        [FTUtils showAlert:@"Error" withMessage:@"Invalid phone number"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Invalid phone number"];
     }
     else{
         [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
             if (error) {
-                [FTUtils showAlert:@"Error" withMessage:@"Unable to connect to server."];
+                [FTUtils showAlert:@"We are sorry" withMessage:@"Unable to connect to server."];
             }
             else {
                 NSString *userName = [FBuser name];

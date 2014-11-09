@@ -23,21 +23,19 @@
 - (void)viewDidLoad {
     self.title = @"Edit Profile";
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (IBAction)saveTaped:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *phone = self.phoneTextField.text;
     if(![self emailIsValid:email]){
-        [FTUtils showAlert:@"Error" withMessage:@"Invalid email"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Invalid email"];
     }
     else if(! [self phoneIsValid:phone]){
-        [FTUtils showAlert:@"Error" withMessage:@"Invalid phone number"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Invalid phone number"];
     }
     else{
         PFUser *currUser = [PFUser currentUser];

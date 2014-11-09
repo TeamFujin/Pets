@@ -115,7 +115,7 @@
             if (!error) {
                 NSLog(@"The user cancelled the Facebook login.");
             } else {
-                [FTUtils showAlert:@"Error" withMessage:@"Unable to log in with Facebook"];
+                [FTUtils showAlert:@"We are sorry" withMessage:@"Unable to log in with Facebook"];
                 NSLog(@"An error occurred: %@", error);
                 errorMessage = [error localizedDescription];
             }
@@ -140,7 +140,7 @@
             [self performSegueWithIdentifier:@"ToAddContactInfo" sender:self];
         }
     }else{
-        [FTUtils showAlert:@"Error" withMessage:@"You are not logged in !"];
+        [FTUtils showAlert:@"Please authenticate" withMessage:@"You are not logged in!"];
     }
 }
 - (IBAction)helpTaped:(id)sender {

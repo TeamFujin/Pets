@@ -38,34 +38,33 @@
     if (self.offer) {
         FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
         [spinner startSpinning];
+        __weak OfferDetailsViewController *weakSelf = self;
         [db getDetailsForOffer:self.offer andBlock:^(PFObject *object, NSError *error) {
             [spinner stopSpinning];
             if(!error) {
-                self.offer = (Offer*) object;
-                [self.offer.userId fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                weakSelf.offer = (Offer*) object;
+                [weakSelf.offer.userId fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
                     PFUser *author = (PFUser *)[self.offer.userId fetchIfNeeded];
-                    self.labelAuthorName.text = author[@"displayName"];
+                    weakSelf.labelAuthorName.text = author[@"displayName"];
                 }];
-                self.labelTitle.text = self.offer.title;
-                self.labelDesc.text = self.offer.desc;
+                weakSelf.labelTitle.text = self.offer.title;
+                weakSelf.labelDesc.text = self.offer.desc;
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"dd.MM.yyyy HH:MM:SS"];
-                self.labelPublished.text = [formatter stringFromDate:self.offer.createdAt];
-                if ([self.offer.price isEqual:@0]) {
-                    self.labelPrice.text = @"FREE";
+                weakSelf.labelPublished.text = [formatter stringFromDate:self.offer.createdAt];
+                if ([weakSelf.offer.price isEqual:@0]) {
+                    weakSelf.labelPrice.text = @"FREE";
                 }
                 else{
-                    self.labelPrice.text = [NSString stringWithFormat:@"%@BGN", self.offer.price];
+                    weakSelf.labelPrice.text = [NSString stringWithFormat:@"%@BGN", self.offer.price];
                 }
                 
-                if(self.offer.photo) {
-                    NSData *data = [self.offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-                    self.imageViewPicture.image = [UIImage imageWithData:data ];
+                if(weakSelf.offer.photo) {
+                    NSData *data = [weakSelf.offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+                    weakSelf.imageViewPicture.image = [UIImage imageWithData:data ];
                 } else {
-                    self.imageViewPicture.image = nil;
+                    weakSelf.imageViewPicture.image = nil;
                 }
-
-                
             } else {
                 [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, we can't show you this pet's details right now"];
             }

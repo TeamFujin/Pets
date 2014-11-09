@@ -18,7 +18,6 @@
 @end
 
 @implementation OfferBidsTableViewController{
-    NSMutableArray *bidsData;
     FTDatabaseRequester *db;
     NSIndexPath *indexPathForApprovedBid;
 }
@@ -39,24 +38,17 @@ static NSString *labelTextApproved;
     [self.tableView registerNib:nib forCellReuseIdentifier:cellIdentifier];
     
     db = [[FTDatabaseRequester alloc] init];
-    //TODO: use static or weakSelf here
+    __weak OfferBidsTableViewController *weakSelf = self;
     [db getOfferBidsForOffer:self.offer andBlock:^(NSArray *bids, NSError *error) {
         if(!error) {
-            bidsData = [NSMutableArray arrayWithArray:bids];
+            weakSelf.bidsData = [NSMutableArray arrayWithArray:bids];
           //    NSLog(@"%@", bids);
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
         } else {
             [FTUtils showAlert:@"We are sorry" withMessage:@"We can't show you who wants your pet right now."];
             NSLog(@"Error in offerBids: %@", error);
         }
     }];
-    
-   // NSLog(@"self.offer: %@", self.offer);
-//    NSLog(@"before self.offer.active fromviewDidload: %d", self.offer.active);
-//    self.offer.active = @NO;
-//    NSLog(@"after self.offer.active fromviewDidload: %d", self.offer.active);
-//    self.offer.active = 0;
-//    NSLog(@"after self.offer.active fromviewDidload: %d", self.offer.active);
 }
 
 - (void)longPress:(UILongPressGestureRecognizer*)gesture
@@ -72,21 +64,15 @@ static NSString *labelTextApproved;
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return bidsData.count;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return bidsData.count;
+    return self.bidsData.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OfferBidsUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
    // NSLog(@"%@", cell);
-    Deal *deal = bidsData[indexPath.row];
+    Deal *deal = self.bidsData[indexPath.row];
     PFUser *user = deal[@"wanterId"];
     cell.labelName.text = [NSString stringWithFormat:@"%@", user[@"displayName"]];
     cell.labelApproved.tag = indexPath.row;
@@ -101,7 +87,7 @@ static NSString *labelTextApproved;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Get reference to receipt
-    Deal *deal = [bidsData objectAtIndex:indexPath.row];
+    Deal *deal = [self.bidsData objectAtIndex:indexPath.row];
     PFUser *user = deal[@"wanterId"];
     NSString *facebookId = user[@"facebookId"];
     //    NSLog(@"Password %@", user.password);
@@ -129,7 +115,7 @@ static NSString *labelTextApproved;
         NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
         if (!(indexPath == nil)){
             indexPathForApprovedBid = indexPath;
-            Deal *toBeApprovedDeal = bidsData[indexPath.row];
+            Deal *toBeApprovedDeal = self.bidsData[indexPath.row];
             if (toBeApprovedDeal.approved) {
                 [FTUtils showAlert:@"Already done" withMessage:@"You have already approved this person"];
             } else if(self.offer.active) {
@@ -142,10 +128,10 @@ static NSString *labelTextApproved;
      //       OfferBidsUITableViewCell* cell =
       //     [self.tableView cellForRowAtIndexPath:indexPath];//cellForItemAtIndexPath:indexPath];
        //     NSLog(@"cell.labelName.text: %@", cell.labelName.text);
-       //     NSLog(@"cell: %@", cell);
-        } else {
-            [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingers"];
-        }
+    //     NSLog(@"cell: %@", cell);
+    } else {
+        [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingers"];
+    }
 
 }
 
@@ -154,7 +140,7 @@ static NSString *labelTextApproved;
 //}
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     NSLog(@"Button index: %ld", buttonIndex);
-    Deal *approvedDeal = bidsData[indexPathForApprovedBid.row];
+    Deal *approvedDeal = self.bidsData[indexPathForApprovedBid.row];
     approvedDeal.offerId = self.offer;
     if(buttonIndex == 0 && indexPathForApprovedBid){
             NSLog(@"self.offer.active: %d", self.offer.active);
@@ -178,13 +164,13 @@ static NSString *labelTextApproved;
     
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
     if (!(indexPath == nil)){
-        Deal *deal = bidsData[indexPath.row];
+        Deal *deal = self.bidsData[indexPath.row];
         if (!deal.approved) {
             deal[@"deleted"] = @YES;
             __weak OfferBidsTableViewController *weakSelf = self;
             [deal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(succeeded) {
-                    [bidsData removeObjectAtIndex:indexPath.row];
+                    [weakSelf.bidsData removeObjectAtIndex:indexPath.row];
                     [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                 } else {
                     [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong and we couldn't delete this"];

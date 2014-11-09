@@ -56,7 +56,7 @@
 
 - (IBAction)takePhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [FTUtils showAlert:@"Error" withMessage:@"Device has no camera"];
+        [FTUtils showAlert:@"We are sorry" withMessage:@"Your device has no camera"];
     } else {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -69,7 +69,7 @@
 
 - (IBAction)selectPhoto:(id)sender {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        [FTUtils showAlert:@"Error" withMessage:@"Device has no camera"];
+        [FTUtils showAlert:@"We are sorry" withMessage:@"Your source isn't available"];
     } else {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
@@ -99,7 +99,7 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError: %@", error);
-    [FTUtils showAlert:@"Error" withMessage:@"Failed to get your location"];
+    [FTUtils showAlert:@"We are sorry" withMessage:@"Failed to get your location"];
 }
 
 
@@ -142,7 +142,7 @@
         offer.location.latitude = currentLatitude;
         offer.address = adress;
         
-           NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.05f);
+           NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
           PFFile *imageFile = [PFFile fileWithData:imageData];
           offer.photo = imageFile;
         FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
@@ -153,7 +153,7 @@
                 
                 [self.navigationController pushViewController:controller animated:YES];
             } else {
-                [FTUtils showAlert:@"Success" withMessage:@"Sorry, your offer could not be published!"];
+                [FTUtils showAlert:@"We are sorry" withMessage:@"Your offer could not be published!"];
                 NSLog(@"Errorr: %@", error);
             }
         }];
@@ -187,15 +187,15 @@
     NSString *desc = self.descriptionTextInput.text;
     
     if(title.length == 0){
-        [FTUtils showAlert:@"Error" withMessage:@"Title is required"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Title is required"];
         return false;
     }
     if(desc.length > 100){
-        [FTUtils showAlert:@"Error" withMessage:@"Description too long"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Description too long"];
         return  false;
     }
     if(price.length == 0 || ![self validatePrice:price]){
-        [FTUtils showAlert:@"Error" withMessage:@"Price in invalid"];
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Price in invalid"];
         return false;
     }
     return true;

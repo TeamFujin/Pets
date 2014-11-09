@@ -10,4 +10,5 @@
 #import "OfferDetailsViewController.h"
 
 @interface HomeTableViewController : UITableViewController
+@property (strong, nonatomic) NSMutableArray *data;
 @end

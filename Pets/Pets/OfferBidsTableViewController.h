@@ -13,4 +13,5 @@
 - (IBAction)longpress:(UILongPressGestureRecognizer*)sender;
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic) Offer *offer;
+@property (strong, nonatomic) NSMutableArray *bidsData;
 @end

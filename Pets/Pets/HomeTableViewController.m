@@ -20,7 +20,6 @@
 @implementation HomeTableViewController
 
 static NSInteger rowHeight = 105;
-static NSMutableArray *data;
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)viewDidLoad {
@@ -33,13 +32,14 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.tableView andSize:70 andScale:2.5f];
     [spinner startSpinning];
     
+    __weak HomeTableViewController *weakSelf = self;
     [db getAllActiveOffersWithBlock:^(NSArray *objects, NSError *error) {
         [spinner stopSpinning];
         if(!error) {
-            data = [NSMutableArray arrayWithArray:objects];
+            weakSelf.data = [NSMutableArray arrayWithArray:objects];
             [self.tableView reloadData];
         } else {
-            [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
+            [FTUtils showAlert:@"We are sorry" withMessage:@"We couldn't retrieve the offers."];
         }
     }];
 }
@@ -59,7 +59,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return data.count;
+    return self.data.count;
 }
 
 
@@ -68,7 +68,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     if (cell == nil) {
         cell = [[HomeUITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    Offer *offer = data[indexPath.row];
+    Offer *offer = self.data[indexPath.row];
     cell.labelTitle.text = offer.title;
     NSNumber *price = offer.price;
     if ([price isEqual:@0]) {
@@ -97,7 +97,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-     Offer *offer = data[indexPath.row];
+     Offer *offer = self.data[indexPath.row];
      if ([offer.userId.objectId isEqual:[PFUser currentUser].objectId]) {
          return YES;
      }
@@ -110,14 +110,14 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     if (editingStyle == UITableViewCellEditingStyleDelete) {
        // && ([offer.userId.objectId isEqual:[PFUser currentUser].objectId])) {
      //   if(offer.userId.objectId isEqual:[PFUser currentUser]) {
-        Offer *offer = data[indexPath.row];
+        Offer *offer = self.data[indexPath.row];
             offer.active = 0;
             __weak HomeTableViewController *weakSelf = self;
             [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if(succeeded) {
                     //     [weakSelf.tableView beginUpdates];
                   //  NSLog(@"Before remove: %lu", data.count);
-                    [data removeObjectAtIndex:indexPath.row];
+                    [weakSelf.data removeObjectAtIndex:indexPath.row];
                    // NSLog(@"After remove: %lu", data.count);
                     [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
                     //       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -133,7 +133,7 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
 {
     
     //Get reference to receipt
-    Offer *offer = [data objectAtIndex:indexPath.row];
+    Offer *offer = [self.data objectAtIndex:indexPath.row];
     
     OfferDetailsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"offerDetails"];
     
