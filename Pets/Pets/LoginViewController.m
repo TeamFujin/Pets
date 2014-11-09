@@ -27,7 +27,9 @@
 - (void)viewDidLoad {
     self.title = @"Login";
     [super viewDidLoad];
-    [self saveJokesToCoreData];
+    //[self saveJokesToCoreData];
+    FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
+    [dispenser showJoke];
     [self startAsyncTask];
 }
 
@@ -40,6 +42,9 @@
             NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
             [joke setValue:jokeBody forKey:@"body"];
         }
+        FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
+        [dispenser showJoke];
+        [context save:&error];
     }];
 }
 

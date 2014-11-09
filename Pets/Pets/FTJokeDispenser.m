@@ -28,7 +28,6 @@
     FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
     
     [db getJokesWithBlock:^(NSArray *objects, NSError *error) {
-        NSDictionary *dict = (NSDictionary *)objects;
         for (NSDictionary *obj in objects) {
             NSString *jokeBody = [obj objectForKey:@"Joke"];
             NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
