@@ -34,7 +34,7 @@
 }
 
 - (void)viewDidLoad {
-    self.title = @"Add New Offer";
+    self.title = @"Add New Pet";
     [super viewDidLoad];
     [self loadHardcodedImage];
     [self initializeLocationManager];

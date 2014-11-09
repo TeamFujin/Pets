@@ -18,7 +18,7 @@
 }
 
 - (void)viewDidLoad {
-    [self.tabBarController setTitle:@"Inactive Offers"];
+    [self.tabBarController setTitle:@"Pets you gave"];
     self.tableView = self.tableViewInactiveOffers;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];

@@ -17,7 +17,7 @@
 }
 
 - (void)viewDidLoad {
-    [self.tabBarController setTitle:@"Rejected Bids"];
+    [self.tabBarController setTitle:@"Rejected Pets"];
     self.tableView = self.tableViewRejectedBids;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];

@@ -51,7 +51,7 @@
                                     <action selector="continueTaped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w9a-xI-Dcj"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4Uk-rQ-Xyg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4Uk-rQ-Xyg">
                                 <rect key="frame" x="531" y="465" width="75" height="135"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The mobile pet market" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jc2-iZ-VhC">
@@ -105,7 +105,7 @@
             </objects>
             <point key="canvasLocation" x="-62" y="142"/>
         </scene>
-        <!--Inactive offers-->
+        <!--Inactive-->
         <scene sceneID="DhO-TV-hgp">
             <objects>
                 <viewController id="biy-YM-IGo" customClass="InactiveOffersViewController" sceneMemberID="viewController">
@@ -134,7 +134,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Inactive offers" id="fjd-h7-B1c"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Inactive" id="fjd-h7-B1c"/>
                     <connections>
                         <outlet property="tableViewInactiveOffers" destination="3fp-Ry-bYi" id="9LM-Ca-uAZ"/>
                         <segue destination="HW3-U9-p9y" kind="show" id="hb6-o7-wTe"/>
@@ -205,7 +205,7 @@
             </objects>
             <point key="canvasLocation" x="4060" y="-525"/>
         </scene>
-        <!--Active offers-->
+        <!--Active-->
         <scene sceneID="c3p-ON-qn4">
             <objects>
                 <viewController id="7QG-Nx-ler" customClass="ActiveOffersViewController" sceneMemberID="viewController">
@@ -234,7 +234,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Active offers" id="YOE-ue-qam"/>
+                    <tabBarItem key="tabBarItem" title="Active" id="YOE-ue-qam"/>
                     <connections>
                         <outlet property="tableViewActiveOffers" destination="PaO-Be-22d" id="OUc-rX-sUI"/>
                         <segue destination="HW3-U9-p9y" kind="show" identifier="OfferBidsSegue" id="GeQ-ZQ-Trt"/>
@@ -451,8 +451,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jr7-Nt-bY1">
-                                <rect key="frame" x="16" y="313" width="77" height="30"/>
-                                <state key="normal" title="Your Offers">
+                                <rect key="frame" x="17" y="313" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="7ag-FK-yGv"/>
+                                </constraints>
+                                <state key="normal" title="Pets you give">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -460,8 +463,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGc-SP-0Py">
-                                <rect key="frame" x="16" y="351" width="66" height="30"/>
-                                <state key="normal" title="Your Bids">
+                                <rect key="frame" x="15" y="351" width="105" height="30"/>
+                                <state key="normal" title="Pets you want">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -469,7 +472,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAe-N9-tr0">
-                                <rect key="frame" x="16" y="389" width="49" height="30"/>
+                                <rect key="frame" x="17" y="389" width="49" height="30"/>
                                 <state key="normal" title="Logout">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -505,25 +508,22 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIC-dG-ivV">
-                                <rect key="frame" x="16" y="237" width="63" height="30"/>
-                                <state key="normal" title="All Offers">
+                                <rect key="frame" x="22" y="237" width="137" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="137" id="x2S-hE-alb"/>
+                                </constraints>
+                                <state key="normal" title="Pets waiting for you">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="qqk-t1-3xC" kind="show" id="GHu-To-Ksy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi1-xo-qeq">
-                                <rect key="frame" x="16" y="275" width="105" height="30"/>
-                                <state key="normal" title="Add New Offer">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1zm-Wi-V1Z" kind="show" id="R88-HF-2HD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMt-F2-KF2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMt-F2-KF2">
                                 <rect key="frame" x="161" y="199" width="76" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="76" id="dyg-ft-Rho"/>
+                                </constraints>
                                 <state key="normal" title="Edit Profile">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -531,28 +531,45 @@
                                     <segue destination="ZNn-ph-ssB" kind="show" id="ouC-Q5-Jwo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi1-xo-qeq">
+                                <rect key="frame" x="17" y="275" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="iqm-6T-qs5"/>
+                                </constraints>
+                                <state key="normal" title="Add New Pet">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="1zm-Wi-V1Z" kind="show" id="R88-HF-2HD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Wi1-xo-qeq" firstAttribute="top" secondItem="vIC-dG-ivV" secondAttribute="bottom" constant="8" symbolic="YES" id="1k3-qN-RrT"/>
                             <constraint firstItem="rj3-DR-Lie" firstAttribute="top" secondItem="crw-Ba-hwH" secondAttribute="bottom" constant="16" id="6Fg-yv-Sfj"/>
                             <constraint firstItem="SxT-FF-ZNO" firstAttribute="top" secondItem="s1s-0C-gZn" secondAttribute="bottom" constant="8" id="6G2-7k-gXI"/>
+                            <constraint firstItem="Wi1-xo-qeq" firstAttribute="leading" secondItem="n1b-0S-AKI" secondAttribute="leadingMargin" constant="1" id="8bJ-Ri-Ghr"/>
+                            <constraint firstItem="kGc-SP-0Py" firstAttribute="centerX" secondItem="jr7-Nt-bY1" secondAttribute="centerX" id="8ce-rm-hxd"/>
                             <constraint firstItem="crw-Ba-hwH" firstAttribute="trailing" secondItem="OJO-PU-qK1" secondAttribute="trailing" id="CWu-1m-AZa"/>
                             <constraint firstItem="OJO-PU-qK1" firstAttribute="top" secondItem="s1s-0C-gZn" secondAttribute="bottom" constant="24" id="Ff6-d2-kuj"/>
                             <constraint firstItem="kGc-SP-0Py" firstAttribute="top" secondItem="jr7-Nt-bY1" secondAttribute="bottom" constant="8" symbolic="YES" id="Lge-MK-oYS"/>
                             <constraint firstItem="vIC-dG-ivV" firstAttribute="top" secondItem="s1s-0C-gZn" secondAttribute="bottom" constant="173" id="Sla-98-LOQ"/>
                             <constraint firstItem="cAe-N9-tr0" firstAttribute="top" secondItem="kGc-SP-0Py" secondAttribute="bottom" constant="8" symbolic="YES" id="VgL-AI-wu1"/>
-                            <constraint firstItem="kGc-SP-0Py" firstAttribute="leading" secondItem="cAe-N9-tr0" secondAttribute="leading" id="XZ2-GO-URo"/>
+                            <constraint firstItem="kGc-SP-0Py" firstAttribute="leading" secondItem="cAe-N9-tr0" secondAttribute="leading" constant="-2" id="XZ2-GO-URo"/>
                             <constraint firstItem="crw-Ba-hwH" firstAttribute="trailing" secondItem="rj3-DR-Lie" secondAttribute="trailing" id="YkO-qN-2wu"/>
-                            <constraint firstItem="kGc-SP-0Py" firstAttribute="leading" secondItem="jr7-Nt-bY1" secondAttribute="leading" id="clQ-Ey-4xN"/>
+                            <constraint firstItem="kGc-SP-0Py" firstAttribute="leading" secondItem="jr7-Nt-bY1" secondAttribute="leading" constant="-2" id="clQ-Ey-4xN"/>
                             <constraint firstItem="crw-Ba-hwH" firstAttribute="leading" secondItem="OJO-PU-qK1" secondAttribute="leading" id="clt-C3-RfO"/>
+                            <constraint firstItem="IMt-F2-KF2" firstAttribute="leading" secondItem="rj3-DR-Lie" secondAttribute="leading" id="dMc-on-eZA"/>
                             <constraint firstItem="vIC-dG-ivV" firstAttribute="top" secondItem="SxT-FF-ZNO" secondAttribute="bottom" constant="8" id="db8-TE-bkV"/>
                             <constraint firstItem="OJO-PU-qK1" firstAttribute="leading" secondItem="SxT-FF-ZNO" secondAttribute="trailing" constant="8" id="eMj-1D-c0C"/>
                             <constraint firstItem="jr7-Nt-bY1" firstAttribute="top" secondItem="vIC-dG-ivV" secondAttribute="bottom" constant="46" id="gBW-b1-Vqp"/>
                             <constraint firstItem="rj3-DR-Lie" firstAttribute="leading" secondItem="crw-Ba-hwH" secondAttribute="leading" id="jQb-8m-rDb"/>
                             <constraint firstItem="crw-Ba-hwH" firstAttribute="leading" secondItem="n1b-0S-AKI" secondAttribute="leading" constant="161" id="qMS-PT-iDr"/>
-                            <constraint firstItem="vIC-dG-ivV" firstAttribute="leading" secondItem="jr7-Nt-bY1" secondAttribute="leading" id="qQl-ds-dZY"/>
+                            <constraint firstItem="vIC-dG-ivV" firstAttribute="leading" secondItem="jr7-Nt-bY1" secondAttribute="leading" constant="5" id="qQl-ds-dZY"/>
                             <constraint firstItem="crw-Ba-hwH" firstAttribute="top" secondItem="OJO-PU-qK1" secondAttribute="bottom" constant="16" id="uh3-pS-Jch"/>
-                            <constraint firstItem="SxT-FF-ZNO" firstAttribute="leading" secondItem="vIC-dG-ivV" secondAttribute="leading" id="vRz-WV-axW"/>
+                            <constraint firstItem="SxT-FF-ZNO" firstAttribute="leading" secondItem="vIC-dG-ivV" secondAttribute="leading" constant="-6" id="vRz-WV-axW"/>
+                            <constraint firstItem="IMt-F2-KF2" firstAttribute="bottom" secondItem="SxT-FF-ZNO" secondAttribute="bottom" id="znK-kF-LYq"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1093,7 +1110,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uCZ-hd-2aZ"/>
-        <segue reference="GeQ-ZQ-Trt"/>
-        <segue reference="9Vc-RW-yXX"/>
+        <segue reference="R88-HF-2HD"/>
+        <segue reference="hb6-o7-wTe"/>
     </inferredMetricsTieBreakers>
 </document>

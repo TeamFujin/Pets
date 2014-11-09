@@ -15,6 +15,7 @@
 @implementation BidAuthorContactsViewController
 
 - (void)viewDidLoad {
+    self.title = @"Contact info";
     [super viewDidLoad];
     self.nameLabel.text = self.author[@"displayName"];
     self.emaiLabel.text = self.author[@"contactEmail"];

@@ -20,7 +20,7 @@
 }
 
 - (void)viewDidLoad {
-    self.title = @"Details";
+    self.title = @"Pet Details";
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
     [self configureView];

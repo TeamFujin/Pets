@@ -18,7 +18,7 @@
 }
 
 - (void)viewDidLoad {
-    [self.tabBarController setTitle:@"Pendings Bids"];
+    [self.tabBarController setTitle:@"Pendings Pets"];
     self.tableView = self.tableViewPendingBids;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];

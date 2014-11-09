@@ -19,7 +19,7 @@
 }
 
 - (void)viewDidLoad {
-    [self.tabBarController setTitle:@"Approved Bids"];
+    [self.tabBarController setTitle:@"Approved Pets"];
     self.tableView = self.tableViewApprovedBids;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];

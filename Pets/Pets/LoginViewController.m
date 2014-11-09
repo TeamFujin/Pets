@@ -59,17 +59,9 @@
     gravity.angle = -M_E;
     [animator addBehavior:gravity];
     
-//    UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[self.imageViewCat] mode:UIPushBehaviorModeInstantaneous];
-//    push.pushDirection = CGVectorMake(0., 10.);
-//    [animator addBehavior:push];
-    
     UICollisionBehavior *collision = [[UICollisionBehavior alloc] initWithItems:@[self.imageViewCat]];
     [collision setTranslatesReferenceBoundsIntoBoundary:YES];
     [animator addBehavior:collision];
-    
-//    UIDynamicItemBehavior *dynamic = [[UIDynamicItemBehavior alloc] initWithItems:@[self.imageViewCat]];
-//    dynamic.elasticity = 0.7;
-//    [animator addBehavior:dynamic];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -98,10 +90,6 @@
         });
     });
 }
-
-//-(void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self resignFirstResponder];
@@ -156,7 +144,7 @@
     }
 }
 - (IBAction)helpTaped:(id)sender {
-    NSString *message = @"This is Pets, a native iOS app developed for the Mobile Apps track of Telerik Academy 2014. \n If you have any suggestions/bug reports, you contact us at: \n https://github.com/martin-dzhonov \n https://github.com/ssnaky";
+    NSString *message = @"This is Pets, a native iOS app developed for the Mobile Apps track of Telerik Academy 2014. \n If you have any suggestions/bug reports, you can contact us at: \n https://github.com/martin-dzhonov \n https://github.com/ssnaky";
     [FTUtils showAlert:@"Hi!" withMessage:message];
 }
 

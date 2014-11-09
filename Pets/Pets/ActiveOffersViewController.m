@@ -20,7 +20,7 @@
 }
 
 - (void)viewDidLoad {
-    [self.tabBarController setTitle:@"Active Offers"];
+    [self.tabBarController setTitle:@"Pets you give"];
     self.tableView = self.tableViewActiveOffers;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];

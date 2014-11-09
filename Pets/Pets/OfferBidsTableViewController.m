@@ -32,6 +32,7 @@ static NSString *labelTextApproved;
 }
 
 - (void)viewDidLoad {
+    self.title = @"Potential owners";
     self.tableView.rowHeight = 44;
     [super viewDidLoad];
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];

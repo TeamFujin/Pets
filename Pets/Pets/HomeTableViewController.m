@@ -24,7 +24,7 @@ static NSMutableArray *data;
 static NSString *cellIdentifier = @"HomeUITableViewCell";
 
 - (void)viewDidLoad {
-    self.title = @"All Offers";
+    self.title = @"All Pets";
     [super viewDidLoad];
     
     UINib *nib = [UINib nibWithNibName:cellIdentifier bundle:nil];

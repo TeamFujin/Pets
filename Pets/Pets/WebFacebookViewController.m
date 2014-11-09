@@ -15,6 +15,7 @@
 @implementation WebFacebookViewController
 
 - (void)viewDidLoad {
+    self.title = @"Facebook profile";
     [super viewDidLoad];
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", self.facebookId]];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
