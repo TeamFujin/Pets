@@ -48,6 +48,9 @@
                 }];
                 self.labelTitle.text = self.offer.title;
                 self.labelDesc.text = self.offer.desc;
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"dd.MM.yyyy HH:MM:SS"];
+                self.labelPublished.text = [formatter stringFromDate:self.offer.createdAt];
                 if ([self.offer.price isEqual:@0]) {
                     self.labelPrice.text = @"FREE";
                 }

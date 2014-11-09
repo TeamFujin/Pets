@@ -73,15 +73,17 @@ static NSInteger rowHeight = 100;
     else{
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }    if(offer.photo) {
-        NSData *data = [offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
+        NSData *data = [offer.photo getData];
         cell.image.image = [UIImage imageWithData:data];
     }
     else {
         cell.image.image = nil;
     }
     
+    [cell setClipsToBounds:YES];
     return cell;
 }
+
 -(void)yourButtonClicked:(UIButton*)sender
 {
     Deal *bid = self.data[sender.tag];
@@ -96,6 +98,10 @@ static NSInteger rowHeight = 100;
         }];
         
     }
+}
+
+-(void) showOfferAuthorContacts{
+    NSLog(@"Show author contacts");
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return rowHeight;

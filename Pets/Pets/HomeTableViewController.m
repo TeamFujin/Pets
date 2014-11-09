@@ -85,11 +85,12 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
         if(offer.photo) {
             [offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
               cell.imageViewPicture.image = [UIImage imageWithData:data ];
-            }];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-            
+            }];
         } else {
             cell.imageViewPicture.image = nil;
         }
+    
+    [cell setClipsToBounds:YES];
     return cell;
 }
 

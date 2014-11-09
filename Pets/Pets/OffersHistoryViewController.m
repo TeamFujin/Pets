@@ -61,13 +61,14 @@ static NSInteger rowHeight = 100;
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }
     if(offer.photo) {
-        NSData *data = [offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        cell.imageViewPicture.image = [UIImage imageWithData:data];
-    }
-    else {
+        [offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            cell.imageViewPicture.image = [UIImage imageWithData:data ];
+        }];
+    } else {
         cell.imageViewPicture.image = nil;
     }
     
+    [cell setClipsToBounds:YES];
     return cell;
 }
 

@@ -21,15 +21,15 @@
 @end
 
 @implementation LoginViewController{
-    
+    UIDynamicAnimator *animator;
 }
 
 - (void)viewDidLoad {
     self.title = @"Login";
     [super viewDidLoad];
-    //[self saveJokesToCoreData];
-    FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
-    [dispenser showJoke];
+  //  [self saveJokesToCoreData];
+  //  FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
+   // [dispenser showJoke];
     [self startAsyncTask];
 }
 
@@ -46,6 +46,30 @@
         [dispenser showJoke];
         [context save:&error];
     }];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self becomeFirstResponder];
+    
+    animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+    
+    UIGravityBehavior *gravity = [[UIGravityBehavior alloc] initWithItems:@[self.imageViewCat]];
+    gravity.magnitude = 0.01;
+    gravity.angle = -M_E;
+    [animator addBehavior:gravity];
+    
+//    UIPushBehavior *push = [[UIPushBehavior alloc] initWithItems:@[self.imageViewCat] mode:UIPushBehaviorModeInstantaneous];
+//    push.pushDirection = CGVectorMake(0., 10.);
+//    [animator addBehavior:push];
+    
+    UICollisionBehavior *collision = [[UICollisionBehavior alloc] initWithItems:@[self.imageViewCat]];
+    [collision setTranslatesReferenceBoundsIntoBoundary:YES];
+    [animator addBehavior:collision];
+    
+//    UIDynamicItemBehavior *dynamic = [[UIDynamicItemBehavior alloc] initWithItems:@[self.imageViewCat]];
+//    dynamic.elasticity = 0.7;
+//    [animator addBehavior:dynamic];
 }
 
 - (NSManagedObjectContext *)managedObjectContext {
@@ -75,10 +99,9 @@
     });
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self becomeFirstResponder];
-}
+//-(void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self resignFirstResponder];

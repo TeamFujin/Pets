@@ -42,17 +42,16 @@
 -(void)getPersonalInfo{
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
     [spinner startSpinning];
+   // __weak ProfileViewController *weakSelf = self;
     [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *FBuser, NSError *error) {
+        [spinner stopSpinning];
         if (error) {
             [FTUtils showAlert:@"Error" withMessage:@"Couldn't fetch your Facebook profile"];
         }
         else {
-            NSString *userName = [FBuser name];
-            
             NSString *userImageURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [FBuser objectID]];
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:userImageURL]];
             self.profilePic.image = [UIImage imageWithData:imageData];
-            [spinner stopSpinning];
         }
     }];
     PFUser *currUser = [PFUser currentUser];
