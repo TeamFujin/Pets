@@ -76,62 +76,54 @@ static NSString *cellIdentifier = @"HomeUITableViewCell";
     } else{
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }
-//    if(offer.picture) {
-//        NSData *data = [[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-//        cell.imageViewPicture.image = [UIImage imageWithData:data];
-//    } else {
-//        cell.imageViewPicture.image = nil;
-//    }
-        if(offer.photo) {
-            [offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-              cell.imageViewPicture.image = [UIImage imageWithData:data ];
-            }];
-        } else {
-            cell.imageViewPicture.image = nil;
-        }
+    if(offer.photo) {
+        [offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            cell.imageViewPicture.image = [UIImage imageWithData:data ];
+        }];
+    } else {
+        cell.imageViewPicture.image = nil;
+    }
     
     [cell setClipsToBounds:YES];
     return cell;
 }
 
 
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-     Offer *offer = self.data[indexPath.row];
-     if ([offer.userId.objectId isEqual:[PFUser currentUser].objectId]) {
-         return YES;
-     }
-     
-     return NO;
- }
- 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    Offer *offer = self.data[indexPath.row];
+    if ([offer.userId.objectId isEqual:[PFUser currentUser].objectId]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-       // && ([offer.userId.objectId isEqual:[PFUser currentUser].objectId])) {
-     //   if(offer.userId.objectId isEqual:[PFUser currentUser]) {
+        // && ([offer.userId.objectId isEqual:[PFUser currentUser].objectId])) {
+        //   if(offer.userId.objectId isEqual:[PFUser currentUser]) {
         Offer *offer = self.data[indexPath.row];
-            offer.active = 0;
-            __weak HomeTableViewController *weakSelf = self;
-            [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if(succeeded) {
-                    //     [weakSelf.tableView beginUpdates];
-                  //  NSLog(@"Before remove: %lu", data.count);
-                    [weakSelf.data removeObjectAtIndex:indexPath.row];
-                   // NSLog(@"After remove: %lu", data.count);
-                    [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                    //       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                    //  [weakSelf.tableView endUpdates];
-                } else {
-                    [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you can't delete your pet offer right now"];
-                }
-            }];
-       // }
+        offer.active = 0;
+        __weak HomeTableViewController *weakSelf = self;
+        [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(succeeded) {
+                //     [weakSelf.tableView beginUpdates];
+                //  NSLog(@"Before remove: %lu", data.count);
+                [weakSelf.data removeObjectAtIndex:indexPath.row];
+                // NSLog(@"After remove: %lu", data.count);
+                [weakSelf.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                //       [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                //  [weakSelf.tableView endUpdates];
+            } else {
+                [FTUtils showAlert:@"We are sorry" withMessage:@"Unfortunatelly, you can't delete your pet offer right now"];
+            }
+        }];
+        // }
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     //Get reference to receipt
     Offer *offer = [self.data objectAtIndex:indexPath.row];
     

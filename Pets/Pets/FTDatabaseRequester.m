@@ -30,12 +30,9 @@
 
 -(void)getDetailsForOffer: (Offer*) offer
                  andBlock: (void (^)(PFObject *object, NSError *error)) block{
-    NSLog(@"in getDetailsForOffer before query");
     [offer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        NSLog(@"in block");
         block(object, error);
     }];
-    NSLog(@"in getDetailsForOffer after query");
 }
 
 -(void)addDealToDbWithDeal: (Deal *) deal
@@ -61,12 +58,6 @@
 
 -(void)getActiveOffersForUser:(PFObject*) user
                      andBlock:(void (^)(NSArray *offers, NSError *error)) block{
-//    PFQuery *query = [PFQuery queryWithClassName:[Offer parseClassName]];
-//    [query whereKey:@"userId" equalTo:user];
-//    [query whereKey:@"active" equalTo:@YES];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *offers, NSError *error) {
-//        block(offers, error);
-//    }];
     [self getOffersForUser:user andActive:@YES andBlock:block];
 }
 
@@ -98,13 +89,7 @@
 
 -(void)updateDealForApprovalWithDeal: (Deal*) deal
           andBlock: (void (^)(BOOL succeeded, NSError *error)) block{
-    NSLog(@"Deal from ftdata... : %@", deal);
     deal.approved = @YES;
-    
-//    Offer *offer = deal.offerId;
-//    offer.active = @NO;
-//    NSLog(@"Offer from ftdata... : %@", offer);
-//    deal.offerId = offer;
     deal.offerId.active = 0;
     [deal saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         block(succeeded, error);

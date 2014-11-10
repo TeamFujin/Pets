@@ -44,8 +44,9 @@
             if(!error) {
                 weakSelf.offer = (Offer*) object;
                 [weakSelf.offer.userId fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-                    PFUser *author = (PFUser *)[self.offer.userId fetchIfNeeded];
-                    weakSelf.labelAuthorName.text = author[@"displayName"];
+                    [self.offer.userId fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+                        weakSelf.labelAuthorName.text = object[@"displayName"];
+                    }];
                 }];
                 weakSelf.labelTitle.text = self.offer.title;
                 weakSelf.labelDesc.text = self.offer.desc;
@@ -60,8 +61,9 @@
                 }
                 
                 if(weakSelf.offer.photo) {
-                    NSData *data = [weakSelf.offer.photo getData];//[[NSData alloc]initWithBase64EncodedString:offer.picture options:NSDataBase64DecodingIgnoreUnknownCharacters];
-                    weakSelf.imageViewPicture.image = [UIImage imageWithData:data ];
+                    [weakSelf.offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                        weakSelf.imageViewPicture.image = [UIImage imageWithData:data ];
+                    }];
                 } else {
                     weakSelf.imageViewPicture.image = nil;
                 }
@@ -77,24 +79,13 @@
 }
 
 - (IBAction)actionWantPet:(id)sender {
-    // NSLog(@"self.offer.userId : %@", self.offer.userId );
-    // NSLog(@"[PFUser currentUser].objectId: %@", [PFUser currentUser].objectId );
     NSString *userId = self.offer.userId.objectId;
     NSString *offerId = self.offer.objectId;
     NSString *currUserId = [PFUser currentUser].objectId;
-    //  NSLog(@"offerId: %@", offerId);
-    // NSLog(@"userId: %@", userId);
-    //
-    //    NSLog(@"deals: %@", deals);
-    //    if(!error) {
-    //        if(deals.count > 0) {
-    //            didApply = 1;
-    //        }
-    //    }
+
     if(!([currUserId isEqual:userId])) {
         [db checkIfAlreadyAppliedForOffer:offerId andUser:currUserId andBlock:^(NSArray *deals, NSError *error) {
             if(!error) {
-                NSLog(@"deals: %@", deals);
                 if(!(deals.count > 0)) {
                     Deal *deal = [[Deal alloc] init];
                     deal.wanterId = [PFUser currentUser];

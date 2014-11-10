@@ -73,8 +73,9 @@ static NSInteger rowHeight = 100;
     else{
         cell.labelPrice.text = [NSString stringWithFormat:@"%@ BGN", price];
     }    if(offer.photo) {
-        NSData *data = [offer.photo getData];
-        cell.image.image = [UIImage imageWithData:data];
+        [offer.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+             cell.image.image = [UIImage imageWithData:data];
+        }];
     }
     else {
         cell.image.image = nil;

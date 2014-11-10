@@ -18,6 +18,7 @@
 #import "FTDatabaseRequester.h"
 
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @end
 
 @implementation LoginViewController{
@@ -27,26 +28,11 @@
 - (void)viewDidLoad {
     self.title = @"Login";
     [super viewDidLoad];
-  //  [self saveJokesToCoreData];
-  //  FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
-   // [dispenser showJoke];
+    [self populateCoreData];
     [self startAsyncTask];
 }
 
-- (void) saveJokesToCoreData{
-    NSManagedObjectContext *context = [self managedObjectContext];
-    FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-    [db getJokesWithBlock:^(NSArray *objects, NSError *error) {
-        for (NSDictionary *obj in objects) {
-            NSString *jokeBody = [obj objectForKey:@"Joke"];
-            NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
-            [joke setValue:jokeBody forKey:@"body"];
-        }
-        FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
-        [dispenser showJoke];
-        [context save:&error];
-    }];
-}
+
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -64,13 +50,21 @@
     [animator addBehavior:collision];
 }
 
-- (NSManagedObjectContext *)managedObjectContext {
-    NSManagedObjectContext *context = nil;
-    id delegate = [[UIApplication sharedApplication] delegate];
-    if ([delegate performSelector:@selector(managedObjectContext)]) {
-        context = [delegate managedObjectContext];
+- (void) populateCoreData{
+    if(![self isDBFilled]){
+        NSManagedObjectContext *context = [self managedObjectContext];
+        FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+        [db getJokesWithBlock:^(NSArray *objects, NSError *error) {
+            for (NSDictionary *obj in objects) {
+                NSString *jokeBody = [obj objectForKey:@"Joke"];
+                NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
+                [joke setValue:jokeBody forKey:@"body"];
+            }
+            FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
+            [dispenser showJoke];
+            [context save:&error];
+        }];
     }
-    return context;
 }
 
 - (void) startAsyncTask{
@@ -79,7 +73,7 @@
         while (true) {
             BOOL connectionAvailable = [FTUtils isConnectionAvailable];
             if (connectionAvailable != 1) {
-              break;
+                break;
             }
             [NSThread sleepForTimeInterval:2.0];
         }
@@ -97,41 +91,39 @@
 }
 
 - (IBAction)fbLoginButtonTaped:(id)sender {
+    
     NSArray *permissionsArray = @[ @"user_about_me", @"email", @"user_birthday", @"user_location"];
-   
     FTSpinner *spinner = [[FTSpinner alloc] initWithView:self.view andSize:70 andScale:2.5f];
     [spinner startSpinning];
-    if ([PFUser currentUser] && // Check if user is cached
-        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+    
+    if ([self isUserLoggedIn]) {
         [spinner stopSpinning];
         [FTUtils showAlert:@"Um.." withMessage:@"You are already logged in"];
     }
     else{
-    [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
-        [spinner stopSpinning];
-        
-        if (!user) {
-            NSString *errorMessage = nil;
-            if (!error) {
-                NSLog(@"The user cancelled the Facebook login.");
+        [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
+            [spinner stopSpinning];
+            if (!user) {
+                NSString *errorMessage = nil;
+                if (!error) {
+                    NSLog(@"The user cancelled the Facebook login.");
+                } else {
+                    [FTUtils showAlert:@"We are sorry" withMessage:@"Unable to log in with Facebook"];
+                    NSLog(@"An error occurred: %@", error);
+                    errorMessage = [error localizedDescription];
+                }
             } else {
-                [FTUtils showAlert:@"We are sorry" withMessage:@"Unable to log in with Facebook"];
-                NSLog(@"An error occurred: %@", error);
-                errorMessage = [error localizedDescription];
+                if (user.isNew) {
+                    NSLog(@"User with facebook signed up and logged in!");
+                } else {
+                    NSLog(@"User with facebook logged in!");
+                }
             }
-        } else {
-            if (user.isNew) {
-                NSLog(@"User with facebook signed up and logged in!");
-            } else {
-                NSLog(@"User with facebook logged in!");
-            }
-        }
-    }];
+        }];
     }
 }
 - (IBAction)continueTaped:(id)sender {
-    if ([PFUser currentUser] && // Check if user is cached
-        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+    if ([self isUserLoggedIn]) {
         PFUser *currUser = [PFUser currentUser];
         if(currUser[@"contactEmail"] != nil && currUser[@"contactPhone"] != nil){
             [self performSegueWithIdentifier:@"ToProfile" sender:self];
@@ -150,6 +142,36 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    NSManagedObjectContext *context = nil;
+    id delegate = [[UIApplication sharedApplication] delegate];
+    if ([delegate performSelector:@selector(managedObjectContext)]) {
+        context = [delegate managedObjectContext];
+    }
+    return context;
+}
+
+- (BOOL) isUserLoggedIn{
+    if ([PFUser currentUser] &&
+        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        return true;
+    }
+    return false;
+}
+
+- (BOOL)isDBFilled {
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Joke"];
+    NSMutableArray *jokes = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    if (!jokes) {
+        return false;
+    }
+    if (jokes.count == 0) {
+        return false;
+    }
+    return true;
 }
 
 @end
