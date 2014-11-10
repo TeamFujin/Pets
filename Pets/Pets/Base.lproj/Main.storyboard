@@ -291,7 +291,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asd@abv.bg" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwc-mi-MrI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gwc-mi-MrI">
                                 <rect key="frame" x="89" y="127" width="187" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187" id="23e-qW-9Bx"/>
@@ -299,7 +299,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0878787878" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-9u-CNx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wdq-9u-CNx">
                                 <rect key="frame" x="87" y="184" width="187" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187" id="d4v-aq-OHC"/>
@@ -1110,7 +1110,7 @@
         <image name="cat.jpg" width="75" height="190"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uCZ-hd-2aZ"/>
+        <segue reference="ict-Bk-6Jr"/>
         <segue reference="R88-HF-2HD"/>
         <segue reference="hb6-o7-wTe"/>
     </inferredMetricsTieBreakers>

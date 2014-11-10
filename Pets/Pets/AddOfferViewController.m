@@ -40,7 +40,7 @@
     self.descriptionTextInput.delegate = self;
     
     //UIImage *image = self.imageView.image;
-    int r = arc4random() % 5;
+    int r = arc4random() % 6;
     NSString *index = [NSString stringWithFormat:@"%d", r];
     NSString *imgName = [NSString stringWithFormat:@"%@%@%@", @"pet", index, @".jpg"];
     UIImage *image = [UIImage imageNamed:imgName];

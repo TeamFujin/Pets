@@ -59,8 +59,6 @@
                     NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
                     [joke setValue:jokeBody forKey:@"body"];
                 }
-                FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
-                [dispenser showJoke];
                 [context save:&error];
             }];
         }
@@ -115,6 +113,7 @@
             } else {
                 if (user.isNew) {
                     NSLog(@"User with facebook signed up and logged in!");
+                    [FTUtils showAlert:@"Login sucessfull" withMessage: @"Welcome"];
                 } else {
                     NSLog(@"User with facebook logged in!");
                 }
