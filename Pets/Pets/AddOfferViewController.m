@@ -39,7 +39,11 @@
     self.titleTextInput.delegate = self;
     self.descriptionTextInput.delegate = self;
     
-    UIImage *image = self.imageView.image;
+    //UIImage *image = self.imageView.image;
+    int r = arc4random() % 5;
+    NSString *index = [NSString stringWithFormat:@"%d", r];
+    NSString *imgName = [NSString stringWithFormat:@"%@%@%@", @"pet", index, @".jpg"];
+    UIImage *image = [UIImage imageNamed:imgName];
     UIGraphicsBeginImageContext(CGSizeMake(200, 200));
     [image drawInRect: CGRectMake(0, 0, 200, 200)];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
