@@ -45,7 +45,6 @@ static NSString *labelTextApproved;
             [weakSelf.tableView reloadData];
         } else {
             [FTUtils showAlert:@"We are sorry" withMessage:@"We can't show you who wants your pet right now."];
-            NSLog(@"Error in offerBids: %@", error);
         }
     }];
 }
@@ -55,7 +54,6 @@ static NSString *labelTextApproved;
     if ( gesture.state == UIGestureRecognizerStateEnded ) {
         
         UICollectionViewCell *cellLongPressed = (UICollectionViewCell *) gesture.view;
-        NSLog(@"Gesture: %@", cellLongPressed);
     }
 }
 
@@ -97,7 +95,6 @@ static NSString *labelTextApproved;
 }
 
 - (IBAction)longpress:(UILongPressGestureRecognizer*)sender {
-    NSLog(@"Long press");
     if (sender.state != UIGestureRecognizerStateEnded) {
         return;
     }
@@ -121,11 +118,9 @@ static NSString *labelTextApproved;
 }
 
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    NSLog(@"Button index: %ld", buttonIndex);
     Deal *approvedDeal = self.bidsData[indexPathForApprovedBid.row];
     approvedDeal.offerId = self.offer;
     if(buttonIndex == 0 && indexPathForApprovedBid){
-        NSLog(@"self.offer.active: %d", self.offer.active);
         __weak OfferBidsTableViewController *weakSelf = self;
         [db updateDealForApprovalWithDeal:approvedDeal andBlock:^(BOOL succeeded, NSError *error) {
             if(succeeded) {
