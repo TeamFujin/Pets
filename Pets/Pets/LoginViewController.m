@@ -113,9 +113,10 @@
             } else {
                 if (user.isNew) {
                     NSLog(@"User with facebook signed up and logged in!");
-                    [FTUtils showAlert:@"Login sucessfull" withMessage: @"Welcome"];
+                    [FTUtils showAlert:@"Login sucessfull" withMessage: @"Welcome !"];
                 } else {
                     NSLog(@"User with facebook logged in!");
+                    [FTUtils showAlert:@"Login sucessfull" withMessage: @"Welcome !"];
                 }
             }
         }];
