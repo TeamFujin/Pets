@@ -18,7 +18,6 @@
 }
 
 - (void)viewDidLoad {
-    [self.tabBarController setTitle:@"Pets you gave"];
     self.tableView = self.tableViewInactiveOffers;
     [super viewDidLoad];
     db = [[FTDatabaseRequester alloc] init];
@@ -26,5 +25,7 @@
         [super afterGettingDataFromDbWithData:offers andError:error];
     }];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController setTitle:@"Pets you gave"];
+}
 @end

@@ -27,5 +27,7 @@
         [super afterGettingDataFromDbWithData:offers andError:error];
     }];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tabBarController setTitle:@"Approved Pets"];
+}
 @end
