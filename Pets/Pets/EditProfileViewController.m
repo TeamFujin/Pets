@@ -31,6 +31,9 @@
 - (IBAction)saveTaped:(id)sender {
     NSString *email = self.emailTextField.text;
     NSString *phone = self.phoneTextField.text;
+    if(self.displayNameTextField.text.length == 0) {
+        [FTUtils showAlert:@"Wrong input" withMessage:@"Invalid name"];
+    }
     if(![self emailIsValid:email]){
         [FTUtils showAlert:@"Wrong input" withMessage:@"Invalid email"];
     }
