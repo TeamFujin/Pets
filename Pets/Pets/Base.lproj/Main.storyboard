@@ -615,12 +615,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-k0-bee">
-                                <rect key="frame" x="16" y="115" width="200" height="200"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="QeK-F8-AXh"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZc-Ks-1ZT">
                                 <rect key="frame" x="224" y="115" width="123" height="200"/>
                                 <constraints>
@@ -679,6 +673,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6vL-k0-bee">
+                                <rect key="frame" x="16" y="115" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="QeK-F8-AXh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -773,9 +773,6 @@
                                     <constraint firstAttribute="height" id="wFp-wL-EJP"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-5L-7pG">
-                                <rect key="frame" x="16" y="212" width="190" height="175"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WUg-tk-DV2">
                                 <rect key="frame" x="16" y="114" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -814,6 +811,9 @@
                                     <action selector="saveClicked:" destination="1zm-Wi-V1Z" eventType="touchUpInside" id="CxS-OV-8fo"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="cat1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RjW-5L-7pG">
+                                <rect key="frame" x="16" y="212" width="190" height="175"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1108,6 +1108,7 @@
     </scenes>
     <resources>
         <image name="cat.jpg" width="75" height="190"/>
+        <image name="cat1.jpg" width="587" height="680"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uCZ-hd-2aZ"/>

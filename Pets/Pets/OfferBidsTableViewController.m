@@ -42,7 +42,6 @@ static NSString *labelTextApproved;
     [db getOfferBidsForOffer:self.offer andBlock:^(NSArray *bids, NSError *error) {
         if(!error) {
             weakSelf.bidsData = [NSMutableArray arrayWithArray:bids];
-          //    NSLog(@"%@", bids);
             [weakSelf.tableView reloadData];
         } else {
             [FTUtils showAlert:@"We are sorry" withMessage:@"We can't show you who wants your pet right now."];
@@ -71,7 +70,6 @@ static NSString *labelTextApproved;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     OfferBidsUITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-   // NSLog(@"%@", cell);
     Deal *deal = self.bidsData[indexPath.row];
     PFUser *user = deal[@"wanterId"];
     cell.labelName.text = [NSString stringWithFormat:@"%@", user[@"displayName"]];
@@ -90,13 +88,6 @@ static NSString *labelTextApproved;
     Deal *deal = [self.bidsData objectAtIndex:indexPath.row];
     PFUser *user = deal[@"wanterId"];
     NSString *facebookId = user[@"facebookId"];
-    //    NSLog(@"Password %@", user.password);
-    //    NSLog(@"ObjectId %@", user.objectId);
-    //    NSLog(@"Email %@", user[@"email"]);
-    //    NSLog(@"authData %@", user[@"authData"]);
-    //    NSLog(@"www.facebook.com/%@", facebookId);
-    //    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.facebook.com/%@", facebookId]];
-    //    [[UIApplication sharedApplication] openURL:url];
     
     WebFacebookViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"webFacebook"];
     
@@ -107,56 +98,47 @@ static NSString *labelTextApproved;
 
 - (IBAction)longpress:(UILongPressGestureRecognizer*)sender {
     NSLog(@"Long press");
-        if (sender.state != UIGestureRecognizerStateEnded) {
-            return;
-        }
+    if (sender.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
     CGPoint point = [sender locationInView:self.tableView];
     
-        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-        if (!(indexPath == nil)){
-            indexPathForApprovedBid = indexPath;
-            Deal *toBeApprovedDeal = self.bidsData[indexPath.row];
-            if (toBeApprovedDeal.approved) {
-                [FTUtils showAlert:@"Already done" withMessage:@"You have already approved this person"];
-            } else if(self.offer.active) {
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    if (!(indexPath == nil)){
+        indexPathForApprovedBid = indexPath;
+        Deal *toBeApprovedDeal = self.bidsData[indexPath.row];
+        if (toBeApprovedDeal.approved) {
+            [FTUtils showAlert:@"Already done" withMessage:@"You have already approved this person"];
+        } else if(self.offer.active) {
             [[[UIAlertView alloc] initWithTitle:@"Give your pet" message:@"Are you sure you want to give your pet to this person?" delegate:self cancelButtonTitle:@"Yes, seems legit!" otherButtonTitles:@"No, keep my pet!", nil] show];
         } else {
-            //Offer is not active
             [FTUtils showAlert:@"This pet already has a new owner" withMessage:@"You can't give your pet to two people at once!"];
         }
-            // get the cell at indexPath (the one you long pressed)
-     //       OfferBidsUITableViewCell* cell =
-      //     [self.tableView cellForRowAtIndexPath:indexPath];//cellForItemAtIndexPath:indexPath];
-       //     NSLog(@"cell.labelName.text: %@", cell.labelName.text);
-    //     NSLog(@"cell: %@", cell);
     } else {
         [FTUtils showAlert:@"We are sorry" withMessage:@"Something went wrong with your fingers"];
     }
-
+    
 }
 
-//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    NSLog(@"Button index: %ld", buttonIndex);
-//}
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     NSLog(@"Button index: %ld", buttonIndex);
     Deal *approvedDeal = self.bidsData[indexPathForApprovedBid.row];
     approvedDeal.offerId = self.offer;
     if(buttonIndex == 0 && indexPathForApprovedBid){
-            NSLog(@"self.offer.active: %d", self.offer.active);
-            __weak OfferBidsTableViewController *weakSelf = self;
-            [db updateDealForApprovalWithDeal:approvedDeal andBlock:^(BOOL succeeded, NSError *error) {
-                if(succeeded) {
-                    [FTUtils showAlert:@"Congratulations" withMessage:@"Your pet has a new family!"];
-                    approvedDeal.approved = @YES;
-                    weakSelf.offer.active = 0;
-                    OfferBidsUITableViewCell* cell = (OfferBidsUITableViewCell*)
-                         [weakSelf.tableView cellForRowAtIndexPath:indexPathForApprovedBid];
-                    cell.labelApproved.text = labelTextApproved;
-                } else {
-                    [FTUtils showAlert:@"We are sorry" withMessage:@"You can't approve this person right now"];
-                }
-            }];
+        NSLog(@"self.offer.active: %d", self.offer.active);
+        __weak OfferBidsTableViewController *weakSelf = self;
+        [db updateDealForApprovalWithDeal:approvedDeal andBlock:^(BOOL succeeded, NSError *error) {
+            if(succeeded) {
+                [FTUtils showAlert:@"Congratulations" withMessage:@"Your pet has a new family!"];
+                approvedDeal.approved = @YES;
+                weakSelf.offer.active = 0;
+                OfferBidsUITableViewCell* cell = (OfferBidsUITableViewCell*)
+                [weakSelf.tableView cellForRowAtIndexPath:indexPathForApprovedBid];
+                cell.labelApproved.text = labelTextApproved;
+            } else {
+                [FTUtils showAlert:@"We are sorry" withMessage:@"You can't approve this person right now"];
+            }
+        }];
     }
 }
 - (IBAction)swipe:(UISwipeGestureRecognizer *)sender {

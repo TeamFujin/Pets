@@ -32,8 +32,6 @@
     [self startAsyncTask];
 }
 
-
-
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self becomeFirstResponder];
@@ -52,18 +50,20 @@
 
 - (void) populateCoreData{
     if(![self isDBFilled]){
-        NSManagedObjectContext *context = [self managedObjectContext];
-        FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-        [db getJokesWithBlock:^(NSArray *objects, NSError *error) {
-            for (NSDictionary *obj in objects) {
-                NSString *jokeBody = [obj objectForKey:@"Joke"];
-                NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
-                [joke setValue:jokeBody forKey:@"body"];
-            }
-            FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
-            [dispenser showJoke];
-            [context save:&error];
-        }];
+        if ([FTUtils isConnectionAvailable]) {
+            NSManagedObjectContext *context = [self managedObjectContext];
+            FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+            [db getJokesWithBlock:^(NSArray *objects, NSError *error) {
+                for (NSDictionary *obj in objects) {
+                    NSString *jokeBody = [obj objectForKey:@"Joke"];
+                    NSManagedObject *joke = [NSEntityDescription insertNewObjectForEntityForName:@"Joke" inManagedObjectContext:context];
+                    [joke setValue:jokeBody forKey:@"body"];
+                }
+                FTJokeDispenser *dispenser = [[FTJokeDispenser alloc] init];
+                [dispenser showJoke];
+                [context save:&error];
+            }];
+        }
     }
 }
 

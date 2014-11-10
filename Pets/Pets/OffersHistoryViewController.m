@@ -36,8 +36,6 @@ static NSInteger rowHeight = 100;
     [spinner stopSpinning];
     if(!error) {
         self.data = [NSMutableArray arrayWithArray:data];
-         //   NSLog(@"%@", data);
-        //NSLog(@"in success");
         [self.tableView reloadData];
     } else {
         [FTUtils showAlert:@"Error" withMessage:@"Sorry, we couldn't retrieve the offers."];
@@ -78,19 +76,12 @@ static NSInteger rowHeight = 100;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
- //   NSLog(@"In touch - %d", (int)self.tabBarController.selectedIndex == -1);//self.tabBarController.
-        Offer *offer = [self.data objectAtIndex:indexPath.row];
-
-        OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
-
-        [controller setOffer:offer];
-        [self.navigationController pushViewController:controller animated:YES];
+    Offer *offer = [self.data objectAtIndex:indexPath.row];
+    
+    OfferBidsTableViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OfferBidsController"];
+    
+    [controller setOffer:offer];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
 @end

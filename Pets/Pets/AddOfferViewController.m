@@ -19,9 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *titleTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *descriptionTextInput;
 @property (weak, nonatomic) IBOutlet UITextField *priceTextInput;
-@property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 
 @end
 
@@ -36,17 +34,16 @@
 - (void)viewDidLoad {
     self.title = @"Add New Pet";
     [super viewDidLoad];
-    [self loadHardcodedImage];
     [self initializeLocationManager];
     geocoder = [[CLGeocoder alloc] init];
     self.titleTextInput.delegate = self;
     self.descriptionTextInput.delegate = self;
     
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://pravda-team.ru/eng/image/photo/9/4/6/66946.jpeg"]]];//@"http://www.ultimamusic.com.au/wp-content/uploads/2014/01/1562-cute-little-cat-200x200.jpg"]]];
-        UIGraphicsBeginImageContext(CGSizeMake(200, 200));
-        [image drawInRect: CGRectMake(0, 0, 200, 200)];
-        UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+    UIImage *image = self.imageView.image;
+    UIGraphicsBeginImageContext(CGSizeMake(200, 200));
+    [image drawInRect: CGRectMake(0, 0, 200, 200)];
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     self.imageView.image = smallImage;
 }
 
@@ -115,7 +112,6 @@
     [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         if (error == nil && [placemarks count] > 0) {
             placemark = [placemarks lastObject];
-            //placemark.subThoroughfare, placemark.thoroughfare, placemark.postalCode, placemark.locality, placemark.administrativeArea, placemark.country
             adress = placemark.thoroughfare;
             [FTUtils showAlert:@"Location included." withMessage:adress];
         } else {
@@ -130,39 +126,40 @@
         NSString *description = self.descriptionTextInput.text;
         NSNumber *price = [NSNumber numberWithInt: [self.priceTextInput.text intValue]];
         UIImage *image = self.imageView.image;
-       
+        
         Offer *offer = [[Offer alloc] init];
         offer.userId = [PFUser currentUser];
         offer.title = title;
         offer.desc = description;
         offer.price = price;
         offer.active = YES;
-     //   offer.picture = imageBase64;
         offer.location.longitude = currentLongitude;
         offer.location.latitude = currentLatitude;
         offer.address = adress;
         
-           NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
-          PFFile *imageFile = [PFFile fileWithData:imageData];
-          offer.photo = imageFile;
-        FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
-        [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
-            if(succeeded) {
-                [FTUtils showAlert:@"Success" withMessage:@"Your offer has been published!"];
-                AddOfferViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeTableViewController"];
-                
-                [self.navigationController pushViewController:controller animated:YES];
-            } else {
-                [FTUtils showAlert:@"We are sorry" withMessage:@"Your offer could not be published!"];
-                NSLog(@"Errorr: %@", error);
-            }
-        }];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
+        PFFile *imageFile = [PFFile fileWithData:imageData];
+        offer.photo = imageFile;
+        if([FTUtils isConnectionAvailable]){
+            
+            
+            FTDatabaseRequester *db = [[FTDatabaseRequester alloc] init];
+            [db addOfferToDbWithOffer:offer andBlock:^(BOOL succeeded, NSError *error) {
+                if(succeeded) {
+                    [FTUtils showAlert:@"Success" withMessage:@"Your offer has been published!"];
+                    AddOfferViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"HomeTableViewController"];
+                    
+                    [self.navigationController pushViewController:controller animated:YES];
+                } else {
+                    [FTUtils showAlert:@"We are sorry" withMessage:@"Your offer could not be published!"];
+                    NSLog(@"Errorr: %@", error);
+                }
+            }];
+        }
+        else{
+            [FTUtils showAlert:@"Error" withMessage:@"No internet connection"];
+        }
     }
-}
-
--(void)loadHardcodedImage{
-    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://i.imgur.com/4ciIEEe.jpg"]]];
-    self.imageView.image = image;
 }
 
 -(void)initializeLocationManager
