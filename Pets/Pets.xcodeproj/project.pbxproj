@@ -283,6 +283,7 @@
 		209B824B1A0294DE0038CE29 /* Pets */ = {
 			isa = PBXGroup;
 			children = (
+				84A9B4A51A38F12100447B1D /* ViewModels */,
 				209A5A3A1A0CE3BE00F4FF81 /* Images */,
 				841C06941A06D4FF00008225 /* Controllers */,
 				841C066E1A068EC900008225 /* Models */,
@@ -367,17 +368,8 @@
 			children = (
 				841C06911A069BB500008225 /* Offer.h */,
 				841C06921A069BB500008225 /* Offer.m */,
-				841C06981A06DE4200008225 /* HomeUITableViewCell.xib */,
-				841C069A1A06DF0D00008225 /* HomeUITableViewCell.h */,
-				841C069B1A06DF0D00008225 /* HomeUITableViewCell.m */,
 				849B201D1A09979400F2C050 /* Deal.h */,
 				849B201E1A09979400F2C050 /* Deal.m */,
-				2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */,
-				2099DF9E1A0C1BE500A493F5 /* OfferUITableViewCell.h */,
-				2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */,
-				84AF66031A0CD2A40039553F /* OfferBidsUITableViewCell.xib */,
-				84AF66051A0CD33D0039553F /* OfferBidsUITableViewCell.h */,
-				84AF66061A0CD33D0039553F /* OfferBidsUITableViewCell.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -415,6 +407,22 @@
 				2099DF971A0BE09D00A493F5 /* FTJokeDispenser.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		84A9B4A51A38F12100447B1D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				841C069B1A06DF0D00008225 /* HomeUITableViewCell.m */,
+				2099DF991A0C1AB900A493F5 /* OfferUITableViewCell.xib */,
+				2099DF9E1A0C1BE500A493F5 /* OfferUITableViewCell.h */,
+				2099DF9F1A0C1BE500A493F5 /* OfferUITableViewCell.m */,
+				84AF66031A0CD2A40039553F /* OfferBidsUITableViewCell.xib */,
+				84AF66051A0CD33D0039553F /* OfferBidsUITableViewCell.h */,
+				84AF66061A0CD33D0039553F /* OfferBidsUITableViewCell.m */,
+				841C06981A06DE4200008225 /* HomeUITableViewCell.xib */,
+				841C069A1A06DF0D00008225 /* HomeUITableViewCell.h */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

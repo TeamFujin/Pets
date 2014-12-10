@@ -49,14 +49,6 @@ static NSString *labelTextApproved;
     }];
 }
 
-- (void)longPress:(UILongPressGestureRecognizer*)gesture
-{
-    if ( gesture.state == UIGestureRecognizerStateEnded ) {
-        
-        UICollectionViewCell *cellLongPressed = (UICollectionViewCell *) gesture.view;
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
